@@ -6,7 +6,7 @@
 <title>Tyros Group — Executive Search, Private Access &amp; Academy | Banque &amp; Assurance</title>
 <meta name="description" content="Cabinet spécialisé Banque &amp; Assurance : executive search sur les fonctions critiques (risk, compliance, audit, actuariat, IA), accès privé aux décideurs et formations IA, cyber et RGPD.">
 <link rel="canonical" href="https://tyros-group.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23081120'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='38' font-weight='600' fill='%23D6B681' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23081120'/%3E%3Cpath d='M 79 36 A 33 33 0 1 1 58.5 18.2' fill='none' stroke='white' stroke-width='6'/%3E%3Cpath d='M 53.2 13.1 A 37 37 0 0 1 85.8 40.4' fill='none' stroke='%23C9A063' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tyros Group">
 <meta property="og:title" content="Tyros Group — Executive Search, Private Access &amp; Academy">
@@ -89,14 +89,24 @@ header.site{
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--ink-line);
 }
-.wordmark{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:1.12rem;
-  color:#fff;
-  letter-spacing:0.14em;
+.logo{display:inline-flex;flex-direction:column;align-items:center;color:#fff;}
+.logo-top{
+  display:inline-flex;align-items:center;
+  font-family:'Plex Sans',sans-serif;font-weight:400;
+  font-size:1.08rem;letter-spacing:0.4em;
+  color:#fff;line-height:1;
 }
-.wordmark em{font-style:normal;color:var(--gold-soft);}
+.logo-o{
+  width:1.02em;height:1.02em;
+  margin:0 0.34em 0 -0.02em;
+  flex:none;
+}
+.logo-sub{
+  font-family:'Plex Sans',sans-serif;font-weight:500;
+  font-size:0.5rem;letter-spacing:0.66em;text-indent:0.33em;
+  color:var(--gold-soft);
+  margin-top:0.3rem;line-height:1;
+}
 nav.main{display:flex;gap:1.9rem;}
 nav.main a{
   font-size:0.84rem;color:#C7CCDA;
@@ -444,7 +454,7 @@ footer.site{
   max-width:76rem;margin:0 auto;
   display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.4rem;
 }
-.footer-grid .wordmark{margin-bottom:1rem;display:block;}
+.footer-grid .logo{margin-bottom:1rem;align-items:flex-start;}
 .footer-grid .baseline{font-size:0.85rem;max-width:28ch;color:var(--stone-soft);}
 .footer-col h5{
   font-family:'Plex Sans',sans-serif;font-weight:600;
@@ -680,7 +690,10 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
 </style>
 
 <header class="site">
-  <a href="#accueil" class="wordmark">TYROS<em>&nbsp;GROUP</em></a>
+  <a href="#accueil" class="logo" aria-label="Tyros Group">
+    <span class="logo-top">TYR<svg class="logo-o" viewBox="0 0 100 100" aria-hidden="true"><path d="M 86.3 33.1 A 40 40 0 1 1 60.4 11.4" fill="none" stroke="currentColor" stroke-width="7"/><path d="M 53.9 5.2 A 45 45 0 0 1 93.5 38.4" fill="none" stroke="#C9A063" stroke-width="7" stroke-linecap="round"/></svg>S</span>
+    <span class="logo-sub">GROUP</span>
+  </a>
   <nav class="main">
     <a href="#accueil" class="current" data-en="Home">Accueil</a>
     <a href="#executive-search">Executive Search</a>
@@ -952,7 +965,10 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
 <footer class="site">
   <div class="footer-grid">
     <div>
-      <span class="wordmark">TYROS<em>&nbsp;GROUP</em></span>
+      <span class="logo" aria-label="Tyros Group">
+        <span class="logo-top">TYR<svg class="logo-o" viewBox="0 0 100 100" aria-hidden="true"><path d="M 86.3 33.1 A 40 40 0 1 1 60.4 11.4" fill="none" stroke="currentColor" stroke-width="7"/><path d="M 53.9 5.2 A 45 45 0 0 1 93.5 38.4" fill="none" stroke="#C9A063" stroke-width="7" stroke-linecap="round"/></svg>S</span>
+        <span class="logo-sub">GROUP</span>
+      </span>
       <p class="baseline" data-en="Executive Search, Private Access &amp; Strategic Learning — banking, insurance &amp; financial technology. London.">Executive Search, Private Access &amp; Strategic Learning — Banque, Assurance &amp; tech financière. London.</p>
     </div>
     <div class="footer-col">
