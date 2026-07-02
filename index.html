@@ -182,41 +182,86 @@ nav.main a:hover, nav.main a.current{color:#fff;border-color:var(--gold);}
 
 .hero .lede-2{animation-delay:.46s;margin-top:1.1rem;}
 
-/* ---------- QUATRE PRATIQUES ---------- */
-.practices{
+/* ---------- VITRINE PRATIQUES ---------- */
+.showcase{
   background:var(--ink);
   border-top:1px solid var(--ink-line);
-  padding:0 6vw;
+  padding:4.2rem 6vw 4.6rem;
+  overflow:hidden;
 }
-.practices-inner{
+.showcase-inner{
   max-width:76rem;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:4rem;
+  align-items:start;
 }
-.practice{
-  display:flex;flex-direction:column;gap:0.45rem;
-  padding:1.9rem 1.6rem 2rem;
-  border-left:1px solid var(--ink-line);
-  transition:background .2s ease;
+.show-tabs{display:flex;flex-direction:column;border-left:1px solid var(--ink-line);}
+.show-tab{
+  position:relative;
+  display:flex;align-items:baseline;gap:0.8rem;
+  background:none;border:none;cursor:pointer;
+  text-align:left;
+  padding:0.95rem 0 0.95rem 1.4rem;
+  color:var(--stone-soft);
+  font-family:'Plex Sans',sans-serif;
+  font-size:0.9rem;
+  transition:color .25s ease;
 }
-.practice:last-child{border-right:1px solid var(--ink-line);}
-.practice:hover{background:rgba(178,142,85,0.07);}
-.practice .p-idx{
+.show-tab .tab-idx{
+  font-weight:600;font-size:0.68rem;letter-spacing:0.16em;
+  color:inherit;min-width:1.4rem;
+}
+.show-tab .tab-name{font-weight:500;}
+.show-tab:hover{color:#E9E6DC;}
+.show-tab.active{color:#fff;}
+.show-tab .bar{
+  position:absolute;left:-1px;top:0;bottom:0;
+  width:1px;background:var(--gold);
+  transform:scaleY(0);transform-origin:top;
+}
+.show-tab.active .bar{animation:fillbar var(--slide-ms,7000ms) linear forwards;}
+@keyframes fillbar{from{transform:scaleY(0);}to{transform:scaleY(1);}}
+.showcase.paused .show-tab.active .bar{animation-play-state:paused;}
+.show-slides{position:relative;min-height:13rem;}
+.show-slide{
+  position:absolute;inset:0;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .8s ease, transform .8s ease;
+  pointer-events:none;
+  display:flex;flex-direction:column;align-items:flex-start;gap:1.1rem;
+}
+.show-slide.active{opacity:1;transform:translateY(0);pointer-events:auto;}
+.show-kicker{
   font-family:'Plex Sans',sans-serif;font-weight:600;
-  font-size:0.68rem;letter-spacing:0.18em;
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
   color:var(--gold-soft);
 }
-.practice .p-name{
-  font-family:'Fraunces',serif;font-weight:600;
-  font-size:1.02rem;color:#E9E6DC;
-  line-height:1.25;
+.show-slide h3{
+  font-size:clamp(1.5rem,2.8vw,2.3rem);
+  line-height:1.18;
+  color:#fff;
+  max-width:24ch;
 }
+.show-link{
+  font-family:'Plex Sans',sans-serif;font-weight:500;
+  font-size:0.88rem;
+  color:var(--gold-soft);
+  border-bottom:1px solid var(--gold);
+  padding-bottom:3px;
+  transition:color .15s ease;
+}
+.show-link:hover{color:#fff;}
 @media (max-width:860px){
-  .practices-inner{grid-template-columns:repeat(2,1fr);}
-  .practice:nth-child(2){border-right:1px solid var(--ink-line);}
+  .showcase-inner{grid-template-columns:1fr;gap:2.2rem;}
+  .show-tabs{flex-direction:row;flex-wrap:wrap;border-left:none;border-top:1px solid var(--ink-line);gap:0 1.6rem;}
+  .show-tab{padding:0.9rem 0 0;}
+  .show-tab .tab-name{display:none;}
+  .show-tab .bar{left:0;right:0;top:-1px;bottom:auto;height:1px;width:auto;transform:scaleX(0);transform-origin:left;}
+  .show-tab.active .bar{animation:fillbarX var(--slide-ms,7000ms) linear forwards;}
+  .show-slides{min-height:15rem;}
 }
-@media (max-width:520px){
-  .practices-inner{grid-template-columns:1fr;}
-  .practice{border-right:1px solid var(--ink-line);}
+@keyframes fillbarX{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+@media (prefers-reduced-motion: reduce){
+  .show-tab .bar, .show-tab.active .bar{animation:none;transform:none;}
 }
 
 /* ---------- SECTION COMMON ---------- */
@@ -585,13 +630,37 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
   </div>
 </section>
 
-<!-- QUATRE PRATIQUES -->
-<section class="practices reveal">
-  <div class="practices-inner">
-    <a class="practice" href="#executive-search"><span class="p-idx">I</span><span class="p-name">Executive Search</span></a>
-    <a class="practice" href="#private-access"><span class="p-idx">II</span><span class="p-name">Private Executive Access</span></a>
-    <a class="practice" href="#academy"><span class="p-idx">III</span><span class="p-name">Tyros Academy</span></a>
-    <a class="practice" href="#advisory"><span class="p-idx">IV</span><span class="p-name">AI &amp; Regulatory Advisory</span></a>
+<!-- VITRINE DES QUATRE PRATIQUES -->
+<section class="showcase" id="pratiques" aria-label="Nos pratiques">
+  <div class="showcase-inner">
+    <div class="show-tabs" role="tablist">
+      <button class="show-tab active" role="tab" aria-selected="true" data-slide="0"><span class="tab-idx">I</span><span class="tab-name">Executive Search</span><span class="bar"></span></button>
+      <button class="show-tab" role="tab" aria-selected="false" data-slide="1"><span class="tab-idx">II</span><span class="tab-name">Private Executive Access</span><span class="bar"></span></button>
+      <button class="show-tab" role="tab" aria-selected="false" data-slide="2"><span class="tab-idx">III</span><span class="tab-name">Tyros Academy</span><span class="bar"></span></button>
+      <button class="show-tab" role="tab" aria-selected="false" data-slide="3"><span class="tab-idx">IV</span><span class="tab-name">AI &amp; Regulatory Advisory</span><span class="bar"></span></button>
+    </div>
+    <div class="show-slides">
+      <div class="show-slide active">
+        <div class="show-kicker">I — Executive Search</div>
+        <h3 data-en="Sensitive appointments across banking, insurance and financial services.">Nominations sensibles dans la banque, l'assurance et les services financiers.</h3>
+        <a class="show-link" href="#executive-search" data-en="Discover →">Découvrir →</a>
+      </div>
+      <div class="show-slide">
+        <div class="show-kicker">II — Private Executive Access</div>
+        <h3 data-en="Confidential gatherings of leaders, experts and innovators.">Des rencontres confidentielles entre dirigeants, experts et acteurs innovants.</h3>
+        <a class="show-link" href="#private-access" data-en="Discover →">Découvrir →</a>
+      </div>
+      <div class="show-slide">
+        <div class="show-kicker">III — Tyros Academy</div>
+        <h3 data-en="Short, focused programmes for the teams that matter most.">Des programmes courts et ciblés pour renforcer les équipes clés.</h3>
+        <a class="show-link" href="#academy" data-en="Discover →">Découvrir →</a>
+      </div>
+      <div class="show-slide">
+        <div class="show-kicker">IV — AI &amp; Regulatory Advisory</div>
+        <h3 data-en="Understand, frame and deploy AI in a demanding environment.">Comprendre, cadrer et déployer l'IA dans un environnement exigeant.</h3>
+        <a class="show-link" href="#advisory" data-en="Discover →">Découvrir →</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -841,6 +910,37 @@ try{
   var saved = localStorage.getItem('tyros_lang');
   if(saved === 'en'){ setLang('en'); }
 }catch(e){}
+
+/* Vitrine des pratiques — défilement lent, pause au survol */
+(function(){
+  var sc = document.querySelector('.showcase');
+  if(!sc) return;
+  var tabs = sc.querySelectorAll('.show-tab');
+  var slides = sc.querySelectorAll('.show-slide');
+  var idx = 0, timer = null;
+  var SLIDE_MS = 7000;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  sc.style.setProperty('--slide-ms', SLIDE_MS + 'ms');
+  function show(i){
+    idx = i % slides.length;
+    tabs.forEach(function(t,k){
+      t.classList.toggle('active', k===idx);
+      t.setAttribute('aria-selected', k===idx ? 'true' : 'false');
+      var bar = t.querySelector('.bar');
+      if(bar){ bar.style.animation='none'; void bar.offsetWidth; bar.style.animation=''; }
+    });
+    slides.forEach(function(s,k){ s.classList.toggle('active', k===idx); });
+  }
+  function next(){ show(idx+1); }
+  function start(){ if(reduced) return; stop(); timer = setInterval(next, SLIDE_MS); }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+  tabs.forEach(function(t,k){
+    t.addEventListener('click', function(){ show(k); start(); });
+  });
+  sc.addEventListener('mouseenter', function(){ stop(); sc.classList.add('paused'); });
+  sc.addEventListener('mouseleave', function(){ sc.classList.remove('paused'); show(idx); start(); });
+  start();
+})();
 
 /* Formulaire → mailto (adresse active) */
 var cform = document.getElementById('contact-form');
