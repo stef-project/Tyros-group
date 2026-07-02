@@ -18,6 +18,13 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Tyros Group","legalName":"TYROS GROUP LTD","url":"https://tyros-group.com/","email":"contact@tyros-group.com","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"sameAs":["https://www.linkedin.com/company/119114061/"]}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ItemList","name":"Perspectives Tyros Group","itemListElement":[
+{"@type":"ListItem","position":1,"item":{"@type":"Article","headline":"L'AI Act ne créera pas de Chief AI Officer. Il renforcera le Chief Risk Officer.","datePublished":"2026-06-01","inLanguage":"fr","author":{"@type":"Organization","name":"Tyros Group"},"publisher":{"@type":"Organization","name":"Tyros Group"},"url":"https://tyros-group.com/#perspectives"}},
+{"@type":"ListItem","position":2,"item":{"@type":"Article","headline":"Les dirigeants clés ne se cherchent pas en surface.","datePublished":"2026-04-01","inLanguage":"fr","author":{"@type":"Organization","name":"Tyros Group"},"publisher":{"@type":"Organization","name":"Tyros Group"},"url":"https://tyros-group.com/#perspectives"}},
+{"@type":"ListItem","position":3,"item":{"@type":"Article","headline":"La conformité change de statut : de centre de coût à avantage compétitif.","datePublished":"2026-02-01","inLanguage":"fr","author":{"@type":"Organization","name":"Tyros Group"},"publisher":{"@type":"Organization","name":"Tyros Group"},"url":"https://tyros-group.com/#perspectives"}}
+]}
+</script>
 </head>
 <body>
 <style>
@@ -477,6 +484,63 @@ footer.site{
 .btn-ghost-dark:hover{color:var(--gold);}
 @media (max-width:760px){.advisory-head{grid-template-columns:1fr;gap:1rem;}}
 
+/* ---------- PERSPECTIVES ---------- */
+.persp{padding:7.5rem 6vw;background:var(--paper-2);border-top:1px solid var(--line);}
+.persp-head{
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;
+  margin-bottom:3rem;
+}
+.persp-head .eyebrow{color:var(--gold-deep);margin-bottom:0.9rem;}
+.persp-head h2{font-size:clamp(1.8rem,3.2vw,2.6rem);max-width:22ch;}
+.persp-note{margin:0;color:var(--stone);font-size:0.95rem;max-width:34ch;text-align:right;}
+@media (max-width:860px){
+  .persp-head{grid-template-columns:1fr;}
+  .persp-note{text-align:left;max-width:56ch;}
+}
+.notes{border-top:1px solid var(--line);}
+.note{border-bottom:1px solid var(--line);}
+.note summary{
+  list-style:none;
+  display:grid;grid-template-columns:7.5rem 1fr 2rem;gap:2rem;
+  align-items:baseline;
+  padding:1.7rem 0;
+  cursor:pointer;
+  transition:background .2s ease, padding-left .2s ease;
+}
+.note summary::-webkit-details-marker{display:none;}
+.note summary:hover{background:#fff;padding-left:0.8rem;}
+.note-date{
+  font-family:'Plex Sans',sans-serif;font-weight:600;
+  font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);
+}
+.note-title{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(1.1rem,2vw,1.45rem);
+  line-height:1.3;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.note-toggle{
+  font-family:'Fraunces',serif;
+  font-size:1.5rem;color:var(--gold-deep);
+  line-height:1;justify-self:end;
+  transition:transform .3s ease;
+}
+.note[open] .note-toggle{transform:rotate(45deg);}
+.note-body{
+  padding:0 0 2.2rem 9.5rem;
+  max-width:66ch;
+}
+.note-body p{margin:0 0 1rem;color:#2A3248;font-size:0.98rem;}
+@media (max-width:860px){
+  .note summary{grid-template-columns:1fr 2rem;gap:0.5rem 1rem;}
+  .note-date{grid-column:1;}
+  .note-title{grid-column:1;}
+  .note-toggle{grid-column:2;grid-row:1;}
+  .note-body{padding-left:0;}
+}
+
 /* ---------- MANIFESTO ---------- */
 .manifesto{
   background:var(--ink-2);
@@ -604,6 +668,7 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
     <a href="#executive-search">Executive Search</a>
     <a href="#private-access">Private Access</a>
     <a href="#academy">Academy</a>
+    <a href="#perspectives" data-en="Insights">Perspectives</a>
     <a href="#contact">Contact</a>
   </nav>
   <div class="lang" role="group" aria-label="Langue">
@@ -745,6 +810,58 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
         <p class="advisory-text" data-en="We help financial organisations understand, frame and deploy their AI initiatives in a demanding environment: governance, compliance, team acculturation and business adoption.">Nous aidons les organisations financières à comprendre, cadrer et déployer leurs initiatives IA dans un environnement exigeant : gouvernance, conformité, acculturation des équipes et adoption métier.</p>
         <a href="#contact" class="btn-ghost-dark" data-en="Talk to a consultant →">Échanger avec un consultant →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSPECTIVES -->
+<section class="persp reveal" id="perspectives">
+  <div class="section-inner">
+    <div class="persp-head">
+      <div>
+        <div class="eyebrow">Perspectives</div>
+        <h2 data-en="We write rarely. When it matters.">Nous écrivons peu. Quand cela compte.</h2>
+      </div>
+      <p class="persp-note" data-en="Convictions drawn from our mandates and our conversations with the leaders of banking and insurance.">Des convictions issues de nos mandats et de nos échanges avec les dirigeants de la banque et de l'assurance.</p>
+    </div>
+    <div class="notes">
+
+      <details class="note">
+        <summary>
+          <span class="note-date" data-en="June 2026">Juin 2026</span>
+          <span class="note-title" data-en="The AI Act will not create Chief AI Officers. It will strengthen Chief Risk Officers.">L'AI Act ne créera pas de Chief AI Officer. Il renforcera le Chief Risk Officer.</span>
+          <span class="note-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div class="note-body">
+          <p data-en="Since the European regulation came into force, banks have been searching for someone to own AI governance. Most are looking in the wrong place. High-risk AI systems fall under existing frameworks: risk mapping, permanent control, model auditability — in other words, the remit of Risk and Compliance functions, not of a new, isolated role without a mandate.">Depuis l'entrée en application du règlement européen, les banques cherchent un responsable de la gouvernance IA. La plupart regardent au mauvais endroit. Les systèmes d'IA à haut risque relèvent des dispositifs existants : cartographie des risques, contrôle permanent, auditabilité des modèles — autrement dit, du périmètre des directions des risques et de la conformité, pas d'une fonction nouvelle, isolée et sans mandat.</p>
+          <p data-en="Our conviction: the organisations that succeed will be those that strengthen Risk and Compliance with hybrid profiles — regulation × data — rather than adding another box to the org chart. These profiles are rare. Which is precisely why they are recruited through direct approach.">Notre conviction : les organisations qui réussiront seront celles qui auront renforcé leurs fonctions Risk et Compliance avec des profils hybrides — réglementation × données — plutôt que d'avoir ajouté une case à l'organigramme. Ces profils sont rares. C'est précisément pour cela qu'ils se recrutent en approche directe.</p>
+        </div>
+      </details>
+
+      <details class="note">
+        <summary>
+          <span class="note-date" data-en="April 2026">Avril 2026</span>
+          <span class="note-title" data-en="Key leaders are not found at the surface.">Les dirigeants clés ne se cherchent pas en surface.</span>
+          <span class="note-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div class="note-body">
+          <p data-en="The best executives in banking and insurance do not answer job ads, do not attend fairs, do not update their profiles. They are in post, performing, and listening to nothing — except a confidential conversation, at the right level, on the right subject.">Les meilleurs dirigeants de la banque et de l'assurance ne répondent pas aux annonces, ne fréquentent pas les salons, n'actualisent pas leur profil. Ils sont en poste, performants, et à l'écoute de rien — sauf d'une conversation confidentielle, au bon niveau, sur le bon sujet.</p>
+          <p data-en="That is the entire difference between recruitment and executive search: one selects among those who show themselves, the other goes to find those who matter. In sensitive functions — Risk, Compliance, Actuarial, General Management — this distinction is not a nuance. It decides the quality of the appointment.">C'est toute la différence entre le recrutement et l'executive search : l'un sélectionne parmi ceux qui se montrent, l'autre va chercher ceux qui comptent. Dans les fonctions sensibles — Risk, Compliance, Actuariat, Direction Générale — cette distinction n'est pas une nuance. Elle décide de la qualité de la nomination.</p>
+        </div>
+      </details>
+
+      <details class="note">
+        <summary>
+          <span class="note-date" data-en="February 2026">Février 2026</span>
+          <span class="note-title" data-en="Compliance is changing status: from cost centre to competitive edge.">La conformité change de statut : de centre de coût à avantage compétitif.</span>
+          <span class="note-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div class="note-body">
+          <p data-en="For twenty years, compliance was treated as a constraint: a cost, a brake, an obligation. That cycle is ending. AI Act, DORA, ESG requirements: regulatory density has reached the point where it reshapes competition itself. Institutions that absorb regulation faster than their market turn it into an advantage — speed to market, supervisory trust, boardroom credibility.">Pendant vingt ans, la conformité a été traitée comme une contrainte : un coût, un frein, un passage obligé. Ce cycle s'achève. AI Act, DORA, exigences ESG : la densité réglementaire est devenue telle qu'elle redessine la concurrence elle-même. Les établissements capables d'absorber la réglementation plus vite que leur marché en font un avantage — vitesse de lancement, confiance des superviseurs, crédibilité devant les conseils.</p>
+          <p data-en="The direct consequence on org charts: the new generation of Chief Compliance Officers are no longer control-minded lawyers but full-fledged executives, engaged in strategy. Their profile has changed. So has their scarcity.">Conséquence directe sur les organigrammes : les Chief Compliance Officers de nouvelle génération ne sont plus des juristes de contrôle, mais des dirigeants de plein exercice, associés à la stratégie. Leur profil a changé. Leur rareté aussi.</p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
