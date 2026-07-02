@@ -338,34 +338,12 @@ nav.main a:hover, nav.main a.current{color:#fff;border-color:var(--gold);}
   .academy-head{grid-template-columns:1fr;gap:1.2rem;align-items:start;}
   .academy-head .btn-primary{white-space:normal;text-align:left;line-height:1.5;}
 }
-.academy-mission{
-  margin:0 0 3rem;
-  padding:2.2rem 0;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+.academy-intro{
+  margin:0 0 2.6rem;
+  color:var(--stone);
+  font-size:1.02rem;
+  max-width:62ch;
 }
-.academy-mission .lead-in{
-  font-family:'Fraunces',serif;font-style:italic;font-weight:400;
-  font-size:1.15rem;color:var(--ink-2);
-  margin:0 0 1.4rem;
-}
-.academy-checks{
-  list-style:none;margin:0;padding:0;
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:0.9rem 3rem;
-}
-.academy-checks li{
-  display:grid;grid-template-columns:1.4rem 1fr;gap:0.7rem;
-  align-items:baseline;
-  font-size:0.95rem;color:#2A3248;
-  max-width:52ch;
-}
-.academy-checks .ck{
-  font-family:'Plex Sans',sans-serif;font-weight:600;
-  color:var(--gold-deep);
-  font-size:0.85rem;
-}
-@media (max-width:760px){.academy-checks{grid-template-columns:1fr;}}
 .academy-grid{
   display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
   background:var(--line);border:1px solid var(--line);
@@ -434,6 +412,48 @@ footer.site{
 
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
+
+/* ---------- ADVISORY ---------- */
+.advisory{padding:7.5rem 6vw;background:var(--paper);}
+.advisory-head{
+  display:grid;grid-template-columns:auto 1fr;gap:2.6rem;align-items:start;
+}
+.advisory-head .eyebrow{color:var(--gold-deep);margin-bottom:0.9rem;}
+.advisory-head h2{font-size:clamp(1.8rem,3.2vw,2.6rem);max-width:24ch;}
+.advisory-text{margin:1.4rem 0 2rem;color:var(--stone);font-size:1.02rem;max-width:58ch;}
+.btn-ghost-dark{
+  font-family:'Plex Sans',sans-serif;font-weight:500;
+  color:var(--gold-deep);
+  border-bottom:1px solid var(--gold);
+  padding-bottom:3px;
+  font-size:0.9rem;
+  transition:color .15s ease;
+}
+.btn-ghost-dark:hover{color:var(--gold);}
+@media (max-width:760px){.advisory-head{grid-template-columns:1fr;gap:1rem;}}
+
+/* ---------- MANIFESTO ---------- */
+.manifesto{
+  background:var(--ink-2);
+  padding:6rem 6vw;
+  border-top:1px solid var(--ink-line);
+}
+.manifesto-inner{
+  max-width:52rem;margin:0 auto;
+  border-left:1px solid rgba(214,182,129,0.4);
+  padding-left:2.4rem;
+  display:grid;gap:1.3rem;
+}
+.manifesto-inner p{
+  margin:0;
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:clamp(1.15rem,2.2vw,1.55rem);
+  line-height:1.35;
+  color:#EDEAE0;
+  text-wrap:balance;
+}
+.manifesto-inner p:last-child{color:var(--gold-soft);}
 
 /* ---------- LANG TOGGLE ---------- */
 .lang{
@@ -571,7 +591,7 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
     <a class="practice" href="#executive-search"><span class="p-idx">I</span><span class="p-name">Executive Search</span></a>
     <a class="practice" href="#private-access"><span class="p-idx">II</span><span class="p-name">Private Executive Access</span></a>
     <a class="practice" href="#academy"><span class="p-idx">III</span><span class="p-name">Tyros Academy</span></a>
-    <a class="practice" href="#contact"><span class="p-idx">IV</span><span class="p-name">AI &amp; Regulatory Advisory</span></a>
+    <a class="practice" href="#advisory"><span class="p-idx">IV</span><span class="p-name">AI &amp; Regulatory Advisory</span></a>
   </div>
 </section>
 
@@ -581,9 +601,9 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
     <div class="search-head">
       <div class="sec-num" aria-hidden="true">01</div>
       <div>
-        <div class="eyebrow" data-en="The foundation — Executive Search">Le socle — Executive Search</div>
-        <h2 data-en="Six practice areas. One sector. No dilution.">Six domaines. Un seul secteur. Aucune dispersion.</h2>
-        <p class="intro" data-en="We do not recruit at volume. Every mandate is conducted through direct approach, under strict confidentiality, on the only functions we know in depth.">Nous ne recrutons pas au volume. Chaque mandat est mené en approche directe, sous confidentialité stricte, sur les seules fonctions que nous connaissons en profondeur.</p>
+        <div class="eyebrow" data-en="The core practice — Executive Search">L'offre principale — Executive Search</div>
+        <h2 data-en="Sensitive appointments across banking, insurance and financial services.">Nominations sensibles dans la banque, l'assurance et les services financiers.</h2>
+        <p class="intro" data-en="Six practice areas. One sector. No dilution. Every mandate is conducted through direct approach, under strict confidentiality.">Six domaines. Un seul secteur. Aucune dispersion. Chaque mandat est mené en approche directe, sous confidentialité stricte.</p>
       </div>
     </div>
     <div class="domain-list">
@@ -608,8 +628,7 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
     <div>
       <div class="eyebrow">Private Executive Access</div>
       <h2 data-en="Where decision-makers meet, opportunities are built.">Là où les décideurs se rencontrent, les opportunités se construisent.</h2>
-      <p class="objective" data-en="Tyros Group supports organisations seeking to engage with the leaders of banking, insurance and financial services on strategic topics: AI, risk, compliance, cybersecurity, transformation and leadership.">Tyros Group accompagne les organisations qui souhaitent dialoguer avec les dirigeants de la banque, de l'assurance et des services financiers autour de sujets stratégiques : IA, risques, conformité, cybersécurité, transformation et leadership.</p>
-      <p class="objective" data-en="We design private formats — breakfasts, confidential lunches, executive circles — built to foster high-quality exchanges between experts, executives and qualified decision-makers.">Nous imaginons des formats privés — petits-déjeuners, déjeuners confidentiels, cercles exécutifs — conçus pour favoriser des échanges de qualité entre experts, dirigeants et décideurs qualifiés.</p>
+      <p class="objective" data-en="Confidential gatherings of leaders, experts and innovators around the issues transforming banking and insurance: AI, risk, compliance, cybersecurity, data and operational performance.">Des rencontres confidentielles entre dirigeants, experts et acteurs innovants autour des enjeux qui transforment la banque et l'assurance : IA, risques, conformité, cybersécurité, data et performance opérationnelle.</p>
       <div class="why">
         <span class="label" data-en="A network, a method, a credibility">Un réseau, une méthode, une crédibilité</span>
         <p data-en="Our executive search practice gives us a fine-grained understanding of leadership stakes and financial-sector dynamics. We do not promise artificial access: &lt;span class=&quot;gold&quot;&gt;we create the conditions for a relevant meeting&lt;/span&gt; — the right level of counterparts, the right context, the right topic.">Notre expertise en executive search nous donne une compréhension fine des enjeux dirigeants et des dynamiques du secteur financier. Nous ne promettons pas un accès artificiel : <span class="gold">nous créons les conditions d'une rencontre pertinente</span> — le bon niveau d'interlocuteurs, le bon contexte, le bon sujet.</p>
@@ -633,16 +652,7 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
       </div>
       <a href="#contact" class="btn-primary" data-en="Arrange a session for my team">Organiser une session pour mon équipe</a>
     </div>
-    <div class="academy-mission">
-      <p class="lead-in" data-en="We help companies to:">Nous accompagnons les entreprises pour :</p>
-      <ul class="academy-checks">
-        <li><span class="ck">✓</span><span data-en="Adopt artificial intelligence responsibly">Adopter l'intelligence artificielle de manière responsable</span></li>
-        <li><span class="ck">✓</span><span data-en="Understand the new regulatory requirements of the AI Act">Comprendre les nouvelles exigences réglementaires liées à l'AI Act</span></li>
-        <li><span class="ck">✓</span><span data-en="Protect client and employee data">Protéger les données clients et collaborateurs</span></li>
-        <li><span class="ck">✓</span><span data-en="Strengthen cyber reflexes and the security of digital practices">Renforcer les cyber-réflexes et la sécurité des usages numériques</span></li>
-        <li><span class="ck">✓</span><span data-en="Build a culture of governance, resilience and compliance">Développer une culture de gouvernance, de résilience et de conformité</span></li>
-      </ul>
-    </div>
+    <p class="academy-intro" data-en="Short, focused programmes to strengthen key teams on regulatory, technological and managerial topics: AI, compliance, insurance distribution, risk, data privacy and leadership.">Des programmes courts et ciblés pour renforcer les équipes clés sur les sujets réglementaires, technologiques et managériaux : IA, conformité, distribution assurance, risques, data privacy et leadership.</p>
     <div class="academy-grid">
       <div class="mod"><span class="num">Module 01</span><h3 data-en="AI in the workplace">IA en entreprise</h3><p data-en="Understand, use and secure artificial intelligence at work.">Comprendre, utiliser et sécuriser l'intelligence artificielle au travail.</p></div>
       <div class="mod"><span class="num">Module 02</span><h3 data-en="AI Act &amp; AI Governance">AI Act &amp; Gouvernance de l'IA</h3><p data-en="Understand the new European obligations and structure an appropriate governance.">Comprendre les nouvelles obligations européennes et structurer une gouvernance adaptée.</p></div>
@@ -652,6 +662,31 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
     <div class="academy-cta-mobile">
       <a href="#contact" class="btn-primary" data-en="Arrange a session for my team">Organiser une session pour mon équipe</a>
     </div>
+  </div>
+</section>
+
+<!-- 04 AI & REGULATORY ADVISORY -->
+<section class="advisory reveal" id="advisory">
+  <div class="section-inner">
+    <div class="advisory-head">
+      <div class="sec-num" aria-hidden="true">04</div>
+      <div>
+        <div class="eyebrow">AI &amp; Regulatory Advisory</div>
+        <h2 data-en="AI, deployed with the rigour of financial services.">L'IA, déployée avec la rigueur du secteur financier.</h2>
+        <p class="advisory-text" data-en="We help financial organisations understand, frame and deploy their AI initiatives in a demanding environment: governance, compliance, team acculturation and business adoption.">Nous aidons les organisations financières à comprendre, cadrer et déployer leurs initiatives IA dans un environnement exigeant : gouvernance, conformité, acculturation des équipes et adoption métier.</p>
+        <a href="#contact" class="btn-ghost-dark" data-en="Talk to a consultant →">Échanger avec un consultant →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTE -->
+<section class="manifesto reveal">
+  <div class="manifesto-inner">
+    <p data-en="Tyros Group knows the leaders.">Tyros Group connaît les dirigeants.</p>
+    <p data-en="Tyros Group understands sensitive functions.">Tyros Group comprend les fonctions sensibles.</p>
+    <p data-en="Tyros Group connects the right profiles, the right decision-makers and the right topics.">Tyros Group connecte les bons profils, les bons décideurs et les bons sujets.</p>
+    <p data-en="Tyros Group builds capability in AI, compliance and financial transformation.">Tyros Group accompagne la montée en compétence autour de l'IA, de la conformité et des transformations financières.</p>
   </div>
 </section>
 
@@ -718,7 +753,7 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
       <a href="#executive-search">Executive Search</a>
       <a href="#private-access">Private Executive Access</a>
       <a href="#academy">Tyros Academy</a>
-      <a href="#contact">AI &amp; Regulatory Advisory</a>
+      <a href="#advisory">AI &amp; Regulatory Advisory</a>
     </div>
     <div class="footer-col">
       <h5 data-en="Firm">Cabinet</h5>
