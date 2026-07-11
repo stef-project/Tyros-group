@@ -83,6 +83,13 @@ h1,h2,h3{
 }
 .serif-i{font-family:'Fraunces',serif;font-style:italic;font-weight:400;}
 
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--gold);color:var(--ink);
+  padding:0.7rem 1.2rem;font-weight:600;font-size:0.85rem;
+}
+.skip:focus{left:0;}
+
 /* ---------- HEADER ---------- */
 header.site{
   position:sticky;top:0;z-index:50;
@@ -255,11 +262,14 @@ nav.main a:hover, nav.main a.current{color:#fff;border-color:var(--gold);}
   font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
   color:var(--gold-soft);
 }
-.show-slide h3{
+.show-slide .show-h{
+  font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-0.012em;
+  margin:0;
   font-size:clamp(1.5rem,2.8vw,2.3rem);
   line-height:1.18;
   color:#fff;
   max-width:24ch;
+  text-wrap:balance;
 }
 .show-link{
   font-family:'Plex Sans',sans-serif;font-weight:500;
@@ -459,7 +469,7 @@ footer.site{
 }
 .footer-grid .logo{margin-bottom:1rem;align-items:flex-start;}
 .footer-grid .baseline{font-size:0.85rem;max-width:28ch;color:var(--stone-soft);}
-.footer-col h5{
+.footer-col h3{
   font-family:'Plex Sans',sans-serif;font-weight:600;
   font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;
   color:#fff;margin:0 0 1rem;
@@ -692,6 +702,7 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
 }
 </style>
 
+<a class="skip" href="#accueil" data-en="Skip to content">Aller au contenu</a>
 <header class="site">
   <a href="#accueil" class="logo" aria-label="Tyros Group">
     <span class="logo-top">TYR<svg class="logo-o" viewBox="0 0 100 100" aria-hidden="true"><path d="M 86.3 33.1 A 40 40 0 1 1 60.4 11.4" fill="none" stroke="currentColor" stroke-width="7"/><path d="M 53.9 5.2 A 45 45 0 0 1 93.5 38.4" fill="none" stroke="#C9A063" stroke-width="7" stroke-linecap="round"/></svg>S</span>
@@ -741,22 +752,22 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
     <div class="show-slides">
       <div class="show-slide active">
         <div class="show-kicker">I — Executive Search</div>
-        <h3 data-en="Sensitive appointments across banking, insurance and financial services.">Nominations sensibles dans la banque, l'assurance et les services financiers.</h3>
+        <p class="show-h" data-en="Sensitive appointments across banking, insurance and financial services.">Nominations sensibles dans la banque, l'assurance et les services financiers.</p>
         <a class="show-link" href="#executive-search" data-en="Discover →">Découvrir →</a>
       </div>
       <div class="show-slide">
         <div class="show-kicker">II — Private Executive Access</div>
-        <h3 data-en="Confidential gatherings of leaders, experts and innovators.">Des rencontres confidentielles entre dirigeants, experts et acteurs innovants.</h3>
+        <p class="show-h" data-en="Confidential gatherings of leaders, experts and innovators.">Des rencontres confidentielles entre dirigeants, experts et acteurs innovants.</p>
         <a class="show-link" href="#private-access" data-en="Discover →">Découvrir →</a>
       </div>
       <div class="show-slide">
         <div class="show-kicker">III — Tyros Academy</div>
-        <h3 data-en="Short, focused programmes for the teams that matter most.">Des programmes courts et ciblés pour renforcer les équipes clés.</h3>
+        <p class="show-h" data-en="Short, focused programmes for the teams that matter most.">Des programmes courts et ciblés pour renforcer les équipes clés.</p>
         <a class="show-link" href="#academy" data-en="Discover →">Découvrir →</a>
       </div>
       <div class="show-slide">
         <div class="show-kicker">IV — AI &amp; Regulatory Advisory</div>
-        <h3 data-en="Understand, frame and deploy AI in a demanding environment.">Comprendre, cadrer et déployer l'IA dans un environnement exigeant.</h3>
+        <p class="show-h" data-en="Understand, frame and deploy AI in a demanding environment.">Comprendre, cadrer et déployer l'IA dans un environnement exigeant.</p>
         <a class="show-link" href="#advisory" data-en="Discover →">Découvrir →</a>
       </div>
     </div>
@@ -974,19 +985,19 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
       <p class="baseline" data-en="Executive Search, Private Access &amp; Strategic Learning — banking, insurance &amp; financial technology. London.">Executive Search, Private Access &amp; Strategic Learning — Banque, Assurance &amp; tech financière. London.</p>
     </div>
     <div class="footer-col">
-      <h5 data-en="Practices">Expertises</h5>
+      <h3 data-en="Practices">Expertises</h3>
       <a href="#executive-search">Executive Search</a>
       <a href="#private-access">Private Executive Access</a>
       <a href="#academy">Tyros Academy</a>
       <a href="#advisory">AI &amp; Regulatory Advisory</a>
     </div>
     <div class="footer-col">
-      <h5 data-en="Firm">Cabinet</h5>
+      <h3 data-en="Firm">Cabinet</h3>
       <a href="#contact">Contact</a>
       <a href="https://www.linkedin.com/company/119114061/" rel="noopener">LinkedIn</a>
     </div>
     <div class="footer-col">
-      <h5 data-en="Resources">Ressources</h5>
+      <h3 data-en="Resources">Ressources</h3>
       <a href="/executive-search-banque-assurance/">Executive search banque &amp; assurance</a>
       <a href="/recrutement-chief-risk-officer/">Recrutement Chief Risk Officer</a>
       <a href="/recrutement-chief-compliance-officer/">Recrutement Chief Compliance Officer</a>
@@ -995,7 +1006,7 @@ form.cform{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2r
       <a href="/ai-act-gouvernance-ia-finance/">AI Act &amp; gouvernance IA</a>
     </div>
     <div class="footer-col">
-      <h5 data-en="Legal">Légal</h5>
+      <h3 data-en="Legal">Légal</h3>
       <a href="#mentions-legales" data-en="Legal notice">Mentions légales</a>
       <a href="#confidentialite" data-en="Privacy policy">Politique de confidentialité</a>
     </div>
