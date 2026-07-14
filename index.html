@@ -190,6 +190,24 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .intel-list li:last-child{border-bottom:1px solid var(--line);}
 .intel-list li .m{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
 @media(max-width:900px){.intel{grid-template-columns:1fr;gap:2.6rem;}}
+/* intelligence research hub */
+.ihub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:3rem;}
+.ihub-card{background:var(--panel);padding:1.9rem 1.6rem 1.7rem;display:flex;flex-direction:column;gap:.7rem;min-height:11rem;transition:background .25s ease;position:relative;}
+.ihub-card:hover{background:var(--bg);}
+.ihub-card .ihub-cat{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.ihub-card h3{font-size:1.05rem;line-height:1.32;letter-spacing:-0.01em;color:var(--ink);font-weight:600;}
+.ihub-card .ihub-cad{margin-top:auto;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-2);}
+.ihub-cta{background:var(--blue);color:var(--blue-ink);padding:1.9rem 1.7rem;display:flex;flex-direction:column;justify-content:center;gap:1.1rem;}
+.ihub-cta p{margin:0;font-family:'Fraunces',serif;font-size:1.1rem;line-height:1.3;color:#fff;}
+.ihub-cta .btn-primary{background:#fff;color:var(--blue);align-self:flex-start;}
+.ihub-cta .btn-primary:hover{background:var(--gold-soft);color:#1a1a1a;}
+@media(max-width:900px){.ihub-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.ihub-grid{grid-template-columns:1fr;}}
+/* academy executive-education additions */
+.paths-lab{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-2);margin:0 0 1rem;}
+.acad-foot{margin-top:2.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem;border-top:1px solid var(--line);padding-top:1.6rem;}
+.acad-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.acad-tags span{font-size:.8rem;color:var(--ink-soft);border:1px solid var(--line);border-radius:100px;padding:.35rem .95rem;}
 
 /* membership */
 .mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1rem;}
@@ -418,15 +436,41 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
     <div class="intel">
       <div>
         <div class="eyebrow" data-en="Tyros Intelligence">Tyros Intelligence</div>
-        <h2 style="font-size:clamp(2rem,3.8vw,3rem);margin-top:1rem;" data-en="The intelligence layer behind every decision.">La couche d'intelligence derrière chaque décision.</h2>
-        <ul class="intel-list">
-          <li><span data-en="Executive market reports">Rapports de marché exécutif</span><span class="m">Quarterly</span></li>
-          <li><span data-en="Salary benchmarking">Benchmark de rémunération</span><span class="m">By function</span></li>
-          <li><span data-en="Leadership &amp; talent mapping">Cartographie leadership &amp; talents</span><span class="m">On demand</span></li>
-          <li><span data-en="Regulatory &amp; AI intelligence">Intelligence réglementaire &amp; IA</span><span class="m">Continuous</span></li>
-        </ul>
+        <h2 style="font-size:clamp(2rem,3.8vw,3rem);margin-top:1rem;" data-en="Market intelligence for financial institutions.">L'intelligence de marché pour les institutions financières.</h2>
+        <p style="margin-top:1.2rem;color:var(--grey);max-width:36ch;" data-en="A research practice, not a blog. We turn our proximity to the leadership market into decision-grade intelligence.">Une pratique de recherche, pas un blog. Nous transformons notre proximité avec le marché des dirigeants en intelligence d'aide à la décision.</p>
       </div>
       <div class="intel-viz"><span class="vlabel" data-en="Leadership demand index — illustrative">Indice de demande — illustratif</span><canvas id="intel-canvas"></canvas></div>
+    </div>
+    <div class="ihub-grid">
+      <a class="ihub-card" href="/insights/">
+        <div class="ihub-cat">Executive Reports</div>
+        <h3 data-en="In-depth reports on leadership moves, market structure and hiring dynamics.">Rapports approfondis sur les mouvements de dirigeants, la structure de marché et les dynamiques de recrutement.</h3>
+        <span class="ihub-cad">Quarterly</span>
+      </a>
+      <a class="ihub-card" href="/insights/">
+        <div class="ihub-cat" data-en="Leadership Insights">Leadership Insights</div>
+        <h3 data-en="Perspectives on the people decisions shaping financial institutions.">Perspectives sur les décisions humaines qui façonnent les institutions financières.</h3>
+        <span class="ihub-cad">Continuous</span>
+      </a>
+      <a class="ihub-card" href="#contact">
+        <div class="ihub-cat" data-en="Talent Mapping">Talent Mapping</div>
+        <h3 data-en="Confidential mapping of leadership and critical functions across a market.">Cartographie confidentielle du leadership et des fonctions critiques d'un marché.</h3>
+        <span class="ihub-cad" data-en="On request">Sur demande</span>
+      </a>
+      <a class="ihub-card" href="#contact">
+        <div class="ihub-cat" data-en="Market Trends">Market Trends</div>
+        <h3 data-en="Where demand, compensation and mobility are heading, function by function.">Où vont la demande, les rémunérations et la mobilité, fonction par fonction.</h3>
+        <span class="ihub-cad">Quarterly</span>
+      </a>
+      <a class="ihub-card" href="/insights/ai-act-risk-compliance/">
+        <div class="ihub-cat" data-en="Regulatory Insights">Regulatory Insights</div>
+        <h3 data-en="What the AI Act, DORA and evolving regulation change for org charts.">Ce que l'AI Act, DORA et la réglementation changent pour les organigrammes.</h3>
+        <span class="ihub-cad">Continuous</span>
+      </a>
+      <div class="ihub-cta">
+        <p data-en="Commission a confidential intelligence briefing for your organisation.">Commandez un briefing d'intelligence confidentiel pour votre organisation.</p>
+        <a href="#contact" class="btn btn-primary" data-en="Request a briefing">Demander un briefing <span class="ar">→</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -511,15 +555,22 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
 <section class="sec" id="academy">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Tyros Academy</div>
-      <h2 data-en="Strategic learning for regulated teams.">L'apprentissage stratégique pour les équipes régulées.</h2>
-      <p data-en="Short, executive programmes — AI, AI Act, cybersecurity and data — for the sensitive functions of financial services.">Des programmes courts et exécutifs — IA, AI Act, cybersécurité et données — pour les fonctions sensibles des services financiers.</p>
+      <div class="eyebrow" data-en="Tyros Academy · Executive Education">Tyros Academy · Executive Education</div>
+      <h2 data-en="Executive Education for Financial Leaders.">Executive Education pour les dirigeants de la finance.</h2>
+      <p data-en="Corporate programmes and leadership development for boards, executive committees and the sensitive functions of financial services — delivered as focused learning paths.">Programmes sur mesure et développement du leadership pour conseils, comités exécutifs et fonctions sensibles des services financiers — structurés en parcours d'apprentissage ciblés.</p>
     </div>
+    <div class="paths-lab" data-en="Learning paths">Parcours d'apprentissage</div>
     <div class="ind-grid">
       <div class="ind"><div class="in">01</div><h3 data-en="AI in the enterprise">IA en entreprise</h3></div>
       <div class="ind"><div class="in">02</div><h3>AI Act &amp; Governance</h3></div>
       <div class="ind"><div class="in">03</div><h3 data-en="GDPR in practice">RGPD au quotidien</h3></div>
       <div class="ind"><div class="in">04</div><h3 data-en="Cyber reflexes">Cyber réflexes</h3></div>
+    </div>
+    <div class="acad-foot">
+      <div class="acad-tags">
+        <span data-en="AI">IA</span><span>Risk</span><span>Compliance</span><span>Transformation</span>
+      </div>
+      <a href="/downloads/tyros-academy-programme.pdf" class="btn btn-ghost" data-en="Download programme overview ↓">Télécharger le programme ↓</a>
     </div>
   </div>
 </section>
