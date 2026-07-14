@@ -6,6 +6,9 @@
 <title>Les dirigeants clés ne se cherchent pas en surface | Tyros Group</title>
 <meta name="description" content="La différence entre le recrutement et l'executive search : l'un sélectionne parmi ceux qui se montrent, l'autre va chercher ceux qui comptent. Décisif pour les fonctions sensibles.">
 <link rel="canonical" href="https://tyros-group.com/insights/executive-search-vs-recrutement/">
+<link rel="alternate" hreflang="fr" href="https://tyros-group.com/insights/executive-search-vs-recrutement/">
+<link rel="alternate" hreflang="en" href="https://tyros-group.com/en/insights/executive-search-vs-recrutement/">
+<link rel="alternate" hreflang="x-default" href="https://tyros-group.com/insights/executive-search-vs-recrutement/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2308090C'/%3E%3Cpath d='M 79 36 A 33 33 0 1 1 58.5 18.2' fill='none' stroke='white' stroke-width='6'/%3E%3Cpath d='M 53.2 13.1 A 37 37 0 0 1 85.8 40.4' fill='none' stroke='%23C4A469' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Tyros Group">
@@ -273,8 +276,9 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
 .a-meta .cat{color:var(--gold);}
 .a-hero h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-0.025em;}
 .a-stand{margin-top:1.6rem;font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.5;color:var(--ink-soft);font-family:'Fraunces',serif;font-style:italic;font-weight:400;}
-.a-byline{margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-size:.82rem;color:var(--grey);}
+.a-byline{margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-size:.82rem;color:var(--grey);align-items:baseline;}
 .a-byline .au{color:var(--ink);font-weight:600;}
+.a-byline .alt{color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:1px;font-size:.78rem;}
 article.a-body{padding:3.5rem 0 4rem;}
 article.a-body .a-wrap>*{max-width:40rem;}
 article.a-body p{font-size:1.12rem;line-height:1.75;color:var(--ink-soft);margin:0 0 1.5rem;}
@@ -293,7 +297,6 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
 .a-card .d{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-2);margin-bottom:.5rem;}
 .a-card h3{font-family:'Fraunces',serif;font-size:1.15rem;line-height:1.25;}
 @media(max-width:720px){.a-more-grid{grid-template-columns:1fr;}}
-/* hub */
 .hub{padding:9rem 0 2rem;}
 .hub h1{font-size:clamp(2.6rem,6vw,4.5rem);letter-spacing:-0.03em;line-height:1;}
 .hub .lead{margin-top:1.4rem;color:var(--grey);font-size:1.15rem;max-width:40ch;}
@@ -356,7 +359,7 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
     <div class="a-meta"><span class="cat">Leadership</span><span>·</span><span>Perspective</span></div>
     <h1>Les dirigeants clés ne se cherchent pas en surface</h1>
     <p class="a-stand">Les meilleurs dirigeants de la banque et de l'assurance ne répondent pas aux annonces, ne fréquentent pas les salons, n'actualisent pas leur profil.</p>
-    <div class="a-byline"><span class="au">Tyros Group · Insights</span><span>Avril 2026</span></div>
+    <div class="a-byline"><span class="au">Tyros Group · Insights</span><span><span style="color:var(--grey-2)">Avril 2026</span> &nbsp; <a class="alt" href="https://tyros-group.com/en/insights/executive-search-vs-recrutement/">Read in English →</a></span></div>
   </div>
 </div>
 <article class="a-body">
@@ -374,7 +377,7 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
 </article>
 <div class="a-foot">
   <div class="a-wrap cta">
-    <a href="/#contact" class="btn btn-primary" data-en="Book a Confidential Discussion">Réserver un échange confidentiel <span class="ar">→</span></a>
+    <a href="/#contact" class="btn btn-primary">Réserver un échange confidentiel <span class="ar">→</span></a>
     <a href="/insights/" class="btn btn-ghost">← Tous les Insights</a>
   </div>
 </div>
@@ -416,14 +419,16 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
 /* LANG */
 (function(){
   var root=document.documentElement;
-  function setLang(l){
+  function setLang(l,persist){
     document.querySelectorAll('[data-en]').forEach(function(el){if(!el.dataset.fr)el.dataset.fr=el.innerHTML;el.innerHTML=(l==='en')?el.dataset.en:el.dataset.fr;});
     root.setAttribute('lang',l);
     document.querySelectorAll('.lang button').forEach(function(b){var on=b.dataset.lang===l;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});
-    try{localStorage.setItem('tyros_lang',l);}catch(e){}
+    if(persist){try{localStorage.setItem('tyros_lang',l);}catch(e){}}
   }
-  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
-  try{if(localStorage.getItem('tyros_lang')==='en')setLang('en');}catch(e){}
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang,true);});});
+  var stored=null;try{stored=localStorage.getItem('tyros_lang');}catch(e){}
+  if(stored==='en')setLang('en',false);
+  else if(!stored&&root.getAttribute('lang')==='en')setLang('en',false);
 })();
 
 /* REVEAL */
