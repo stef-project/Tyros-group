@@ -98,7 +98,7 @@ header.site{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(-
 .logo-top{display:inline-flex;align-items:center;font-weight:400;font-size:1.05rem;letter-spacing:0.38em;line-height:1;}
 .logo-o{width:1em;height:1em;margin:0 .3em 0 -.02em;flex:none;}
 .logo-sub{font-weight:500;font-size:.46rem;letter-spacing:0.6em;text-indent:.3em;color:var(--gold);margin-top:.28rem;line-height:1;}
-nav.main{display:flex;gap:1.7rem;}
+nav.main{display:flex;gap:1.45rem;}
 nav.main a{font-size:.82rem;color:var(--grey);letter-spacing:.01em;border-bottom:1px solid transparent;padding-bottom:2px;transition:color .15s,border-color .15s;}
 nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .hd-tools{display:flex;align-items:center;gap:1rem;}
@@ -140,10 +140,24 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .trusted{padding:4.5rem 0;border-bottom:1px solid var(--line-2);}
 .trusted .lab{text-align:center;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grey-2);margin-bottom:2.2rem;}
 .trusted-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem;}
-.tr-item{text-align:center;border:1px solid var(--line);border-radius:3px;padding:1.4rem .8rem;background:var(--panel);}
+.tr-item{text-align:center;border:1px solid var(--line);border-radius:4px;padding:1.7rem .8rem 1.4rem;background:var(--panel);transition:border-color .25s,transform .25s;}
+.tr-item:hover{border-color:var(--gold);transform:translateY(-3px);}
+.tr-ic{display:block;color:var(--grey-2);margin:0 auto .9rem;width:26px;height:26px;transition:color .25s;}
+.tr-ic svg{width:26px;height:26px;display:block;}
+.tr-item:hover .tr-ic{color:var(--gold);}
 .tr-item .t{font-family:'Fraunces',serif;font-size:.98rem;color:var(--ink);line-height:1.2;}
 .tr-item .s{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey-2);margin-top:.4rem;}
 @media(max-width:820px){.trusted-row{grid-template-columns:repeat(2,1fr);}}
+/* mandates marquee */
+.mandates{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line-2);}
+.mandates .mlab{text-align:center;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey-2);margin-bottom:1.4rem;}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.marquee-track{display:flex;gap:2.6rem;width:max-content;animation:mscroll 46s linear infinite;}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+.marquee-track .mi{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--ink-soft);white-space:nowrap;display:inline-flex;align-items:center;}
+.marquee-track .mi::after{content:"·";color:var(--gold);margin-left:2.6rem;}
+@keyframes mscroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;gap:1rem 2.6rem;}.marquee{-webkit-mask-image:none;mask-image:none;}}
 
 /* stats */
 .stats{padding:6.5rem 0;}
@@ -194,6 +208,36 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .intel-list li:last-child{border-bottom:1px solid var(--line);}
 .intel-list li .m{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
 @media(max-width:900px){.intel{grid-template-columns:1fr;gap:2.6rem;}}
+/* intelligence research hub */
+.ihub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:3rem;}
+.ihub-card{background:var(--panel);padding:1.9rem 1.6rem 1.7rem;display:flex;flex-direction:column;gap:.7rem;min-height:11rem;transition:background .25s ease;position:relative;}
+.ihub-card:hover{background:var(--bg);}
+.ihub-card .ihub-cat{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.ihub-card h3{font-size:1.05rem;line-height:1.32;letter-spacing:-0.01em;color:var(--ink);font-weight:600;}
+.ihub-card .ihub-cad{margin-top:auto;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-2);}
+.ihub-bar{margin-top:1.4rem;background:var(--blue);color:var(--blue-ink);border-radius:6px;padding:1.6rem 2rem;display:flex;justify-content:space-between;align-items:center;gap:1.4rem;flex-wrap:wrap;}
+.ihub-bar p{margin:0;font-family:'Fraunces',serif;font-size:1.15rem;line-height:1.3;color:#fff;max-width:44ch;}
+.ihub-bar .btn-primary{background:#fff;color:var(--blue);}
+.ihub-bar .btn-primary:hover{background:var(--gold-soft);color:#1a1a1a;}
+@media(max-width:900px){.ihub-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.ihub-grid{grid-template-columns:1fr;}}
+/* academy executive-education additions */
+.paths-lab{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-2);margin:0 0 1rem;}
+.acad-foot{margin-top:2.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem;border-top:1px solid var(--line);padding-top:1.6rem;}
+.acad-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.acad-tags span{font-size:.8rem;color:var(--ink-soft);border:1px solid var(--line);border-radius:100px;padding:.35rem .95rem;}
+
+/* sensibilisation / attestation panel */
+.sensib{margin-top:3.5rem;padding-top:3rem;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1.15fr;gap:3rem;align-items:start;}
+.sensib-head h3{font-size:1.5rem;line-height:1.2;margin-top:.8rem;max-width:22ch;}
+.sensib-head p{margin-top:1.1rem;color:var(--grey);font-size:.96rem;max-width:38ch;}
+.sensib-panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:1.8rem;display:flex;flex-direction:column;gap:1.1rem;}
+.sensib-toggle{align-self:flex-start;}
+.sensib-frame{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg-2);min-height:420px;}
+.sensib-frame iframe{width:100%;height:640px;border:0;display:block;}
+.sensib-note{font-size:.78rem;color:var(--grey-2);margin:0;line-height:1.5;}
+@media(max-width:900px){.sensib{grid-template-columns:1fr;gap:1.6rem;}}
+@media(max-width:600px){.sensib-frame iframe{height:520px;}}
 
 /* membership */
 .mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1rem;}
@@ -324,6 +368,7 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
       <a href="/#about" data-en="About">À propos</a>
       <a href="/#services" data-en="Services">Divisions</a>
       <a href="/#industries" data-en="Industries">Industries</a>
+      <a href="/for-boards-executives/" data-en="Boards">Dirigeants</a>
       <a href="/#insights" data-en="Insights">Insights</a>
       <a href="/#membership" data-en="Membership">Membership</a>
       <a href="/#academy" data-en="Academy">Academy</a>
@@ -347,6 +392,7 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
   <a href="/#about" data-en="About">À propos</a>
   <a href="/#services" data-en="Services">Divisions</a>
   <a href="/#industries" data-en="Industries">Industries</a>
+  <a href="/for-boards-executives/" data-en="Boards">Dirigeants</a>
   <a href="/#insights" data-en="Insights">Insights</a>
   <a href="/#membership" data-en="Membership">Membership</a>
   <a href="/#academy" data-en="Academy">Academy</a>
@@ -403,7 +449,7 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
       <p class="bl" data-en="A strategic leadership &amp; intelligence partner for financial institutions. London.">Partenaire stratégique en leadership et intelligence pour les institutions financières. London.</p>
     </div>
     <div class="foot-col"><h3 data-en="Divisions">Divisions</h3><a href="/#executive-search">Executive Search</a><a href="/#intelligence">Tyros Intelligence</a><a href="/#advisory">Advisory</a><a href="/#private">Tyros Private</a></div>
-    <div class="foot-col"><h3 data-en="Firm">Cabinet</h3><a href="/#about" data-en="About">À propos</a><a href="/#membership">Membership</a><a href="/#insights">Insights</a><a href="/#contact">Contact</a></div>
+    <div class="foot-col"><h3 data-en="Firm">Cabinet</h3><a href="/#about" data-en="About">À propos</a><a href="/for-boards-executives/" data-en="Boards &amp; Executives">Conseils &amp; dirigeants</a><a href="/#membership">Membership</a><a href="/#insights">Insights</a><a href="/#contact">Contact</a></div>
     <div class="foot-col"><h3 data-en="Legal">Légal</h3><a href="/#mentions-legales" data-en="Legal notice">Mentions légales</a><a href="/#confidentialite" data-en="Privacy">Confidentialité</a><a href="https://www.linkedin.com/company/119114061/" rel="noopener">LinkedIn</a></div>
   </div>
   <div class="foot-bottom">
@@ -411,7 +457,7 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
     <span data-en="Company registered in England &amp; Wales">Société enregistrée en Angleterre &amp; Pays de Galles</span>
   </div>
 </footer>
-<section class="legal" id="mentions-legales"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Mentions légales</h2><h3>Éditeur</h3><p>Site édité par TYROS GROUP LTD, société enregistrée en Angleterre et au Pays de Galles sous le numéro 16513376, siège social 61 Kensington Church Street, London W8 4BA, Royaume-Uni.</p><h3>Hébergement</h3><p>Hébergé via GitHub Pages (GitHub Inc.).</p><h3>Propriété intellectuelle</h3><p>L'ensemble des contenus est la propriété exclusive de TYROS GROUP LTD. Toute reproduction est interdite sans autorisation écrite préalable.</p><a class="back" href="#top">← Retour</a></div></section><section class="legal" id="confidentialite"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Politique de confidentialité</h2><p>La confidentialité est au cœur de notre relation avec les dirigeants et institutions que nous accompagnons.</p><h3>Données collectées</h3><p>Uniquement celles que vous nous transmettez volontairement (email, message). Aucune donnée n'est vendue ni cédée à des tiers.</p><h3>Vos droits (RGPD / UK GDPR)</h3><p>Accès, rectification, effacement, limitation et opposition. Contactez-nous via contact@tyros-group.com.</p><a class="back" href="#top">← Retour</a></div></section>
+<section class="legal" id="mentions-legales"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Mentions légales</h2><h3>Éditeur</h3><p>Site édité par TYROS GROUP LTD, société enregistrée en Angleterre et au Pays de Galles sous le numéro 16513376, siège social 61 Kensington Church Street, London W8 4BA, Royaume-Uni.</p><h3>Hébergement</h3><p>Hébergé via GitHub Pages (GitHub Inc.).</p><h3>Propriété intellectuelle</h3><p>L'ensemble des contenus est la propriété exclusive de TYROS GROUP LTD. Toute reproduction est interdite sans autorisation écrite préalable.</p><a class="back" href="/">← Retour</a></div></section><section class="legal" id="confidentialite"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Politique de confidentialité</h2><p>La confidentialité est au cœur de notre relation avec les dirigeants et institutions que nous accompagnons.</p><h3>Données collectées</h3><p>Uniquement celles que vous nous transmettez volontairement (email, message). Aucune donnée n'est vendue ni cédée à des tiers.</p><h3>Vos droits (RGPD / UK GDPR)</h3><p>Accès, rectification, effacement, limitation et opposition. Contactez-nous via contact@tyros-group.com.</p><a class="back" href="/">← Retour</a></div></section>
 <script>
 /* THEME */
 (function(){
@@ -510,6 +556,18 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
       ctx.globalAlpha=1;
     }
     size();window.addEventListener('resize',size);
+  });
+})();
+
+/* SENSIBILISATION panel — lazy-load iframe on demand */
+(function(){
+  var btn=document.querySelector('.sensib-toggle'),frame=document.querySelector('.sensib-frame');
+  if(!btn||!frame)return;
+  btn.addEventListener('click',function(){
+    var iframe=frame.querySelector('iframe');
+    if(iframe && !iframe.src){ iframe.src=iframe.getAttribute('data-src'); }
+    frame.hidden=!frame.hidden;
+    btn.setAttribute('aria-expanded', frame.hidden?'false':'true');
   });
 })();
 
