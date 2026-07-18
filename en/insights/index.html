@@ -222,17 +222,12 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .acad-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
 .acad-tags span{font-size:.8rem;color:var(--ink-soft);border:1px solid var(--line);border-radius:100px;padding:.35rem .95rem;}
 
-/* sensibilisation / attestation panel */
-.sensib{margin-top:3.5rem;padding-top:3rem;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1.15fr;gap:3rem;align-items:start;}
-.sensib-head h3{font-size:1.5rem;line-height:1.2;margin-top:.8rem;max-width:22ch;}
-.sensib-head p{margin-top:1.1rem;color:var(--grey);font-size:.96rem;max-width:38ch;}
-.sensib-panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:1.8rem;display:flex;flex-direction:column;gap:1.1rem;}
-.sensib-toggle{align-self:flex-start;}
-.sensib-frame{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg-2);min-height:420px;}
-.sensib-frame iframe{width:100%;height:640px;border:0;display:block;}
-.sensib-note{font-size:.78rem;color:var(--grey-2);margin:0;line-height:1.5;}
-@media(max-width:900px){.sensib{grid-template-columns:1fr;gap:1.6rem;}}
-@media(max-width:600px){.sensib-frame iframe{height:520px;}}
+/* sensibilisation / attestation — simple card */
+.sensib{margin-top:3.5rem;padding-top:3rem;border-top:1px solid var(--line);}
+.sensib-card{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:2.2rem 2.4rem;max-width:44rem;}
+.sensib-card p{margin:1rem 0 0;color:var(--grey);font-size:1rem;max-width:56ch;}
+.sensib-card p.sensib-note{font-size:.86rem;color:var(--grey-2);margin-top:.8rem;}
+.sensib-card .btn{margin-top:1.6rem;}
 
 /* membership */
 .mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1rem;}
@@ -431,7 +426,7 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
     <span data-en="Company registered in England &amp; Wales">Société enregistrée en Angleterre &amp; Pays de Galles</span>
   </div>
 </footer>
-<section class="legal" id="mentions-legales"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Mentions légales</h2><h3>Éditeur</h3><p>Site édité par TYROS GROUP LTD, société enregistrée en Angleterre et au Pays de Galles sous le numéro 16513376, siège social 61 Kensington Church Street, London W8 4BA, Royaume-Uni.</p><h3>Hébergement</h3><p>Hébergé via GitHub Pages (GitHub Inc.).</p><h3>Propriété intellectuelle</h3><p>L'ensemble des contenus est la propriété exclusive de TYROS GROUP LTD. Toute reproduction est interdite sans autorisation écrite préalable.</p><a class="back" href="/">← Retour</a></div></section><section class="legal" id="confidentialite"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Politique de confidentialité</h2><p>La confidentialité est au cœur de notre relation avec les dirigeants et institutions que nous accompagnons.</p><h3>Données collectées</h3><p>Uniquement celles que vous nous transmettez volontairement (email, message). Aucune donnée n'est vendue ni cédée à des tiers.</p><h3>Vos droits (RGPD / UK GDPR)</h3><p>Accès, rectification, effacement, limitation et opposition. Contactez-nous via contact@tyros-group.com.</p><a class="back" href="/">← Retour</a></div></section>
+<section class="legal" id="mentions-legales"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Mentions légales</h2><h3>Éditeur</h3><p>Site édité par TYROS GROUP LTD, société enregistrée en Angleterre et au Pays de Galles sous le numéro 16513376, siège social 61 Kensington Church Street, London W8 4BA, Royaume-Uni.</p><h3>Hébergement</h3><p>Hébergé via GitHub Pages (GitHub Inc.).</p><h3>Propriété intellectuelle</h3><p>L'ensemble des contenus est la propriété exclusive de TYROS GROUP LTD. Toute reproduction est interdite sans autorisation écrite préalable.</p><a class="back" href="/">← Retour</a></div></section><section class="legal" id="confidentialite"><div class="wrap in2"><div class="eyebrow">Légal</div><h2>Politique de confidentialité</h2><p>La confidentialité est au cœur de notre relation avec les dirigeants et institutions que nous accompagnons.</p><h3>Données collectées — contact</h3><p>Uniquement celles que vous nous transmettez volontairement via le formulaire de contact (nom, email, message). Aucune donnée n'est vendue ni cédée à des tiers.</p><h3>Données collectées — sessions Tyros Academy</h3><p>Dans le cadre d'une session de sensibilisation commanditée par votre employeur, nous collectons via un questionnaire en ligne : nom, prénom, adresse email professionnelle, entreprise, et les réponses au questionnaire associé.</p><p><strong>Finalité :</strong> établir une attestation nominative de participation et un relevé documentaire transmis à l'entreprise commanditaire, à des fins de suivi de sa démarche de sensibilisation.</p><p><strong>Destinataires :</strong> Tyros Group et l'entreprise ayant commandité la session. Ces données ne sont pas transmises à d'autres tiers.</p><p><strong>Durée de conservation :</strong> 3 ans à compter de la session, correspondant aux besoins de justification du suivi de formation.</p><h3>Vos droits (RGPD / UK GDPR)</h3><p>Accès, rectification, effacement, limitation et opposition sur l'ensemble de ces traitements. Contactez-nous via contact@tyros-group.com ; pour les données liées à une session Tyros Academy, vous pouvez également vous adresser à votre employeur.</p><a class="back" href="/">← Retour</a></div></section>
 <script>
 /* THEME */
 (function(){
@@ -530,18 +525,6 @@ article.a-body li{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);margin
       ctx.globalAlpha=1;
     }
     size();window.addEventListener('resize',size);
-  });
-})();
-
-/* SENSIBILISATION panel — lazy-load iframe on demand */
-(function(){
-  var btn=document.querySelector('.sensib-toggle'),frame=document.querySelector('.sensib-frame');
-  if(!btn||!frame)return;
-  btn.addEventListener('click',function(){
-    var iframe=frame.querySelector('iframe');
-    if(iframe && !iframe.src){ iframe.src=iframe.getAttribute('data-src'); }
-    frame.hidden=!frame.hidden;
-    btn.setAttribute('aria-expanded', frame.hidden?'false':'true');
   });
 })();
 
