@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <!-- Tyros Group — scène signature : le réseau de dirigeants relié aux institutions financières -->
+  <defs>
+    <linearGradient id="fadeTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C4A469" stop-opacity="0"/>
+      <stop offset="0.4" stop-color="#C4A469" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#C4A469" stop-opacity="0.9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#C4A469" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#C4A469" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ===== SKYLINE (quartier financier, fines lignes) ===== -->
+  <g stroke="#C4A469" stroke-width="1.4" opacity="0.55">
+    <!-- ligne d'horizon -->
+    <path d="M0 860h1600" stroke-opacity="0.5"/>
+
+    <!-- tours, de gauche à droite -->
+    <path d="M60 860V700h70v160"/>
+    <path d="M78 700v-28h34v28"/>
+    <path d="M160 860V740h56v120"/>
+    <path d="M250 860V600h84v260"/>
+    <path d="M270 600v-40h44v40"/>
+    <path d="M292 560v-36"/>
+    <path d="M370 860V680h62v180"/>
+    <path d="M470 860V520h92v340"/>
+    <path d="M492 520v-46h48v46"/>
+    <path d="M516 474v-42"/>
+    <path d="M600 860V720h58v140"/>
+    <path d="M700 860V560l46-70 46 70v300"/>
+    <path d="M830 860V640h74v220"/>
+    <path d="M940 860V460h100v400"/>
+    <path d="M965 460v-52h50v52"/>
+    <path d="M990 408v-48"/>
+    <path d="M1080 860V690h60v170"/>
+    <path d="M1180 860V580h88v280"/>
+    <path d="M1206 580v-38h36v38"/>
+    <path d="M1310 860V730h64v130"/>
+    <path d="M1410 860V650h78v210"/>
+    <path d="M1520 860V760h60"/>
+  </g>
+
+  <!-- fenêtres (traits discrets) -->
+  <g stroke="#C4A469" stroke-width="0.8" opacity="0.28">
+    <path d="M270 640h44M270 680h44M270 720h44M270 760h44M270 800h44"/>
+    <path d="M490 570h52M490 620h52M490 670h52M490 720h52M490 770h52M490 820h52"/>
+    <path d="M962 520h56M962 580h56M962 640h56M962 700h56M962 760h56M962 820h56"/>
+    <path d="M1198 640h52M1198 700h52M1198 760h52M1198 820h52"/>
+    <path d="M720 640h52M720 700h52M720 760h52M720 820h52"/>
+  </g>
+
+  <!-- ===== CONSTELLATION (le réseau de dirigeants) ===== -->
+  <!-- halo du nœud sommital -->
+  <circle cx="1150" cy="150" r="90" fill="url(#glow)"/>
+
+  <g stroke="#C4A469" stroke-width="1" opacity="0.45">
+    <!-- liens du réseau -->
+    <path d="M1150 150L990 235M1150 150l180 95M1150 150l-30 160M990 235l130 75M1330 245l-210 65M990 235l-160 60M1330 245l140 40M1120 310l-90 120M1120 310l150 105M830 295l-90 110M1470 285l-60 130"/>
+    <!-- liens vers les institutions : le réseau rejoint les tours -->
+    <path d="M1030 430 990 560M1270 415l-24 145M740 405l6 115M1410 415v235" stroke-dasharray="3 6" stroke-opacity="0.8"/>
+  </g>
+
+  <!-- nœuds -->
+  <g fill="#C4A469">
+    <circle cx="1150" cy="150" r="7" opacity="0.95"/>
+    <circle cx="990" cy="235" r="4.5" opacity="0.8"/>
+    <circle cx="1330" cy="245" r="4.5" opacity="0.8"/>
+    <circle cx="1120" cy="310" r="4" opacity="0.75"/>
+    <circle cx="830" cy="295" r="4" opacity="0.7"/>
+    <circle cx="1470" cy="285" r="4" opacity="0.7"/>
+    <circle cx="1030" cy="430" r="3.5" opacity="0.65"/>
+    <circle cx="1270" cy="415" r="3.5" opacity="0.65"/>
+    <circle cx="740" cy="405" r="3.5" opacity="0.6"/>
+    <circle cx="1410" cy="415" r="3.5" opacity="0.6"/>
+    <!-- étoiles discrètes -->
+    <circle cx="300" cy="180" r="1.6" opacity="0.5"/>
+    <circle cx="480" cy="120" r="1.6" opacity="0.45"/>
+    <circle cx="640" cy="230" r="1.6" opacity="0.5"/>
+    <circle cx="200" cy="330" r="1.6" opacity="0.4"/>
+    <circle cx="560" cy="360" r="1.6" opacity="0.4"/>
+    <circle cx="90 " cy="120" r="1.6" opacity="0.4"/>
+    <circle cx="1560" cy="140" r="1.6" opacity="0.45"/>
+    <circle cx="880" cy="120" r="1.6" opacity="0.45"/>
+  </g>
+
+  <!-- anneau autour du nœud sommital (le dirigeant placé) -->
+  <circle cx="1150" cy="150" r="16" stroke="#C4A469" stroke-width="1" opacity="0.6"/>
+  <circle cx="1150" cy="150" r="28" stroke="#C4A469" stroke-width="0.7" opacity="0.3"/>
+</svg>
