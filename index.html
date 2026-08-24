@@ -137,6 +137,12 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .hero{position:relative;overflow:hidden;padding:15vh 0 12vh;border-bottom:1px solid var(--line-2);}
 .hero-bg{position:absolute;inset:0;pointer-events:none;opacity:.9;}
 .hero-bg canvas{width:100%;height:100%;display:block;}
+.hero-bg::before{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23C4A469' stroke-width='0.6' opacity='0.14'%3E%3Cpath d='M0 110h220M110 0v220'/%3E%3Ccircle cx='110' cy='110' r='70'/%3E%3Ccircle cx='110' cy='110' r='36'/%3E%3Cpath d='M0 0l220 220M220 0L0 220'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:220px 220px;
+  -webkit-mask-image:linear-gradient(160deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.35) 45%,transparent 78%);
+  mask-image:linear-gradient(160deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.35) 45%,transparent 78%);
+}
 .hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(1100px 600px at 78% -10%,color-mix(in srgb,var(--gold) 14%,transparent),transparent 60%);}
 .hero-inner{position:relative;}
 .hero .eyebrow{opacity:0;animation:fade .9s ease .1s forwards;}
@@ -383,7 +389,7 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
   <div class="wrap hero-inner">
     <div class="eyebrow">Intelligence · Leadership · Influence</div>
     <h1><span class="grad">Leadership</span><br>Shapes Markets.</h1>
-    <p class="sub" data-en="We guide financial institutions through their most strategic decisions — leadership, intelligence and influence.">Nous accompagnons les institutions financières dans leurs décisions les plus stratégiques — leadership, intelligence et influence.</p>
+    <p class="sub" data-en="We guide financial institutions through their most strategic decisions.">Nous accompagnons les institutions financières dans leurs décisions les plus stratégiques.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary" data-en="Book a Confidential Discussion">Réserver un échange confidentiel <span class="ar">→</span></a>
       <a href="#services" class="btn btn-ghost" data-en="Explore Our Intelligence">Explorer notre intelligence</a>
