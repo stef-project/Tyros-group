@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page introuvable | Tyros Group</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2308090C'/%3E%3Cpath d='M 79 36 A 33 33 0 1 1 58.5 18.2' fill='none' stroke='white' stroke-width='6'/%3E%3Cpath d='M 53.2 13.1 A 37 37 0 0 1 85.8 40.4' fill='none' stroke='%23C4A469' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/fraunces-normal-600.woff2') format('woff2');}
+@font-face{font-family:'Plex Sans';font-style:normal;font-weight:100 700;font-display:swap;src:url('/fonts/plexsans-normal-100_700.woff2') format('woff2');}
+:root{
+  --bg:#FCFBF9;--ink:#0B0C0E;--grey:#6C6E76;--line:#E7E4DC;
+  --gold:#A6884F;--gold-soft:#C4A469;--blue:#152A54;--blue-ink:#F6F8FC;
+}
+:root[data-theme="dark"]{
+  --bg:#08090C;--ink:#F5F4F0;--grey:#9195A0;--line:#1E222B;
+  --gold:#C4A469;--gold-soft:#D8BC84;--blue:#22467F;--blue-ink:#F4F8FF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Plex Sans',-apple-system,'Segoe UI',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+}
+main{max-width:34rem;}
+.mono{width:64px;height:64px;margin:0 auto 2.2rem;display:block;}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.08;margin-bottom:1.1rem;}
+p{color:var(--grey);font-size:1.02rem;line-height:1.65;margin-bottom:2.2rem;}
+.btn{
+  display:inline-block;background:var(--blue);color:var(--blue-ink);
+  text-decoration:none;font-size:.95rem;font-weight:500;
+  padding:.85rem 1.6rem;border:1px solid transparent;
+}
+.btn:hover{filter:brightness(1.12);}
+.alt{display:inline-block;margin-left:1rem;color:var(--ink);text-decoration:none;font-size:.95rem;padding:.85rem 1.6rem;border:1px solid var(--line);}
+.alt:hover{border-color:var(--gold-soft);}
+@media (max-width:480px){.alt{margin-left:0;margin-top:.8rem;}}
+</style>
+<script>
+(function(){try{var t=localStorage.getItem('tyros_theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(window.matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+</script>
+</head>
+<body>
+<main>
+  <svg class="mono" viewBox="0 0 100 100" aria-hidden="true"><path d="M 79 36 A 33 33 0 1 1 58.5 18.2" fill="none" stroke="currentColor" stroke-width="6"/><path d="M 53.2 13.1 A 37 37 0 0 1 85.8 40.4" fill="none" stroke="#C4A469" stroke-width="6" stroke-linecap="round"/></svg>
+  <div class="eyebrow" data-en="Page not found">Page introuvable</div>
+  <h1 data-en="This page does not exist.">Cette page n'existe pas.</h1>
+  <p data-en="The address may have changed, or the link you followed is out of date.">L'adresse a peut-être changé, ou le lien que vous avez suivi n'est plus à jour.</p>
+  <a class="btn" href="/" data-en="Back to home">Retour à l'accueil</a><a class="alt" href="/insights/" data-en="Browse Insights">Parcourir les Insights</a>
+</main>
+<script>
+(function(){
+  var l=null;try{l=localStorage.getItem('tyros_lang');}catch(e){}
+  if(l==='en'){
+    document.documentElement.setAttribute('lang','en');
+    document.title='Page not found | Tyros Group';
+    document.querySelectorAll('[data-en]').forEach(function(el){el.innerHTML=el.dataset.en;});
+    var a=document.querySelector('.alt');if(a)a.setAttribute('href','/en/insights/');
+  }
+})();
+</script>
+</body>
+</html>
