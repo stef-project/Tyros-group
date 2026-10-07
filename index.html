@@ -276,13 +276,13 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .acad-offer h3{font-size:1.3rem;line-height:1.28;margin-top:.6rem;letter-spacing:-0.01em;}
 .ao-for{font-size:.84rem;color:var(--gold-deep,var(--gold));margin-top:.9rem;font-weight:600;}
 .ao-desc{color:var(--grey);font-size:.95rem;margin-top:.3rem;}
-.acad-levels{grid-template-columns:repeat(3,1fr);}
+.paths-lab-2{margin-top:2.6rem;}
 .ao-list{list-style:none;margin:1.2rem 0 0;padding:0;display:flex;flex-direction:column;gap:.5rem;}
 .ao-list a{font-size:.9rem;color:var(--ink-soft);border-bottom:1px solid var(--line);padding-bottom:.35rem;display:block;}
 .ao-list a:hover{color:var(--gold);}
 .ao-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.2rem;}
 .ao-tags span{font-size:.76rem;color:var(--grey-2);border:1px solid var(--line);border-radius:100px;padding:.28rem .8rem;}
-@media(max-width:900px){.acad-offers,.acad-levels{grid-template-columns:1fr;}}
+@media(max-width:820px){.acad-offers{grid-template-columns:1fr;}}
 
 /* sensibilisation / attestation — simple card */
 .sensib{margin-top:3.5rem;padding-top:3rem;border-top:1px solid var(--line);}
@@ -648,44 +648,51 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
 <section class="sec" id="academy">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow" data-en="Tyros Academy · Financial Services Regulatory &amp; AI Education">Tyros Academy · Financial Services Regulatory &amp; AI Education</div>
-      <h2 data-en="Regulatory &amp; AI education for financial services.">Formation réglementaire et IA pour les services financiers.</h2>
-      <p data-en="Three levels of training for banks and insurers, from awareness for large populations to Executive Committee and Board briefings.">Trois niveaux de formation pour banques et assurances, de la sensibilisation du plus grand nombre aux briefings de Comex et de Board.</p>
+      <div class="eyebrow" data-en="Tyros Academy · Executive Education">Tyros Academy · Executive Education</div>
+      <h2 data-en="Executive Education for Financial Services.">Executive Education pour les services financiers.</h2>
+      <p data-en="Practical skills for people who hire, manage, develop and advise in financial services.">Des compétences directement applicables pour celles et ceux qui recrutent, développent des équipes et construisent des relations commerciales dans les services financiers.</p>
     </div>
-    <div class="paths-lab" data-en="Three levels">Trois niveaux</div>
-    <div class="acad-offers acad-levels">
-      <div class="acad-offer">
+    <div class="paths-lab" data-en="Regulatory &amp; Digital Awareness">Regulatory &amp; Digital Awareness</div>
+    <div class="acad-offers">
+      <a class="acad-offer" href="/dora-awareness/">
         <div class="ao-num">01</div>
-        <div class="ao-name">Essentials</div>
-        <h3 data-en="90 minutes, for a large population.">90 minutes, pour une large population.</h3>
-        <p class="ao-desc" data-en="Business teams, managers, HR and L&amp;D. No technical jargon.">Équipes métiers, managers, RH et L&amp;D. Sans jargon technique.</p>
-        <ul class="ao-list">
-          <li><a href="/formation-ia-banque-assurance/">AI Literacy &amp; Responsible Use</a></li>
-          <li><a href="/dora-operational-resilience-workshop/">DORA Essentials (90 min)</a></li>
-        </ul>
-      </div>
-      <div class="acad-offer">
+        <div class="ao-name">DORA Awareness</div>
+        <h3 data-en="Sensitising non-technical teams to digital risk.">Sensibiliser les équipes non techniques aux risques numériques.</h3>
+        <p class="ao-desc" data-en="Incidents, critical providers and reporting reflexes.">Incidents, prestataires critiques et bons réflexes de signalement.</p>
+      </a>
+      <a class="acad-offer" href="/formation-ia-banque-assurance/">
         <div class="ao-num">02</div>
-        <div class="ao-name">Professional Workshops</div>
-        <h3 data-en="3 to 4 hours, for specialist functions.">3 à 4 heures, pour les métiers spécialisés.</h3>
-        <p class="ao-desc" data-en="Risk, Compliance, Actuarial, Finance, Internal Audit and IT around real scenarios.">Risk, Compliance, Actuariat, Finance, Audit interne et IT autour de scénarios concrets.</p>
-        <ul class="ao-list">
-          <li><a href="/ai-act-gouvernance-ia-finance/">AI Governance</a></li>
-          <li><a href="/dora-operational-resilience-workshop/">DORA Operational Resilience Workshop</a></li>
-          <li><a href="/solvabilite-2-2027-formation/">Solvency II 2027</a></li>
-          <li><a href="/irrd-2027-formation/">IRRD 2027</a></li>
-        </ul>
-      </div>
-      <div class="acad-offer">
+        <div class="ao-name">AI Literacy &amp; Responsible Use</div>
+        <h3 data-en="Using AI responsibly, securely and in line with the rules.">Utiliser l'IA de manière responsable, sécurisée et conforme.</h3>
+        <p class="ao-desc" data-en="Practical use, security and internal rules, for business teams.">Usages concrets, sécurité et règles internes, pour des équipes métiers.</p>
+      </a>
+    </div>
+    <div class="paths-lab paths-lab-2" data-en="Management &amp; Business Skills">Management &amp; Business Skills</div>
+    <div class="acad-offers">
+      <a class="acad-offer" href="/formation-manager-recrutement/">
         <div class="ao-num">03</div>
-        <div class="ao-name">Executive Briefings</div>
-        <h3 data-en="60 to 90 minutes, for Executive Committees and Boards.">60 à 90 minutes, pour les Comex et les Boards.</h3>
-        <p class="ao-desc" data-en="What the Board needs to know on AI, operational resilience and the 2027 insurance regimes.">Ce que le Board doit savoir sur l'IA, la résilience opérationnelle et les régimes assurance 2027.</p>
-        <ul class="ao-list">
-          <li><a href="/irrd-2027-formation/">IRRD 2027 for leaders</a></li>
-          <li><a href="/executive-briefings/">What the Board needs to know</a></li>
-        </ul>
-      </div>
+        <div class="ao-name">Manager as Recruiter</div>
+        <h3 data-en="Interviewing and selecting specialist talent.">Mieux interviewer et sélectionner les talents.</h3>
+        <p class="ao-desc" data-en="For managers who take part in hiring.">Pour les managers qui participent au recrutement.</p>
+      </a>
+      <a class="acad-offer" href="/formation-recrutement-talents-finance/">
+        <div class="ao-num">04</div>
+        <div class="ao-name">Hiring &amp; Retaining Specialist Talent</div>
+        <h3 data-en="Attracting and retaining specialist talent.">Attirer et fidéliser les talents spécialisés.</h3>
+        <p class="ao-desc" data-en="For HR, Talent Acquisition and leaders.">Pour les RH, la Talent Acquisition et les dirigeants.</p>
+      </a>
+      <a class="acad-offer" href="/formation-business-development-finance/">
+        <div class="ao-num">05</div>
+        <div class="ao-name">Business Development in Financial Services</div>
+        <h3 data-en="From cold prospect to trusted client.">Du prospect froid au client de confiance.</h3>
+        <p class="ao-desc" data-en="Open and grow accounts in regulated B2B.">Ouvrir et développer des comptes en B2B réglementé.</p>
+      </a>
+      <a class="acad-offer" href="/formation-relation-client-b2b/">
+        <div class="ao-num">06</div>
+        <div class="ao-name">Strategic Client Relationships</div>
+        <h3 data-en="From one-off supplier to trusted partner.">De fournisseur ponctuel à partenaire de confiance.</h3>
+        <p class="ao-desc" data-en="Sponsors, multiple relationships, life after the first assignment.">Sponsors, multi-relations, relation après la première mission.</p>
+      </a>
     </div>
     <div class="acad-foot">
       <div class="acad-tags">
