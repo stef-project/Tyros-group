@@ -245,9 +245,6 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 
 /* intelligence teaser */
 .intel{display:grid;grid-template-columns:1.05fr 1fr;gap:5rem;align-items:center;}
-.intel-viz{position:relative;aspect-ratio:1/.82;border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden;box-shadow:var(--shadow);}
-.intel-viz canvas{width:100%;height:100%;display:block;}
-.intel-viz .vlabel{position:absolute;top:1.2rem;left:1.4rem;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-2);}
 .intel-list{list-style:none;padding:0;margin:2rem 0 0;}
 .intel-list li{padding:1.1rem 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;align-items:baseline;font-size:1.02rem;}
 .intel-list li:last-child{border-bottom:1px solid var(--line);}
@@ -302,6 +299,7 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .mem:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--gold);}
 .mem.feat{border-color:var(--gold);position:relative;}
 .mem.feat::before{content:"Le plus choisi";position:absolute;top:-.75rem;left:2rem;background:var(--gold);color:#fff;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:100px;}
+:root[lang="en"] .mem.feat::before{content:"Most popular";}
 .mem .tier{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
 .mem h3{font-size:1.6rem;margin:.7rem 0 .5rem;}
 .mem .desc{font-size:.9rem;color:var(--grey);min-height:2.6rem;}
@@ -371,6 +369,7 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
 .legal .back{display:inline-block;margin-top:2rem;font-size:.82rem;color:var(--gold);border-bottom:1px solid var(--gold);}
 </style>
 <link rel="stylesheet" href="/assets/tyros-ds.css?v=20261008">
+<link rel="stylesheet" href="/assets/tyros-bplus.css?v=20261008">
 
 <a class="skip" href="#main" data-en="Skip to content">Aller au contenu</a>
 <header class="site">
@@ -422,13 +421,18 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
   <div class="hero-bg" aria-hidden="true"><canvas id="hero-canvas"></canvas></div>
   <div class="wrap hero-inner">
     <div class="eyebrow">Intelligence · Leadership · Influence</div>
-    <h1><span class="grad">Leadership</span><br>Shapes Markets.</h1>
-    <p class="sub" data-en="We guide financial institutions through their most strategic decisions.">Nous accompagnons les institutions financières dans leurs décisions les plus stratégiques.</p>
-    <div class="hero-actions">
+    <h1><span class="l1">Leadership</span> <span class="l2">Shapes Markets<span class="dot">.</span></span></h1>
+    <div class="hero-side"><p class="sub" data-en="We guide financial institutions through their most strategic decisions.">Nous accompagnons les institutions financières dans leurs décisions les plus stratégiques.</p><div class="hero-actions">
       <a href="#contact" class="btn btn-primary" data-en="Book a Confidential Discussion">Réserver un échange confidentiel <span class="ar">→</span></a>
       <a href="#services" class="btn btn-ghost" data-en="Explore Our Intelligence">Explorer notre intelligence</a>
-    </div>
+    </div></div>
   </div>
+  <div class="hero-stats"><div class="wrap stats-grid">
+    <div class="stat"><div class="v">2025</div><div class="l" data-en="Founded: a focused practice">Création : une pratique spécialisée</div></div>
+    <div class="stat"><div class="v" data-count="8">8</div><div class="l" data-en="Sectors covered">Secteurs couverts</div></div>
+    <div class="stat"><div class="v" data-count="4">4</div><div class="l" data-en="Countries: France &amp; Benelux">Pays : France &amp; Benelux</div></div>
+    <div class="stat"><div class="v" data-count="100">100<span class="u">%</span></div><div class="l" data-en="Confidential search process">Processus de recherche confidentiel</div></div>
+  </div></div>
 </section>
 
 <!-- TRUSTED -->
@@ -450,14 +454,7 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
 </section>
 
 <!-- STATS -->
-<section class="stats reveal">
-  <div class="wrap stats-grid">
-    <div class="stat"><div class="v">2025</div><div class="l" data-en="Founded: a focused practice">Création : une pratique spécialisée</div></div>
-    <div class="stat"><div class="v" data-count="8">8</div><div class="l" data-en="Sectors covered">Secteurs couverts</div></div>
-    <div class="stat"><div class="v" data-count="4">4</div><div class="l" data-en="Countries: France &amp; Benelux">Pays : France &amp; Benelux</div></div>
-    <div class="stat"><div class="v" data-count="100">100<span class="u">%</span></div><div class="l" data-en="Confidential search process">Processus de recherche confidentiel</div></div>
-  </div>
-</section>
+
 
 <!-- ABOUT / POSITIONING -->
 <section class="sec" id="about">
@@ -533,7 +530,7 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
         <h2 style="font-size:clamp(2rem,3.8vw,3rem);margin-top:1rem;" data-en="Market intelligence for financial institutions.">L'intelligence de marché pour les institutions financières.</h2>
         <p style="margin-top:1.2rem;color:var(--grey);max-width:36ch;" data-en="A research practice, not a blog. We turn our proximity to the leadership market into decision-grade intelligence.">Une pratique de recherche, pas un blog. Nous transformons notre proximité avec le marché des dirigeants en intelligence d'aide à la décision.</p>
       </div>
-      <div class="intel-viz"><span class="vlabel" data-en="Leadership demand index (illustrative)">Indice de demande (illustratif)</span><canvas id="intel-canvas"></canvas></div>
+      
     </div>
     <div class="ihub-grid">
       <a class="ihub-card" href="/insights/">
@@ -633,15 +630,15 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
     <div class="ins-grid">
       <a class="ins" href="/insights/ai-act-risk-compliance/">
         <div class="ins-top"><canvas class="ins-canvas"></canvas><span class="ins-cat">Regulation &amp; AI</span></div>
-        <div class="ins-b"><div class="ins-d">Juin 2026 · White paper</div><h3 data-en="Why the AI Act strengthens Risk &amp; Compliance.">Pourquoi l'AI Act renforce les directions Risk &amp; Compliance.</h3><span class="rd" data-en="Read →">Lire →</span></div>
+        <div class="ins-b"><div class="ins-d" data-en="June 2026 · White paper">Juin 2026 · White paper</div><h3 data-en="Why the AI Act strengthens Risk &amp; Compliance.">Pourquoi l'AI Act renforce les directions Risk &amp; Compliance.</h3><span class="rd" data-en="Read →">Lire →</span></div>
       </a>
       <a class="ins" href="/insights/executive-search-vs-recrutement/">
         <div class="ins-top"><canvas class="ins-canvas"></canvas><span class="ins-cat">Leadership</span></div>
-        <div class="ins-b"><div class="ins-d">Avril 2026 · Perspective</div><h3 data-en="Key leaders are not found at the surface.">Les dirigeants clés ne se cherchent pas en surface.</h3><span class="rd" data-en="Read →">Lire →</span></div>
+        <div class="ins-b"><div class="ins-d" data-en="April 2026 · Perspective">Avril 2026 · Perspective</div><h3 data-en="Key leaders are not found at the surface.">Les dirigeants clés ne se cherchent pas en surface.</h3><span class="rd" data-en="Read →">Lire →</span></div>
       </a>
       <a class="ins" href="/insights/conformite-avantage-competitif/">
         <div class="ins-top"><canvas class="ins-canvas"></canvas><span class="ins-cat">Market</span></div>
-        <div class="ins-b"><div class="ins-d">Février 2026 · Report</div><h3 data-en="Compliance: from cost centre to competitive edge.">La conformité : de centre de coût à avantage compétitif.</h3><span class="rd" data-en="Read →">Lire →</span></div>
+        <div class="ins-b"><div class="ins-d" data-en="February 2026 · Report">Février 2026 · Report</div><h3 data-en="Compliance: from cost centre to competitive edge.">La conformité : de centre de coût à avantage compétitif.</h3><span class="rd" data-en="Read →">Lire →</span></div>
       </a>
     </div>
     <div style="margin-top:2.4rem;">
@@ -823,34 +820,6 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
     ctx.globalAlpha=1;requestAnimationFrame(loop);
   }
   loop();
-})();
-
-/* INTEL CANVAS — abstract rising bars/line (illustrative, not real data) */
-(function(){
-  var c=document.getElementById('intel-canvas');if(!c)return;
-  var ctx=c.getContext('2d'),w,h,dpr=Math.min(window.devicePixelRatio||1,2);
-  function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
-  function size(){w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);draw(1);}
-  var vals=[0.28,0.34,0.31,0.42,0.48,0.45,0.58,0.63,0.6,0.72,0.8,0.86];
-  function draw(prog){
-    ctx.clearRect(0,0,w,h);var pad=w*0.08,bw=(w-pad*2)/vals.length;
-    var line=css('--line'),gold=css('--gold'),blue=css('--blue'),grey=css('--grey-2');
-    ctx.strokeStyle=line;ctx.lineWidth=1;
-    for(var g=0;g<4;g++){var y=h*0.15+(h*0.7/3)*g;ctx.globalAlpha=.5;ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(w-pad,y);ctx.stroke();}
-    ctx.globalAlpha=1;
-    for(var i=0;i<vals.length;i++){var bh=(h*0.66)*vals[i]*prog,x=pad+bw*i+bw*0.22,by=h*0.85-bh;
-      ctx.fillStyle=(i===vals.length-1)?gold:blue;ctx.globalAlpha=(i===vals.length-1)?.9:.28;ctx.fillRect(x,by,bw*0.56,bh);}
-    ctx.globalAlpha=1;ctx.strokeStyle=gold;ctx.lineWidth=1.6;ctx.beginPath();
-    for(var i=0;i<vals.length;i++){var x=pad+bw*i+bw*0.5,y=h*0.85-(h*0.66)*vals[i]*prog;i?ctx.lineTo(x,y):ctx.moveTo(x,y);}
-    ctx.stroke();
-    var lx=pad+bw*(vals.length-1)+bw*0.5,ly=h*0.85-(h*0.66)*vals[vals.length-1]*prog;
-    ctx.fillStyle=gold;ctx.beginPath();ctx.arc(lx,ly,3.2,0,7);ctx.fill();
-  }
-  size();window.addEventListener('resize',size);
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var p=0;function an(){p+=0.02;if(p<1){draw(p);requestAnimationFrame(an);}else draw(1);}
-    if('IntersectionObserver'in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){an();io.disconnect();}},{threshold:.3});io.observe(c);}else an();
-  }
 })();
 
 /* INSIGHT card canvases — quiet abstract motif */
