@@ -1,0 +1,21 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Thème unique · Tyros Group</title>
+<style>
+body{margin:0;background:#050E1D;color:#F5F0E5;font:15px/1.5 'IBM Plex Sans',system-ui,sans-serif;padding:40px}
+h1{font:600 42px/1 Georgia,serif;margin:0 0 6px}h2{font:600 20px Georgia,serif;margin:38px 0 12px;border-top:1px solid #2a3a55;padding-top:14px;color:#CEA152}
+.sub{color:#97A6BF;margin:0 0 6px}.row{display:flex;gap:10px;align-items:flex-start}
+.c{overflow:hidden;flex:none;border:1px solid #2a3a55}.c img{display:block}
+.sw{display:flex;gap:10px;margin:14px 0}.sw div{width:120px;height:64px;padding:8px;font-size:12px;border:1px solid #2a3a55;display:flex;align-items:flex-end}
+</style>
+<h1>Thème unique · bleu nuit, ivoire, or</h1>
+<p class="sub">Aperçu sur la branche de développement. Non publié. Couleurs de départ : fond #050E1D, or #CEA152.</p>
+<div class="sw"><div style="background:#050E1D">#050E1D nuit</div><div style="background:#081A33">#081A33 profond</div><div style="background:#0C2447">#0C2447 plaque</div><div style="background:#133260">#133260 relevé</div><div style="background:#F5F0E5;color:#050E1D">#F5F0E5 ivoire</div><div style="background:#CEA152;color:#050E1D">#CEA152 or</div></div>
+<h2>Home · bureau 1360 px (FR)</h2><div class="row" id="a"></div>
+<h2>Page Boards · bureau (FR puis EN)</h2><div class="row" id="b"></div>
+<h2>Home · mobile 390 px (FR)</h2><div class="row" id="c"></div>
+<h2>Boards mobile (FR, EN) · demande Academy mobile (FR) · demande recrutement bureau (EN)</h2><div class="row" id="d"></div>
+<script>
+const I='theme-img/';function t(id,f,w,h,n,s,from){const e=document.getElementById(id);for(let i=0;i<n;i++){e.insertAdjacentHTML('beforeend',`<div class="c" style="width:${w*s}px;height:${h*s}px"><img src="${I+f}" style="width:${w*s}px;margin-top:-${(from+i)*h*s}px"></div>`)}}
+t('a','home-fr-d.jpg',1360,2600,5,.27,0);t('b','boards-fr-d.jpg',1360,3600,1,.27,0);t('b','boards-en-d.jpg',1360,3400,1,.27,0);
+t('c','home-fr-m.jpg',390,3300,5,.62,0);
+t('d','boards-fr-m.jpg',390,3900,1,.62,0);t('d','boards-en-m.jpg',390,3800,1,.62,0);t('d','request-fr-m.jpg',390,2300,1,.62,0);t('d','request-en-d.jpg',1360,1900,1,.4,0);
+</script></html>
