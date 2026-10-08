@@ -5,26 +5,26 @@
 @font-face{font-family:'Plex Sans';font-weight:100 700;src:url('../../fonts/plexsans-normal-100_700.woff2') format('woff2');}
 *{box-sizing:border-box;margin:0}
 html,body{width:1200px;height:630px;overflow:hidden}
-body{--bg:#FCFBF9;--ink:#0B0C0E;--ink-soft:#3A3C42;--gold:#A6884F;--label:#7D622D;--ring:#EFE9DC;--eyebrow:#7D622D;
+body{--bg:#050E1D;--ink:#F5F0E5;--ink-soft:#97A6BF;--gold:#CEA152;--label:#CEA152;--ring:#CEA152;--eyebrow:#CEA152;
   font-family:'Plex Sans',sans-serif;background:var(--bg);color:var(--ink);position:relative}
-body[data-v=academy]{--bg:#0B0C0E;--ink:#F5F4F0;--ink-soft:#C7C8CE;--label:#C4A469;--ring:rgba(196,164,105,.16);--eyebrow:#C4A469}
-body[data-v=search]{--bg:#F4F2EC;--ring:#E8E2D4}
-body[data-v=insights]{--bg:#152A54;--ink:#F6F8FC;--ink-soft:#C3CCDE;--label:#C4A469;--ring:rgba(196,164,105,.18);--eyebrow:#C4A469}
-.ring{position:absolute;right:-330px;top:-110px;width:760px;height:760px;border-radius:50%;border:16px solid var(--ring)}
+body[data-v=academy]{--bg:#081A33}
+body[data-v=search]{--bg:#0C2447}
+body[data-v=insights]{--bg:#050E1D}
+.ring{position:absolute;right:-210px;top:-200px;width:540px;height:540px;border-radius:50%;border:10px solid var(--ring)}
 .logo{position:absolute;left:84px;top:64px;display:inline-flex;flex-direction:column;align-items:flex-start;color:var(--ink)}
 .logo-top{display:inline-flex;align-items:center;font-weight:400;font-size:34px;letter-spacing:.38em;line-height:1}
 .logo-o{width:1em;height:1em;margin:0 .3em 0 -.02em;flex:none}
 .logo-sub{font-weight:500;font-size:15px;letter-spacing:.6em;color:var(--gold);margin-top:9px;line-height:1}
-.main{position:absolute;left:84px;right:150px;top:218px}
+.main{position:absolute;left:84px;right:340px;top:218px}
 .eyebrow{font-weight:600;font-size:20px;letter-spacing:.24em;text-transform:uppercase;color:var(--eyebrow);margin-bottom:26px}
-h1{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.025em;line-height:1.04;font-size:92px;color:var(--ink);max-width:980px}
-body[data-v=academy] h1{font-size:74px;max-width:900px}
-body[data-v=search] h1,body[data-v=insights] h1{font-size:80px;max-width:1000px;line-height:1.06}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.03em;line-height:1.04;font-size:88px;color:var(--ink);max-width:780px}
+body[data-v=academy] h1{font-size:62px;max-width:780px}
+body[data-v=search] h1,body[data-v=insights] h1{font-size:78px;max-width:780px;line-height:1.06}
 body[data-v=search] .main{top:230px}
 body[data-v=insights] .main{top:176px}
 h1 .dot{color:var(--gold)}
 body[data-v=academy] .main{top:196px}
-body[data-v=academy] .label{font-size:17px;letter-spacing:.15em;white-space:nowrap}
+body[data-v=academy] .label{font-size:15px;letter-spacing:.13em;white-space:normal;max-width:780px;line-height:1.5}
 .rule{width:72px;height:2px;background:var(--gold);margin:40px 0 24px}
 .label{font-weight:500;font-size:21px;letter-spacing:.2em;text-transform:uppercase;color:var(--label)}
 .url{position:absolute;left:84px;bottom:50px;font-size:19px;letter-spacing:.06em;color:var(--ink-soft)}

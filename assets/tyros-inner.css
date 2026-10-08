@@ -138,9 +138,11 @@ article.a-body .pull{font-style:normal;font-family:'Fraunces',serif;font-weight:
 .hub-card .rd{grid-column:3;grid-row:1/span 2;align-self:center;color:var(--gold);}
 @media(max-width:820px){.hub-card{display:block;}.hub-card h2{margin:.7rem 0;}}
 
-/* 6. LEGAL + 404 ---------------------------------------------------------------------------------------------- */
-.legal-doc{display:block!important;max-width:52rem!important;margin:0 auto!important;}
-.legal-doc>*{grid-column:auto!important;}
-.legal-doc h2{margin-top:2.4rem;}
-.legal-doc h2+*{border-top:0;padding-top:0;margin-top:.8rem!important;}
-.en-line{display:block;color:var(--ivory-mute);font-size:.62em;margin-top:.5rem;font-weight:400;letter-spacing:-.02em;}
+/* 6. LEGAL: same editorial grid as the other pages */
+.legal-doc h2{margin-top:clamp(1.5rem,3vw,2.4rem);}
+.legal-doc p{padding-right:max(0px,calc(100% - 62ch));}
+/* hub grid already sits inside .wrap: no second gutter */
+.hub-grid{padding-left:0;padding-right:0;max-width:none;}
+.a-byline{max-width:46rem;}
+.a-hero::before{display:none;}
+@media(max-width:820px){article.page-body h2{font-size:1.3rem;}}

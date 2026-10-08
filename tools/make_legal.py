@@ -27,9 +27,9 @@ EN_N='''<h2>Publisher</h2>
 <p>All content is the exclusive property of TYROS GROUP LTD. Reproduction is prohibited without prior written permission.</p>'''
 FR_P='''<h2>Données collectées : formulaires de demande</h2>
 <p>Lorsque vous utilisez un formulaire du site (contact, recrutement, conseil, Tyros Academy, demande de programme), nous collectons uniquement ce que vous saisissez : nom, entreprise, adresse e-mail et message, ainsi que, selon le formulaire, le poste ou profil recherché, la localisation, l'échéance, le sujet, le nombre approximatif de participants, le format souhaité et la période envisagée. Nous enregistrons aussi la langue, la page d'origine, l'offre ou le programme concerné et la date de la demande, afin de traiter correctement votre demande.</p>
-<p><strong>Finalité :</strong> répondre à votre demande et, pour une demande de programme, vous transmettre le programme par e-mail. Aucune démarche de prospection n'est engagée du seul fait d'une demande.</p>
+<p><strong>Finalité :</strong> répondre à votre demande et, pour une demande de programme, vous transmettre le programme une fois votre demande examinée.</p>
 <p><strong>Destinataires :</strong> Tyros Group. Les demandes sont enregistrées et transmises par des outils Google Workspace (messagerie et tableur) utilisés par Tyros Group. Aucune donnée n'est vendue ni cédée à des tiers.</p>
-<p><strong>Durée de conservation :</strong> 3 ans à compter du dernier échange, puis suppression.</p>
+<!-- DÉCISION REQUISE (voir design-system/DECISIONS-CONFIDENTIALITE.md) : durée de conservation des demandes envoyées par formulaire. Aucune durée n'a été arrêtée. -->
 <h2>Données collectées : sessions Tyros Academy</h2>
 <p>Dans le cadre d'une session de sensibilisation commanditée par votre employeur, nous collectons via un questionnaire en ligne : nom, prénom, adresse email professionnelle, entreprise, et les réponses au questionnaire associé.</p>
 <p><strong>Finalité :</strong> établir une attestation nominative de participation et un relevé documentaire transmis à l'entreprise commanditaire, à des fins de suivi de sa démarche de sensibilisation.</p>
@@ -39,9 +39,9 @@ FR_P='''<h2>Données collectées : formulaires de demande</h2>
 <p>Accès, rectification, effacement, limitation et opposition sur l'ensemble de ces traitements. Contactez-nous via <a href="mailto:contact@tyros-group.com">contact@tyros-group.com</a> ; pour les données liées à une session Tyros Academy, vous pouvez également vous adresser à votre employeur.</p>'''
 EN_P='''<h2>Data collected: request forms</h2>
 <p>When you use a form on this site (contact, recruitment, consulting, Tyros Academy, programme request), we collect only what you enter: name, company, email address and message, and, depending on the form, the role or profile sought, location, timing, topic, approximate number of participants, preferred format and intended period. We also record the language, the page you came from, the offer or programme concerned and the date of the request, so that we can handle it properly.</p>
-<p><strong>Purpose:</strong> to answer your request and, for a programme request, to send you the programme by email. A request alone does not trigger any marketing outreach.</p>
+<p><strong>Purpose:</strong> to answer your request and, for a programme request, to send you the programme once your request has been reviewed.</p>
 <p><strong>Recipients:</strong> Tyros Group. Requests are recorded and forwarded using Google Workspace tools (email and spreadsheet) operated by Tyros Group. No data is sold or passed on to third parties.</p>
-<p><strong>Retention:</strong> 3 years from the last exchange, then deletion.</p>
+<!-- DECISION REQUIRED (see design-system/DECISIONS-CONFIDENTIALITE.md): retention period for requests sent through the forms. No period has been decided. -->
 <h2>Data collected: Tyros Academy sessions</h2>
 <p>For an awareness session commissioned by your employer, we collect through an online questionnaire: first name, last name, work email address, company, and the answers to the related questionnaire.</p>
 <p><strong>Purpose:</strong> to issue a named certificate of attendance and a documentary record sent to the commissioning company, in support of its awareness programme.</p>

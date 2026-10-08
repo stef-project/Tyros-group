@@ -85,8 +85,6 @@
   function success(f,ref,body){
     var ok=$('.req-ok');
     if(ok){
-      var prog=f.dataset.type==='academy'&&(f.elements.intent.value==='programme');
-      var p=$('.ok-p',ok);p.textContent=prog?p.dataset.prog:p.dataset.std;
       $('.ok-ref strong',ok).textContent=ref||'';
       $('.ok-ref',ok).hidden=!ref;
       if(isPage){d.querySelector('.req-panels').hidden=true;var t=$('.req-tabs');if(t)t.hidden=true;var c=$('#req-ctx');if(c)c.hidden=true;}

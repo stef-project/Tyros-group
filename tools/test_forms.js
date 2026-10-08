@@ -52,7 +52,7 @@ for(const t of J){
   ok(await p.locator('.req-ok').isVisible(),'success panel visible');
   ok((await p.locator('.req-ok .ok-ref strong').textContent())==='TY-20261008-ABC','reference shown');
   const okp=await p.locator('.req-ok .ok-p').textContent();
-  if(t.expect.intent==='programme')ok(/pi[èe]ce jointe|attached/.test(okp),'programme confirmation mentions the attachment');
+  ok(!/pi[èe]ce jointe|attached|attachment/i.test(okp),'confirmation never promises an attachment');
   ok(errs.length===0,'no JS errors '+errs.join('|'));
   await c.close();
 }

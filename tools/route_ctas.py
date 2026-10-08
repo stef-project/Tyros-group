@@ -17,7 +17,7 @@ KIND={ # FR url -> (kind, offer)
 '/insights/ai-act-risk-compliance/':('consulting','ai-act'),'/insights/ai-act-article-4-ce-qui-change/':('academy','ai-literacy'),
 '/insights/executive-search-vs-recrutement/':('recruitment','executive-search'),'/insights/conformite-avantage-competitif/':('consulting','compliance'),
 }
-TXT={'recruitment':('Demander une recherche','Request a search'),'consulting':('Demander un conseil','Request advice'),
+TXT={'recruitment':('Demander une recherche','Request a search'),'consulting':('Demander un conseil','Request a consultation'),
      'general':('Échange confidentiel','Book a Discussion'),'academy':('Demander le programme','Request the programme')}
 SESSION=('Organiser une session pour mon équipe','Arrange a session for my team')
 def unesc(h): return h.replace('&amp;','&')

@@ -12,7 +12,7 @@ T={
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="eyebrow">Tyros Academy</div>
-    <h1>DORA Awareness: helping non-technical teams understand digital risk.</h1>
+    <h1>DORA Awareness: raising digital risk awareness among non-technical teams.</h1>
     <p class="lede">A short programme, free of technical jargon, for banks, insurers, fintechs and asset managers: incidents, critical ICT providers and good reporting reflexes.</p>
   </div>
 </div>
@@ -108,11 +108,11 @@ T={
 <h2>Functions under structural tension</h2>
 <p>The Solvency II actuarial function, pricing, reserving, reinsurance, modelling: every senior actuarial role pits insurers, mutuals, brokers and consulting firms against each other for a narrow talent pool. The best actuaries are never on the market: they are in post, and in demand.</p>
 <h2>A profession transformed by data</h2>
-<p>The actuarial profile is changing: technical fundamentals are now joined by data science, machine learning applied to pricing, and the ability to govern complex models within a strict regulatory framework. Boards look for actuaries who can bridge the technical, the regulator and the business.</p>
+<p>The actuarial profile is changing: technical fundamentals are now joined by data science, machine learning applied to pricing, and the ability to govern complex models within a strict regulatory framework. Leadership teams look for actuaries who can bridge the technical, the regulator and the business.</p>
 <h2>Our value in this market</h2>
 <ul>
 <li>A maintained map of actuarial functions in France and across Europe.</li>
-<li>A credible approach to highly solicited profiles: precise context, strict confidentiality.</li>
+<li>A credible approach to candidates who are approached constantly: precise context, strict confidentiality.</li>
 <li>An assessment that goes beyond the CV: career path, risk appetite, cultural fit.</li>
 </ul>
 

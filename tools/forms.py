@@ -38,7 +38,7 @@ T={
        'recruitment':'Décrivez le poste ou le profil recherché. Toute recherche est conduite en approche directe et sous stricte confidentialité.',
        'consulting':'Décrivez le sujet ou le besoin. Nous vous répondons avec une première lecture et les prochaines étapes.',
        'academy':'Indiquez le programme, le public et le format envisagés. Nous construisons la session avec vous.',
-       'programme':'Indiquez le programme qui vous intéresse : nous vous envoyons le programme par e-mail et revenons vers vous.',
+       'programme':'Indiquez le programme qui vous intéresse. Nous prenons connaissance de votre demande et revenons vers vous pour vous le transmettre.',
        'session':'Indiquez le programme, le public et le format envisagés. Nous construisons la session avec vous.'},
  f=dict(name='Nom',company='Entreprise',email='Email',message='Message',message_opt='Message (facultatif)',
         role='Poste ou profil recherché',location='Localisation',timing='Calendrier',
@@ -56,8 +56,7 @@ T={
  err_required='Merci de renseigner ce champ.',err_email='Merci de saisir une adresse e-mail valide.',
  err_send='L\'envoi n\'a pas abouti. Merci de réessayer dans un instant ou d\'écrire à contact@tyros-group.com.',
  ok_h='Merci, votre demande est bien envoyée.',
- ok_p='Nous vous répondons sous 48 h ouvrées. Un accusé de réception vient de vous être envoyé.',
- ok_p_prog='Nous vous répondons sous 48 h ouvrées. Un accusé de réception, avec le programme en pièce jointe, vient de vous être envoyé.',
+ ok_p='Nous avons bien reçu votre demande et vous répondons sous 48 h ouvrées. Un accusé de réception vient de vous être envoyé.',
  ok_ref='Référence',ok_back='Retour à l\'accueil',ok_home='/',ok_another='Faire une autre demande',
  noscript='Ce formulaire nécessite JavaScript. Vous pouvez aussi nous écrire à contact@tyros-group.com.',
  switch='Choisir un autre type de demande'),
@@ -69,7 +68,7 @@ T={
        'recruitment':'Describe the role or profile you are looking for. Every search is run as a direct approach and in strict confidence.',
        'consulting':'Describe the topic or need. We reply with a first reading and next steps.',
        'academy':'Tell us the programme, audience and format you have in mind. We build the session with you.',
-       'programme':'Tell us which programme interests you: we will email you the programme and come back to you.',
+       'programme':'Tell us which programme interests you. We will review your request and come back to you to share it.',
        'session':'Tell us the programme, audience and format you have in mind. We build the session with you.'},
  f=dict(name='Name',company='Company',email='Email',message='Message',message_opt='Message (optional)',
         role='Role or profile sought',location='Location',timing='Timing',
@@ -87,8 +86,7 @@ T={
  err_required='Please fill in this field.',err_email='Please enter a valid email address.',
  err_send='We could not send your request. Please try again in a moment or write to contact@tyros-group.com.',
  ok_h='Thank you, your request has been sent.',
- ok_p='We will reply within 48 working hours. An acknowledgement has just been sent to you.',
- ok_p_prog='We will reply within 48 working hours. An acknowledgement, with the programme attached, has just been sent to you.',
+ ok_p='We have received your request and will reply within 48 working hours. An acknowledgement has just been sent to you.',
  ok_ref='Reference',ok_back='Back to the home page',ok_home='/en/',ok_another='Make another request',
  noscript='This form needs JavaScript. You can also write to us at contact@tyros-group.com.',
  switch='Choose another type of request'),
@@ -138,7 +136,7 @@ def success(lang):
     t=T[lang]
     return f'''<div class="req-ok" hidden tabindex="-1">
   <h2>{E(t['ok_h'])}</h2>
-  <p class="ok-p" data-std="{E(t['ok_p'])}" data-prog="{E(t['ok_p_prog'])}">{E(t['ok_p'])}</p>
+  <p class="ok-p">{E(t['ok_p'])}</p>
   <p class="ok-ref">{E(t['ok_ref'])} <strong></strong></p>
   <p><a class="btn btn-ghost" href="{t['ok_home']}">{E(t['ok_back'])}</a></p>
 </div>'''
