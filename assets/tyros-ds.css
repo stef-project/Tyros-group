@@ -49,7 +49,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 h2{line-height:1.1;}
 h3{line-height:1.2;}                                  /* headings without their own leading no longer inherit the body's 1.6 */
 p,li{text-wrap:pretty;}                               /* no more one-word last lines */
-.lede,.sec-head p,.page-hero .lede,.a-stand{text-wrap:balance;}
+.lede,.page-hero .lede,.a-stand{text-wrap:balance;}
 .sec-head p{max-width:46ch;font-size:var(--fs-lede);}
 
 /* Labels: 12px floor, AA gold on light */
@@ -96,7 +96,7 @@ nav.main a:hover{background-size:100% 1px;}
 .ind,.divi{transition:background var(--dur-2) var(--ease),color var(--dur-2) var(--ease);}
 
 /* Academy: the two families read as two chapters */
-.paths-lab{display:flex;align-items:center;gap:1rem;font-size:var(--fs-label);letter-spacing:.2em;font-weight:600;color:var(--gold-text);margin:0 0 1.2rem;}
+.paths-lab{display:flex;align-items:center;gap:1rem;font-size:var(--fs-label);letter-spacing:.2em;font-weight:600;color:var(--gold-text);margin-bottom:1.2rem;}
 .paths-lab::after{content:"";flex:1;height:1px;background:var(--line);}
 
 /* Editorial pages (programmes, expertise, recruitment) */
@@ -117,6 +117,8 @@ article.page-body a:not(.btn):hover{text-decoration-thickness:2px;}
 
 /* Footer: readable and tappable */
 .foot-col a{padding-block:.2rem;margin-bottom:.4rem;}
+
+@media (max-width:560px){.eyebrow,.paths-lab{letter-spacing:.16em;}}
 
 /* 6. MOTION SAFETY --------------------------------------------------------- */
 @media (prefers-reduced-motion:reduce){

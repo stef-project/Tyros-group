@@ -1,0 +1,56 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Tyros design system, avant / après</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#E9E7E1;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;color:#1b1c1f;padding:36px 40px 60px;width:1640px}
+h1{font:600 30px Georgia,serif;margin:0 0 6px}p.sub{margin:0 0 28px;color:#555;font-size:14px;max-width:1100px;line-height:1.5}
+h2{font:600 20px Georgia,serif;margin:44px 0 6px;padding-top:18px;border-top:2px solid #1b1c1f}
+.cap{font-size:13px;color:#555;margin:0 0 14px;max-width:1100px;line-height:1.45}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:26px}
+.col{background:#fff;border:1px solid #cfccc3;padding:12px}
+.tag{display:inline-block;font:600 11px/1 Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px;margin-bottom:10px}
+.b .tag{background:#d8d5cc;color:#444}.a .tag{background:#152A54;color:#fff}
+.col img{display:block;width:100%;height:auto;border:1px solid #e3e0d8}
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:start}
+.phones img{border-radius:6px}
+.small{display:grid;gap:12px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.three .col img{width:100%}
+</style></head><body>
+<h1>Tyros, design system v1 : avant / après</h1>
+<p class="sub">Même contenu, mêmes URLs, même SEO. À gauche l'état actuel en ligne, à droite le même site avec <code>assets/tyros-ds.css</code>. Chaque vue est capturée dans les mêmes conditions (même navigateur, même largeur, en-tête figé en haut pour ne pas masquer le contenu).</p>
+
+<h2>1. Accueil, desktop clair</h2>
+<p class="cap">Hero, section Academy, section Membership. À observer : l'or reste un accent (étiquettes, filets), le titre « Garder une longueur d'avance » est resserré, le chapô n'a plus de dernier mot seul.</p>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-home-light-hero.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-home-light-hero.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-home-light-academy.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-home-light-academy.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-home-light-membership.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-home-light-membership.jpg"></div></div>
+
+<h2>2. Accueil, desktop sombre</h2>
+<p class="cap">En thème sombre l'or garde sa teinte d'origine (#C4A469). Seuls les gris de légende sont éclaircis pour rester lisibles.</p>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-home-dark-hero.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-home-dark-hero.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-home-dark-academy.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-home-dark-academy.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-home-dark-membership.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-home-dark-membership.jpg"></div></div>
+
+<h2>3. Accueil, mobile (390 px)</h2>
+<p class="cap">Hero, Academy, Membership. À observer : le rythme vertical, la taille des titres, la lisibilité des étiquettes.</p>
+<div class="row"><div class="col b"><span class="tag">Avant</span><div class="phones"><img src="img/before-mobile-hero.jpg"><img src="img/before-mobile-academy.jpg"><img src="img/before-mobile-membership.jpg"></div></div>
+<div class="col a"><span class="tag">Après</span><div class="phones"><img src="img/after-mobile-hero.jpg"><img src="img/after-mobile-academy.jpg"><img src="img/after-mobile-membership.jpg"></div></div></div>
+
+<h2>4. Page Academy (programme Manager recruteur)</h2>
+<p class="cap">À observer : traits dorés fins à la place des puces, liens soulignés, hiérarchie des titres, bouton principal lisible.</p>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-academy-page.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-academy-page.jpg"></div></div>
+
+<h2>5. Page recrutement (Chief Risk Officer)</h2>
+<div class="row"><div class="col b"><span class="tag">Avant</span><img src="img/before-cro-page.jpg"></div><div class="col a"><span class="tag">Après</span><img src="img/after-cro-page.jpg"></div></div>
+
+<h2>6. Section Dirigeants</h2>
+<p class="cap">Avant : colonne étroite décalée de la grille, titre sur sept lignes. Après : alignée sur la grille, quatre lignes.</p>
+<div class="row"><div class="col b"><span class="tag">Avant, clair</span><img src="img/before-boards-light.jpg"></div><div class="col a"><span class="tag">Après, clair</span><img src="img/after-boards-light.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant, sombre</span><img src="img/before-boards-dark.jpg"></div><div class="col a"><span class="tag">Après, sombre</span><img src="img/after-boards-dark.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant, mobile</span><div style="width:46%"><img src="img/before-boards-mobile.jpg"></div></div><div class="col a"><span class="tag">Après, mobile</span><div style="width:46%"><img src="img/after-boards-mobile.jpg"></div></div></div>
+
+<h2>7. Interactions : survol et focus clavier</h2>
+<p class="cap">Pour juger si les nouveaux soulignements, filets et anneaux de focus alourdissent le site. Menu survolé, carte survolée (4e carte), focus clavier sur le bouton principal.</p>
+<div class="row"><div class="col b"><span class="tag">Avant, menu</span><img src="img/before-hover-nav.jpg"></div><div class="col a"><span class="tag">Après, menu</span><img src="img/after-hover-nav.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant, carte</span><img src="img/before-hover-card.jpg"></div><div class="col a"><span class="tag">Après, carte</span><img src="img/after-hover-card.jpg"></div></div>
+<div class="row"><div class="col b"><span class="tag">Avant, focus</span><img src="img/before-focus-btn.jpg"></div><div class="col a"><span class="tag">Après, focus</span><img src="img/after-focus-btn.jpg"></div></div>
+</body></html>
