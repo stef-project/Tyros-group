@@ -1,0 +1,125 @@
+/* ==========================================================================
+   TYROS DESIGN SYSTEM, shared layer (v1)
+   Loaded after each page's inline styles. It refines, it does not replace:
+   same palette, same Fraunces + IBM Plex Sans pairing, same hairline language.
+   Source of truth for decisions: /design-system/MASTER.md
+   ========================================================================== */
+
+/* 1. TOKENS ---------------------------------------------------------------- */
+:root{
+  /* Text on light surfaces must reach 4.5:1 even on --bg-2 */
+  --grey:#62646C;            /* body secondary, was #6C6E76 */
+  --grey-2:#6C6E76;          /* captions and labels, was #9A9CA4 (2.6:1) */
+  --gold-text:#7D622D;       /* gold used as TEXT on light (5.1:1). --gold stays for lines and graphics */
+  --gold-deep:#85692F;       /* gold as a fill behind white text (5.2:1) */
+
+  /* Motion: one vocabulary */
+  --ease:cubic-bezier(.2,.6,.2,1);
+  --dur-1:.15s;              /* colour, underline */
+  --dur-2:.25s;              /* hover surfaces */
+  --dur-3:.45s;              /* reveal, theme */
+
+  /* Type steps (rem). Labels never go below 12px */
+  --fs-label:.75rem;
+  --fs-small:.875rem;
+  --fs-body:1rem;
+  --fs-lede:clamp(1.05rem,1.4vw,1.2rem);
+
+  /* Spacing rhythm */
+  --space-section:clamp(4.5rem,9vw,8rem);
+  --space-head:clamp(2.5rem,5vw,4rem);
+  --measure:62ch;
+  --target:2.75rem;          /* 44px touch target */
+}
+:root[data-theme="dark"]{
+  --grey-2:#80848F;          /* was #666A76 (3.7:1) */
+  --gold-text:#C4A469;
+  --gold-deep:#C4A469;
+}
+
+/* 2. BASE ------------------------------------------------------------------ */
+html{scroll-padding-top:5.5rem;}                     /* anchors no longer hide under the sticky header */
+::selection{background:color-mix(in srgb,var(--gold) 35%,transparent);}
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--gold-text);outline-offset:3px;border-radius:2px;
+}
+.btn-primary:focus-visible{outline-color:var(--gold-soft);}
+
+/* 3. TYPOGRAPHY ------------------------------------------------------------ */
+h2{line-height:1.1;}
+h3{line-height:1.2;}                                  /* headings without their own leading no longer inherit the body's 1.6 */
+p,li{text-wrap:pretty;}                               /* no more one-word last lines */
+.lede,.sec-head p,.page-hero .lede,.a-stand{text-wrap:balance;}
+.sec-head p{max-width:46ch;font-size:var(--fs-lede);}
+
+/* Labels: 12px floor, AA gold on light */
+.eyebrow,.lang,.lang button,.trusted .lab,.tr-item .s,.mandates .mlab,.divi .dnum,.divi .dtag,.ind .in,
+.intel-viz .vlabel,.ihub-card .ihub-cat,.ihub-card .ihub-cad,.ao-num,.mem .tier,.ins .ins-cat,.ins .ins-d,
+.crow .t,.foot-col h3,.foot-bottom,.a-meta,.a-card .d,.hub-card .top .cat,.hub-card .d,.role .rk,.bring .bn{
+  font-size:var(--fs-label);
+}
+.eyebrow,.divi .dnum,.ind .in,.intel-list li .m,.ihub-card .ihub-cat,.ao-num,.mem .tier,.ins .rd,.legal .back,
+.see-also a,.a-meta .cat,.a-byline .alt,.hub-card .rd,.role .rk,.bring .bn,.lang button.on{color:var(--gold-text);}
+.see-also a,.a-byline .alt{border-bottom-color:var(--gold);}
+.mem.feat::before{background:var(--gold-deep);font-size:var(--fs-label);}
+[data-theme="dark"] .mem.feat::before{color:#08090C;}
+
+/* 4. RHYTHM ---------------------------------------------------------------- */
+.sec{padding:var(--space-section) 0;}
+.sec-head{margin-bottom:var(--space-head);}
+
+/* Boards band: sits on the page grid like every other section, headline in four lines instead of seven */
+.boards{padding:var(--space-section) 0;}
+.boards .boards-inner{max-width:80rem;}
+.boards h2{max-width:22ch;}
+.boards p{max-width:44ch;font-size:var(--fs-lede);}
+
+/* 5. COMPONENTS ------------------------------------------------------------ */
+/* Button: 44px target, one transition vocabulary */
+.btn{min-height:var(--target);transition:transform var(--dur-1) var(--ease),background var(--dur-1) var(--ease),border-color var(--dur-1) var(--ease),color var(--dur-1) var(--ease);}
+.btn:active{transform:translateY(0);}
+.icon-btn{width:var(--target);height:var(--target);}
+.lang button{min-height:var(--target);min-width:2.25rem;cursor:pointer;}
+
+/* Navigation: underline sweeps in, gold, from the left */
+nav.main a{
+  padding:.8rem 0 .35rem;border-bottom:0;
+  background:linear-gradient(var(--gold),var(--gold)) no-repeat 0 calc(100% - .45rem)/0 1px;
+  transition:color var(--dur-1) var(--ease),background-size var(--dur-2) var(--ease);
+}
+nav.main a:hover{background-size:100% 1px;}
+
+/* Surfaces: one hover signature = a gold hairline across the top edge */
+.acad-offer,.hub-card,.a-card,.ihub-card,.ins{transition:background var(--dur-2) var(--ease),box-shadow var(--dur-2) var(--ease),transform var(--dur-2) var(--ease);}
+.acad-offer:hover,.hub-card:hover,.a-card:hover{box-shadow:inset 0 2px 0 var(--gold);}
+.acad-offer:focus-visible,.hub-card:focus-visible,.a-card:focus-visible,.ins:focus-visible{outline-offset:-3px;}
+.ind,.divi{transition:background var(--dur-2) var(--ease),color var(--dur-2) var(--ease);}
+
+/* Academy: the two families read as two chapters */
+.paths-lab{display:flex;align-items:center;gap:1rem;font-size:var(--fs-label);letter-spacing:.2em;font-weight:600;color:var(--gold-text);margin:0 0 1.2rem;}
+.paths-lab::after{content:"";flex:1;height:1px;background:var(--line);}
+
+/* Editorial pages (programmes, expertise, recruitment) */
+.page-hero{border-bottom:1px solid color-mix(in srgb,var(--gold) 45%,transparent);}
+.page-hero .lede{font-size:var(--fs-lede);}
+article.page-body{padding-top:clamp(3rem,6vw,4.5rem);}
+article.page-body h2{font-size:clamp(1.35rem,2.2vw,1.65rem);line-height:1.2;margin:clamp(2.2rem,4vw,3rem) 0 1rem;}
+article.page-body h2:first-child{margin-top:0;}
+article.page-body p,article.page-body li{max-width:var(--measure);}
+article.page-body ul{list-style:none;padding-left:0;}
+article.page-body li{position:relative;padding-left:1.5rem;}
+article.page-body li::before{content:"";position:absolute;left:0;top:.85em;width:.8rem;height:1px;background:var(--gold);}
+article.page-body a:not(.btn){color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1px;text-underline-offset:.22em;transition:text-decoration-thickness var(--dur-1) var(--ease),color var(--dur-1) var(--ease);}
+article.page-body a:not(.btn):hover{text-decoration-thickness:2px;}
+.page-cta{margin-top:clamp(2.2rem,4vw,3rem);}
+.see-also{padding:clamp(2.2rem,4vw,3rem) 0;}
+.see-also a{padding-block:.5rem;margin-bottom:.1rem;}
+
+/* Footer: readable and tappable */
+.foot-col a{padding-block:.2rem;margin-bottom:.4rem;}
+
+/* 6. MOTION SAFETY --------------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;scroll-behavior:auto!important;}
+  .btn:hover,.mem:hover,.acad-offer:hover{transform:none!important;}
+}
