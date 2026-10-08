@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Tyros OG source</title>
+<style>
+@font-face{font-family:'Fraunces';font-weight:600;src:url('../../fonts/fraunces-normal-600.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400;src:url('../../fonts/fraunces-italic-400.woff2') format('woff2');}
+@font-face{font-family:'Plex Sans';font-weight:100 700;src:url('../../fonts/plexsans-normal-100_700.woff2') format('woff2');}
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{--bg:#FCFBF9;--ink:#0B0C0E;--ink-soft:#3A3C42;--gold:#A6884F;--label:#7D622D;--ring:#EFE9DC;--eyebrow:#7D622D;
+  font-family:'Plex Sans',sans-serif;background:var(--bg);color:var(--ink);position:relative}
+body[data-v=academy]{--bg:#0B0C0E;--ink:#F5F4F0;--ink-soft:#C7C8CE;--label:#C4A469;--ring:rgba(196,164,105,.16);--eyebrow:#C4A469}
+body[data-v=search]{--bg:#F4F2EC;--ring:#E8E2D4}
+body[data-v=insights]{--bg:#152A54;--ink:#F6F8FC;--ink-soft:#C3CCDE;--label:#C4A469;--ring:rgba(196,164,105,.18);--eyebrow:#C4A469}
+.ring{position:absolute;right:-330px;top:-110px;width:760px;height:760px;border-radius:50%;border:16px solid var(--ring)}
+.logo{position:absolute;left:84px;top:64px;display:inline-flex;flex-direction:column;align-items:flex-start;color:var(--ink)}
+.logo-top{display:inline-flex;align-items:center;font-weight:400;font-size:34px;letter-spacing:.38em;line-height:1}
+.logo-o{width:1em;height:1em;margin:0 .3em 0 -.02em;flex:none}
+.logo-sub{font-weight:500;font-size:15px;letter-spacing:.6em;color:var(--gold);margin-top:9px;line-height:1}
+.main{position:absolute;left:84px;right:150px;top:218px}
+.eyebrow{font-weight:600;font-size:20px;letter-spacing:.24em;text-transform:uppercase;color:var(--eyebrow);margin-bottom:26px}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.025em;line-height:1.04;font-size:92px;color:var(--ink);max-width:980px}
+body[data-v=academy] h1,body[data-v=insights] h1{font-size:74px;max-width:900px}
+body[data-v=search] h1{font-size:74px;max-width:1000px}
+body[data-v=academy] .main,body[data-v=insights] .main{top:196px}
+body[data-v=academy] .label{font-size:17px;letter-spacing:.15em;white-space:nowrap}
+.rule{width:72px;height:2px;background:var(--gold);margin:40px 0 24px}
+.label{font-weight:500;font-size:21px;letter-spacing:.2em;text-transform:uppercase;color:var(--label)}
+.url{position:absolute;left:84px;bottom:50px;font-size:19px;letter-spacing:.06em;color:var(--ink-soft)}
+</style></head><body data-v="default">
+<div class="ring"></div>
+<div class="logo"><span class="logo-top">TYR<svg class="logo-o" viewBox="0 0 100 100"><path d="M 86.3 33.1 A 40 40 0 1 1 60.4 11.4" fill="none" stroke="currentColor" stroke-width="7"/><path d="M 53.9 5.2 A 45 45 0 0 1 93.5 38.4" fill="none" stroke="#C4A469" stroke-width="7" stroke-linecap="round"/></svg>S</span><span class="logo-sub">GROUP</span></div>
+<div class="main"><div class="eyebrow" id="eb"></div><h1 id="h"></h1><div class="rule"></div><div class="label" id="lb"></div></div>
+<div class="url">tyros-group.com</div>
+<script>
+const V={
+ default:{eb:'',h:'Financial Services',lb:'Consulting · Recruitment · Executive Education'},
+ academy:{eb:'Tyros Academy',h:'Executive Education for Financial Services',lb:'Regulatory & Digital Awareness · Management & Business Skills'},
+ search:{eb:'Executive Search',h:'Leadership Shapes Markets.',lb:'Banking · Insurance · Risk · Compliance · Actuarial'},
+ insights:{eb:'Tyros Insights',h:'Intelligence, leadership, regulation.',lb:'Leadership · Regulation · AI · Risk & Compliance'}};
+const v=new URLSearchParams(location.search).get('v')||'default';document.body.dataset.v=v;
+const d=V[v];document.getElementById('eb').textContent=d.eb;if(!d.eb)document.getElementById('eb').remove();
+document.getElementById('h').textContent=d.h;document.getElementById('lb').textContent=d.lb;
+</script></body></html>
