@@ -855,7 +855,7 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding:4rem
     });
   }
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var s=document.querySelector('.stats');if(!s)return;
+  var s=document.querySelector('.hero-stats,.stats');if(!s)return;
   if('IntersectionObserver'in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting)run();},{threshold:.4});io.observe(s);}else run();
 })();
 </script>
