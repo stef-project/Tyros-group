@@ -1,0 +1,199 @@
+/* DIRECTION B+ : EDITORIAL FINANCIAL HOUSE, WITH SELECTED C ELEMENTS
+   From B: masthead, 8/4 hero, gold chapter numerals in a narrow left column, hairline rhythm, Industries as a table of
+   contents, Academy as rows, dated Insights.
+   From C: staggered headline with a gold full stop, the Tyros ring as a compositional device, the first Academy family
+   and the final call to action on ink, two (only two) giant outlined numerals.
+   Left out on purpose: visible grid everywhere, permanent chapter rail, more outlined numerals, portfolio effects.
+   Fonts and palette untouched. No gradient, blur, shadow, radius, photo. */
+
+:root{
+  --rule:var(--ink);
+  --block:var(--ink);                       /* ink plates (Academy family one, final CTA) */
+  --on-block:var(--bg);
+  --muted-on-block:color-mix(in srgb,var(--bg) 62%,var(--ink));
+  --block-line:color-mix(in srgb,var(--bg) 22%,var(--ink));
+}
+:root[data-theme="dark"]{
+  --block:var(--panel);                     /* in the night theme the plate is a lifted panel, not an inverted light block */
+  --on-block:var(--ink);
+  --muted-on-block:var(--grey);
+  --block-line:var(--line-2);
+}
+.wrap{max-width:84rem;}
+body{counter-reset:chap;}
+
+/* 1. HERO ---------------------------------------------------------------- */
+.hero{padding:0;position:relative;overflow:hidden;}
+.hero::after{                                 /* the Tyros ring, bigger and present, cropped by the page edge */
+  content:"";position:absolute;z-index:0;pointer-events:none;border-radius:50%;
+  width:min(58vw,54rem);aspect-ratio:1;right:-17vw;top:clamp(3rem,6vw,5rem);
+  border:clamp(6px,.9vw,12px) solid var(--gold);
+}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);column-gap:2rem;padding-top:clamp(2rem,4vh,3rem);}
+.hero .eyebrow{grid-column:1/-1;grid-row:1;padding-bottom:1rem;border-bottom:1px solid var(--rule);letter-spacing:.3em;}
+.hero h1{grid-column:1/9;grid-row:2;font-size:clamp(3.6rem,10.6vw,9.6rem);line-height:.9;letter-spacing:-.045em;max-width:none;margin:clamp(2.5rem,7vh,5rem) 0 clamp(2.5rem,7vh,5rem);}
+.hero h1 .l1,.hero h1 .l2{display:block;}
+.hero h1 .l2{margin-left:clamp(0rem,6.5vw,6.5rem);}
+.hero h1 .dot{color:var(--gold);}
+.hero-side{grid-column:9/13;grid-row:2;align-self:end;background:var(--bg);padding:1.6rem 0 clamp(2.5rem,7vh,5rem) 1.6rem;border-left:1px solid var(--rule);margin-top:clamp(2.5rem,7vh,5rem);}
+.hero .sub{margin:0;font-size:1.2rem;line-height:1.5;max-width:30ch;}
+.hero-actions{margin-top:2rem;flex-direction:column;align-items:flex-start;gap:.8rem;}
+.hero-stats{position:relative;z-index:1;background:var(--bg);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.hero-stats .stats-grid{max-width:84rem;margin:0 auto;padding:0 7vw;grid-template-columns:repeat(4,1fr);gap:0;}
+.hero-stats .stat{border-top:0;padding:1.5rem 1.6rem 1.7rem 0;border-right:1px solid var(--line);}
+.hero-stats .stat+.stat{padding-left:1.6rem;}
+.hero-stats .stat:last-child{border-right:0;}
+.hero-stats .stat .v{font-size:clamp(2rem,3.2vw,2.8rem);}
+.hero-stats .stat .l{margin-top:.5rem;font-size:.8rem;max-width:22ch;}
+@media (max-width:1000px){
+  .hero::after{width:84vw;right:-68vw;top:2.5rem;border-width:6px;}
+  .hero-inner{display:block;}
+  .hero .eyebrow{margin-bottom:0;}
+  .hero h1{font-size:clamp(3.2rem,15.4vw,8rem);margin:2.2rem 0 1.6rem;}
+  .hero h1 .l2{margin-left:clamp(0rem,9vw,5rem);}
+  .hero-side{border-left:0;border-top:1px solid var(--rule);padding:1.4rem 0 2.6rem;margin:0;}
+  .hero-stats .stats-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats .stat{border-right:0;border-bottom:1px solid var(--line);padding:1.1rem 1rem 1.1rem 0;}
+  .hero-stats .stat+.stat{padding-left:0;}
+  .hero-stats .stat:nth-child(even){padding-left:1rem;border-left:1px solid var(--line);}
+}
+
+/* 2. TRUST ROW ------------------------------------------------------------- */
+.trusted{padding:3rem 0;border-bottom:1px solid var(--rule);}
+.trusted .lab{text-align:left;}
+.tr-item{background:none;border:0;border-left:1px solid var(--line);text-align:left;padding-left:1.2rem;}
+.tr-item:first-child{border-left:0;padding-left:0;}
+.tr-item .tr-ic{display:none;}
+
+/* 3. CHAPTERS: numeral in the narrow column, argument in the wide one ------ */
+.sec{padding:var(--section-padding-y) 0;border-top:1px solid var(--rule);counter-increment:chap;position:relative;}
+.sec-head{max-width:none;display:grid;grid-template-columns:minmax(10rem,3fr) 9fr;column-gap:2rem;margin-bottom:var(--section-head-gap);}
+.sec-head .eyebrow{grid-column:1;grid-row:1/span 3;align-self:start;}
+.sec-head .eyebrow::before,.intel .eyebrow::before{content:counter(chap,decimal-leading-zero);display:block;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(2.4rem,4vw,3.4rem);letter-spacing:-.02em;color:var(--gold);line-height:1;margin-bottom:.8rem;}
+.sec-head h2{grid-column:2;font-size:clamp(2.5rem,5.6vw,4.9rem);line-height:1;letter-spacing:-.035em;margin-top:0;max-width:20ch;}
+.sec-head p{grid-column:2;max-width:46ch;font-size:1.2rem;}
+@media (max-width:900px){
+  .sec-head{display:block;}
+  .sec-head h2{margin-top:1rem;}
+  .sec-head .eyebrow::before,.intel .eyebrow::before{font-size:2.2rem;margin-bottom:.5rem;}
+}
+
+/* About: the statement paragraph is set large */
+#about .sec-head p{font-size:clamp(1.3rem,2.1vw,1.75rem);line-height:1.4;max-width:40ch;color:var(--ink-soft);}
+
+/* 4. SERVICES: editorial rows ---------------------------------------------- */
+.divs{background:none;border:0;gap:0;}
+.divi{background:none;padding:2.2rem 0;border-top:1px solid var(--line);grid-template-columns:4rem 1fr 3rem;gap:1.6rem;transition:padding-left var(--primitive-duration-normal) var(--ease);}
+.divi:last-child{border-bottom:1px solid var(--line);}
+.divi:hover{background:none;padding-left:.8rem;}
+.divi .dnum{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;letter-spacing:0;color:var(--gold-text);padding-top:.6rem;}
+.divi .dtag{margin-bottom:.8rem;}
+.divi h3{font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:1.08;letter-spacing:-.025em;}
+.divi:hover h3{color:var(--gold-text);}
+.divi p{max-width:54ch;margin-top:.8rem;}
+.divi .dlist li{border-radius:0;}
+.divi .darr{opacity:1;transform:none;color:var(--gold-text);align-self:start;padding-top:.6rem;}
+@media (max-width:900px){.divi{grid-template-columns:1fr;gap:.6rem;padding:1.8rem 0;}.divi .darr{display:none;}}
+
+/* 5. INDUSTRIES: a table of contents --------------------------------------- */
+.ind-grid{grid-template-columns:1fr;background:none;border:0;gap:0;}
+.ind{display:grid;grid-template-columns:5rem 1fr;align-items:baseline;min-height:0;padding:1.3rem 0;border-top:1px solid var(--line);background:none;transition:padding-left var(--primitive-duration-normal) var(--ease);}
+.ind:last-child{border-bottom:1px solid var(--line);}
+.ind h3{margin:0;font-size:clamp(1.9rem,3.8vw,3.4rem);line-height:1.05;letter-spacing:-.025em;}
+.ind .in{color:var(--gold-text);}
+.ind:hover{background:none;color:var(--ink);padding-left:1rem;}
+.ind:hover .in,.ind:hover h3{color:var(--gold-text);}
+
+/* 6. INTELLIGENCE: head like every chapter, research list as ruled rows ---- */
+.intel{display:grid;grid-template-columns:minmax(10rem,3fr) 9fr;column-gap:2rem;margin-bottom:var(--section-head-gap);align-items:start;}
+.intel>div:first-child{display:contents;}
+.intel .eyebrow{grid-column:1;grid-row:1/span 3;align-self:start;}
+.intel h2{grid-column:2;font-size:clamp(2.5rem,5.6vw,4.9rem)!important;line-height:1;letter-spacing:-.035em;margin-top:0!important;max-width:20ch;}
+.intel p{grid-column:2;max-width:46ch!important;font-size:1.2rem;}
+.intel-viz{display:none;}                      /* illustrative demo chart removed: dashboard motif, not real data */
+.ihub-grid{grid-template-columns:1fr 1fr;gap:0 clamp(1.5rem,4vw,4rem);background:none;border:0;margin-top:0;}
+.ihub-card{background:none;min-height:0;padding:1.6rem 0 1.5rem;border-top:1px solid var(--line);gap:.5rem;}
+.ihub-card:hover{background:none;}
+.ihub-card h3{font-size:clamp(1.25rem,1.8vw,1.55rem);line-height:1.2;}
+.ihub-card:hover h3{color:var(--gold-text);}
+.ihub-bar{background:var(--blue);margin-top:2.4rem;padding:1.8rem 2rem;}
+@media (max-width:900px){.intel{display:block;}.ihub-grid{grid-template-columns:1fr;}}
+
+/* 7. MEMBERSHIP: three ruled columns, no cards ---------------------------- */
+.mem-grid{gap:0;margin-top:0;}
+.mem{border:0;border-left:1px solid var(--line);background:none;padding:1.8rem 2rem 2.2rem;transition:none;}
+.mem:first-child{border-left:0;padding-left:0;}
+.mem:hover{transform:none;box-shadow:none;border-color:var(--line);}
+.mem{position:relative;border-top:2px solid transparent;}
+.mem.feat{border-left:1px solid var(--line);border-top:2px solid var(--gold);}
+.mem.feat::before{position:absolute;left:2rem;top:-1.5rem;display:block;background:none;color:var(--gold-text);padding:0;font-size:var(--fs-label);letter-spacing:.18em;}
+.mem h3{font-size:clamp(1.6rem,2.4vw,2.1rem);line-height:1.1;letter-spacing:-.02em;}
+.mem .btn{border-radius:0;}
+@media (max-width:900px){.mem-grid{grid-template-columns:1fr;}.mem,.mem.feat{border-left:0;border-top:1px solid var(--line);padding:2rem 0;}.mem.feat{border-top:2px solid var(--gold);margin-top:1.8rem;}
+.mem.feat::before{left:0;}}
+
+/* 8. INSIGHTS: dated rows ---------------------------------------------------- */
+.ins-grid{grid-template-columns:1fr;gap:0;}
+.ins{display:grid;grid-template-columns:13rem 1fr auto;column-gap:2rem;align-items:baseline;border:0;border-top:1px solid var(--line);background:none;padding:1.6rem 0;}
+.ins:last-child{border-bottom:1px solid var(--line);}
+.ins .ins-top{background:none;aspect-ratio:auto;padding:0;grid-column:1;grid-row:1;}
+.ins .ins-top .ins-cat{position:static;color:var(--gold-text);}
+.ins .ins-b{display:contents;padding:0;}
+.ins .ins-d{grid-column:1;grid-row:2;margin:.3rem 0 0;}
+.ins h3{grid-column:2;grid-row:1/span 2;font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.12;letter-spacing:-.02em;}
+.ins .rd{grid-column:3;grid-row:1/span 2;align-self:center;}
+.ins:hover{background:none;}
+.ins:hover h3{color:var(--gold-text);}
+@media (max-width:900px){.ins{display:block;}.ins h3{margin:.8rem 0;}}
+
+/* 9. ACADEMY: chapters and rows; family one on ink, one giant outlined numeral */
+#academy{overflow:hidden;}
+#academy .sec-head .eyebrow::before{display:none;}
+#academy::after{content:"07";position:absolute;right:2.5vw;top:clamp(.5rem,1.5vw,1.5rem);font-family:'Fraunces',serif;font-weight:600;font-size:clamp(6rem,13vw,12rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--gold);opacity:.6;pointer-events:none;}
+#academy>.wrap{position:relative;z-index:1;}
+.paths-lab{color:var(--ink);font-size:.8rem;letter-spacing:.26em;padding-top:1rem;border-top:1px solid var(--rule);margin-bottom:0;}
+.paths-lab::after{display:none;}
+.acad-offers{grid-template-columns:1fr;background:none;border:0;gap:0;margin-bottom:0;}
+.acad-offer{display:grid;grid-template-columns:3.5rem 15rem 1fr 1fr;column-gap:1.6rem;align-items:baseline;padding:1.5rem 0;border-top:1px solid var(--line);background:none;}
+.acad-offer:hover{background:none;box-shadow:none;}
+.acad-offer:hover .ao-name{color:var(--gold-text);}
+.ao-name{font-size:1.15rem;}
+.acad-offer h3{margin:0;font-size:1.35rem;line-height:1.2;}
+.ao-desc{margin:0;}
+.paths-lab-2{margin-top:3rem;}
+.paths-lab:not(.paths-lab-2)+.acad-offers{background:var(--block);color:var(--on-block);padding:0 2rem;margin-top:1rem;}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer{border-top-color:var(--block-line);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer:first-child{border-top:0;}
+.paths-lab:not(.paths-lab-2)+.acad-offers .ao-name,.paths-lab:not(.paths-lab-2)+.acad-offers h3{color:var(--on-block);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .ao-desc{color:var(--muted-on-block);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .ao-num{color:var(--gold-soft);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer:hover .ao-name{color:var(--gold-soft);}
+.acad-tags span,.ao-tags span{border-radius:0;}
+@media (max-width:1000px){.acad-offer{display:block;}.ao-num{display:block;margin-bottom:.4rem;}.acad-offer h3{margin:.5rem 0;}.paths-lab:not(.paths-lab-2)+.acad-offers{padding:0 1.2rem;}}
+
+/* 10. BOARDS: navy plate on the 3/9 split --------------------------------- */
+.boards{padding:var(--section-padding-y) 0;border-top:1px solid var(--rule);}
+.boards .boards-inner{display:grid;grid-template-columns:minmax(10rem,3fr) 9fr;column-gap:2rem;max-width:84rem;}
+.boards .eyebrow{grid-column:1;grid-row:1/span 3;}
+.boards h2{grid-column:2;font-size:clamp(2.5rem,5.4vw,4.8rem);line-height:1.02;letter-spacing:-.035em;max-width:22ch;margin-top:0;}
+.boards p{grid-column:2;font-size:1.25rem;max-width:44ch;}
+.boards .btn{grid-column:2;justify-self:start;}
+@media (max-width:900px){.boards .boards-inner{display:block;}.boards h2{margin-top:1rem;}}
+
+/* 11. FINAL CTA: ink plate with the second outlined numeral ----------------- */
+.contact{position:relative;overflow:hidden;background:var(--block);color:var(--on-block);padding:var(--section-padding-y) 0;border-top:0;}
+.contact::after{content:"08";position:absolute;right:5vw;bottom:-.12em;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(6rem,15vw,13rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--gold-soft);opacity:.5;pointer-events:none;}
+.contact-inner{position:relative;z-index:1;grid-template-columns:7fr 5fr;gap:clamp(2rem,6vw,6rem);}
+.contact .eyebrow{color:var(--gold-soft);}
+.contact h2{color:var(--on-block);font-size:clamp(2.6rem,5.4vw,4.8rem);line-height:1;letter-spacing:-.04em;max-width:16ch;}
+.contact .sub{color:var(--muted-on-block);font-size:1.25rem;max-width:34ch;margin:1.6rem 0 2.4rem;}
+.contact .btn-primary{background:var(--on-block);color:var(--block);}
+.contact .btn-primary:hover{background:var(--gold-soft);color:var(--block);}
+.cinfo{background:none;border:0;border-top:1px solid var(--gold-soft);padding:0;}
+.cinfo .crow{border-bottom:1px solid var(--block-line);}
+.cinfo .crow .t{color:var(--muted-on-block);}
+.cinfo .crow span,.cinfo a{color:var(--on-block);}
+@media (max-width:900px){.contact-inner{grid-template-columns:1fr;}}
+
+/* 12. FOOTER ----------------------------------------------------------------- */
+footer.site{border-top:1px solid var(--rule);}

@@ -1,0 +1,31 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Planche B+ · Tyros Group</title>
+<style>
+body{margin:0;background:#EDEAE2;font:15px/1.5 'IBM Plex Sans',system-ui,sans-serif;color:#0B0D10;padding:40px}
+h1{font:600 44px/1 Georgia,serif;margin:0 0 6px}h2{font:600 22px Georgia,serif;margin:36px 0 12px;border-top:1px solid #0B0D10;padding-top:14px}
+.sub{color:#555;margin:0 0 8px}.row{display:flex;gap:10px;align-items:flex-start}
+.c{overflow:hidden;flex:none;background:#fff;border:1px solid #0B0D10}.c img{display:block}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-top:1px solid #bbb;padding:7px 10px;text-align:left;vertical-align:top}th{font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+</style>
+<h1>Direction B+ · Maison financière éditoriale</h1>
+<p class="sub">Aperçu sur la branche de développement. Non publié. gh-pages inchangée (0ad1b94).</p>
+<h2>Home complète · bureau 1360 px (clair, FR)</h2>
+<div class="row" id="d"></div>
+<h2>Home complète · mobile 390 px (clair, FR)</h2>
+<div class="row" id="m"></div>
+<h2>Thème sombre · bureau et mobile</h2>
+<div class="row" id="k"></div>
+<h2>Validation</h2>
+<table><tr><th>Contrôle</th><th>Résultat</th></tr>
+<tr><td>Largeurs 360 · 390 · 414 · 768 · 820 · 1024 · 1360 × clair/sombre × FR/EN (28 combinaisons)</td><td>0 débordement horizontal, 0 erreur JavaScript</td></tr>
+<tr><td>Dégradés · flous · ombres · images · polices</td><td>Aucun dégradé, flou, ombre ni image. Fraunces et IBM Plex Sans uniquement (Arial seulement sur les contrôles de formulaire natifs, comme sur le site actuel)</td></tr>
+<tr><td>Chiffres géants contourés</td><td>Deux seulement : 07 (Academy) et 08 (contact)</td></tr>
+<tr><td>Grille visible, rail de chapitres</td><td>Absents (non retenus de C)</td></tr></table>
+<h2>Points à valider</h2>
+<table><tr><td>1</td><td>Le graphique « illustratif » d'Intelligence est masqué (il ne représentait pas de données réelles). À confirmer.</td></tr>
+<tr><td>2</td><td>« Le plus choisi » (Membership) est un texte CSS non traduit en EN, défaut déjà présent sur le site actuel.</td></tr>
+<tr><td>3</td><td>En thème sombre, les blocs d'encre (Academy 1, contact) utilisent le panneau relevé, pas une inversion claire.</td></tr></table>
+<script>
+const I='bplus-img/';function tiles(id,f,w,h,n,s){const e=document.getElementById(id);for(let i=0;i<n;i++){e.insertAdjacentHTML('beforeend',`<div class="c" style="width:${w*s}px;height:${h*s}px"><img src="${I+f}" style="width:${w*s}px;margin-top:-${i*h*s}px"></div>`)}}
+tiles('d','desktop-light-fr.jpg',1360,2500,5,.27);tiles('m','mobile390-light-fr.jpg',390,2600,6,.62);
+tiles('k','desktop-dark-fr.jpg',1360,4200,3,.27);tiles('k','mobile390-dark-fr.jpg',390,5100,3,.5);
+</script></html>

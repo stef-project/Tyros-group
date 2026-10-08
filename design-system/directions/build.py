@@ -34,5 +34,10 @@ def extraC(t):
 '''
     return t.replace('<main id="main">',rail+'<main id="main">',1)
 
-for k,fn in (('A',None),('B',None),('C',extraC)): build(k,fn)
-print('built A, B, C')
+def extraBplus(t):
+    t=t.replace('<span class="grad">Leadership</span><br>Shapes Markets.','<span class="l1">Leadership</span> <span class="l2">Shapes Markets<span class="dot">.</span></span>',1)
+    assert 'class="l1"' in t
+    return t
+
+for k,fn in (('A',None),('B',None),('C',extraC),('Bplus',extraBplus)): build(k,fn)
+print('built A, B, C, Bplus')
