@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds the three draft home directions from the live index.html. Preview only, never published."""
+"""Builds the draft home directions from the PRE-B+ index.html (commit 2a0ab72). Preview only. Since B+ was integrated into index.html this script no longer applies to it."""
 import re,os
 R=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','..')+'/'
 src=open(R+'index.html',encoding='utf-8').read()
