@@ -4,7 +4,7 @@
    chapter rail. Headlines are staggered so the eye reads Leadership first, then lands on Shapes Markets.
    Strictly: Fraunces + Plex, Tyros palette, no gradient, no glass, no radius. */
 
-:root{--rule:var(--ink);--rule-w:2px;}
+:root{--rule:var(--ink);--rule-w:2px;--muted-on-ink:color-mix(in srgb,var(--bg) 62%,var(--ink));}
 .wrap{max-width:86rem;}
 body{counter-reset:chap;}
 
@@ -20,14 +20,15 @@ body{counter-reset:chap;}
 
 /* Hero: staggered headline, big ring, ledger strip -------------------------- */
 .hero{padding:0;overflow:hidden;position:relative;}
-.hero::after{content:"";position:absolute;right:-18vw;top:-8vw;width:62vw;height:62vw;max-width:62rem;max-height:62rem;border-radius:50%;border:clamp(10px,1.6vw,22px) solid var(--gold);opacity:.9;pointer-events:none;}
+.hero::after{content:"";position:absolute;right:-18vw;top:-8vw;width:62vw;height:62vw;max-width:62rem;max-height:62rem;border-radius:50%;border:clamp(8px,1.2vw,16px) solid var(--gold);pointer-events:none;}
 .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);column-gap:1.5rem;padding-top:clamp(2.5rem,5vh,4rem);}
 .hero .eyebrow{grid-column:1/-1;display:flex;align-items:center;gap:1.2rem;letter-spacing:.3em;}
 .hero .eyebrow::after{content:"";flex:1;height:var(--rule-w);background:var(--rule);}
 .hero h1{grid-column:1/-1;margin:clamp(2rem,6vh,4.5rem) 0 0;font-size:clamp(3.8rem,13.4vw,12.6rem);line-height:.86;letter-spacing:-.05em;max-width:none;}
 .hero h1 .l1,.hero h1 .l2{display:block;}
 .hero h1 .l1{color:var(--ink);}
-.hero h1 .l2{margin-left:clamp(0rem,17vw,16rem);color:var(--gold);}
+.hero h1 .l2{margin-left:clamp(0rem,17vw,16rem);color:var(--ink);}
+.hero h1 .dot{color:var(--gold);}
 .hero-side{grid-column:1/8;display:grid;grid-template-columns:1fr;gap:1.6rem;margin:clamp(2rem,5vh,3.5rem) 0 clamp(2.5rem,6vh,4.5rem);padding-top:1.4rem;border-top:var(--rule-w) solid var(--rule);}
 .hero .sub{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.4;max-width:34ch;}
 .hero-actions{margin:0;}
@@ -39,9 +40,9 @@ body{counter-reset:chap;}
 .hero-stats .stat .v{font-size:clamp(2.2rem,4vw,3.6rem);}
 .hero-stats .stat .l{font-size:.82rem;margin-top:.5rem;max-width:20ch;}
 @media (max-width:900px){
-  .hero::after{right:-40vw;top:-20vw;width:96vw;height:96vw;border-width:10px;}
+  .hero::after{right:-62vw;top:-34vw;width:100vw;height:100vw;border-width:8px;}
   .hero-inner{display:block;}
-  .hero h1{font-size:clamp(3.6rem,19vw,7rem);}
+  .hero h1{font-size:clamp(3rem,15.2vw,7rem);}
   .hero h1 .l2{margin-left:12vw;}
   .hero-side{margin-top:2rem;}
   .hero-stats .stats-grid{grid-template-columns:1fr 1fr;}
@@ -63,7 +64,7 @@ body{counter-reset:chap;}
 .sec>.wrap{position:relative;z-index:1;}
 .sec-2{background:var(--bg-2);}
 .sec-head{max-width:none;margin-bottom:var(--section-head-gap);}
-.sec-head h2{font-size:clamp(2.8rem,7vw,6.4rem);line-height:.95;letter-spacing:-.045em;max-width:15ch;margin-top:1.2rem;}
+.sec-head h2{font-size:clamp(2.8rem,7vw,6.4rem);line-height:1.02;letter-spacing:-.045em;max-width:15ch;margin-top:1.2rem;}
 .sec-head .eyebrow{display:flex;align-items:center;gap:1rem;}
 .sec-head .eyebrow::before{content:"";width:3rem;height:var(--rule-w);background:var(--gold);}
 .sec-head p{font-size:1.25rem;max-width:42ch;margin-top:1.8rem;}
@@ -85,11 +86,11 @@ body{counter-reset:chap;}
 .ao-num{font-family:'Fraunces',serif;font-size:1.1rem;letter-spacing:0;}
 .acad-offer:hover{background:var(--bg-2);box-shadow:inset 0 var(--rule-w) 0 var(--gold);}
 /* chapter one inked: the regulatory pair reads as the dark block */
-.acad-offers:first-of-type .acad-offer{background:var(--ink);color:var(--bg);}
-.acad-offers:first-of-type .acad-offer .ao-name,.acad-offers:first-of-type .acad-offer h3{color:var(--bg);}
-.acad-offers:first-of-type .acad-offer .ao-desc{color:var(--grey-2);}
-.acad-offers:first-of-type .acad-offer .ao-num{color:var(--gold-soft);}
-.acad-offers:first-of-type .acad-offer:hover{background:var(--blue);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer{background:var(--ink);color:var(--bg);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer .ao-name,.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer h3{color:var(--bg);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer .ao-desc{color:var(--muted-on-ink);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer .ao-num{color:var(--gold-soft);}
+.paths-lab:not(.paths-lab-2)+.acad-offers .acad-offer:hover{background:var(--blue);}
 
 /* Boards: full-bleed navy statement ------------------------------------------------ */
 .boards{padding:var(--section-padding-y) 0;border-top:var(--rule-w) solid var(--rule);}
@@ -113,13 +114,16 @@ body{counter-reset:chap;}
 /* Final call to action: an inked block ---------------------------------------------- */
 .contact{background:var(--ink);color:var(--bg);padding:var(--section-padding-y) 0;border-top:0;}
 .contact .eyebrow{color:var(--gold-soft);}
-.contact h2{color:var(--bg);font-size:clamp(3rem,8.4vw,8rem);line-height:.9;letter-spacing:-.05em;max-width:12ch;}
-.contact .sub{color:var(--grey-2);font-size:1.3rem;max-width:34ch;margin:1.8rem 0 2.6rem;}
+.contact h2{color:var(--bg);font-size:clamp(3rem,8.4vw,8rem);line-height:.9;letter-spacing:-.05em;max-width:16ch;}
+.contact .sub{color:var(--muted-on-ink);font-size:1.3rem;max-width:34ch;margin:1.8rem 0 2.6rem;}
 .contact .btn-primary{background:var(--bg);color:var(--ink);}
 .contact .btn-primary:hover{background:var(--gold-soft);}
 .contact-inner{grid-template-columns:7fr 5fr;gap:clamp(2rem,6vw,6rem);}
 .cinfo{background:none;border:0;border-top:var(--rule-w) solid var(--gold);padding:0;}
 .cinfo .crow{border-bottom:1px solid #2a2d36;}
-.cinfo .crow .t{color:var(--grey-2);}
+.cinfo .crow .t{color:var(--muted-on-ink);}
 .cinfo .crow span,.cinfo a{color:var(--bg);}
 @media (max-width:900px){.contact-inner{grid-template-columns:1fr;}}
+
+/* square tags: no pills in this direction */
+.acad-tags span,.ao-tags span,.divi .dlist li{border-radius:0;}

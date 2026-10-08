@@ -11,3 +11,12 @@ header.site{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--b
 .hero .eyebrow,.hero h1,.hero .sub,.hero-actions{opacity:1!important;animation:none!important;}
 .hero{border-bottom:0;}
 .hero-stats .stats-grid{padding:0;}
+
+/* ui-ux-pro-max: Smooth Scroll (severity high). Reduced motion resets it in assets/tyros-ds.css. */
+html{scroll-behavior:smooth;}
+
+/* Strictly gradient-free: the menu underline becomes a plain border (no two-stop trick) */
+nav.main a{background:none;background-image:none;border-bottom:1px solid transparent;padding:.8rem 0 .35rem;transition:color var(--dur-1) var(--ease),border-color var(--dur-1) var(--ease);}
+nav.main a:hover{border-bottom-color:var(--gold);}
+/* Intelligence block: flat, no shadow, square */
+.intel-viz,.ihub-grid,.ihub-bar{box-shadow:none;border-radius:0;}

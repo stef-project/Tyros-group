@@ -1,8 +1,14 @@
-# DRAFT, interrupted, not validated
+# Three home directions (A Evolution, B Editorial Financial House, C Distinctive)
 
-Work-in-progress sketches of three home directions (A Evolution, B Editorial Financial House, C Distinctive).
-Stopped on the founder's instruction before completion. Do not publish. This folder is never part of `gh-pages`.
+Status: **drafts for review. Not validated by the founder. Never published; this folder is never part of `gh-pages`.**
 
-- Built before `brand` and `design-system` were reliably loadable in the session that produced them.
-- Contains: `common.css` (shared constraints), `A|B|C/` (draft CSS and preview HTML), `tokens/` (three-layer tokens generated with the design-system skill), `img/` (preview captures).
-- To resume: start a fresh session, confirm `/brand`, `/design-system` and `/ui-ux-pro-max` all load, report what each recommends for the current site, then rebuild or adapt these drafts.
+Open `planche-directions.html` (or `planche-directions.jpg`) for the side-by-side comparison and the tables
+"element changed | skill really used | recommendation applied | why it fits Tyros".
+Read `SKILL-FINDINGS.md` for what `brand`, `design-system` and `ui-ux-pro-max` each recommend for the current site, and what was rejected.
+
+Contents: `common.css` (constraints shared by all three), `A|B|C/` (`dir.css` and preview `index.html`), `tokens/` (three-layer tokens from the
+`design-system` skill), `brand/` (charter used by the `brand` skill, verified against the live site), `build.py` (regenerates the previews), `img/` (captures).
+
+Verified automatically on A, B and C at 1360 px and 390 px: 0 gradients, 0 blur, 0 shadows, 0 rounded boxes, only Fraunces and Plex Sans,
+0 images, 0 text under 12 px, 0 horizontal overflow, 0 contrast failures on measured text.
+Not yet validated: dark theme, EN version, tablet widths, the sections not redesigned (About, Services, Intelligence, Membership).

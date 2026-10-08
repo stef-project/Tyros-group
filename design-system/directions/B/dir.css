@@ -107,3 +107,6 @@ body{counter-reset:chap;}
 .cinfo{border:0;border-top:1px solid var(--rule);background:none;padding:0;}
 .crow{padding:1.1rem 0;}
 @media (max-width:900px){.contact-inner{grid-template-columns:1fr;}}
+
+/* square tags: no pills in this direction */
+.acad-tags span,.ao-tags span,.divi .dlist li{border-radius:0;}
