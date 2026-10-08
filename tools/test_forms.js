@@ -1,81 +1,52 @@
-// Playwright test of the request forms with a mocked endpoint. Run: NODE_PATH=$(npm root -g) node tools/test_forms.js
+// Playwright test of the single contact form with a mocked endpoint. NODE_PATH=$(npm root -g) node tools/test_forms.js
 const {chromium}=require('playwright');const fs=require('fs');
 const BASE='http://localhost:8810';const EP='https://script.google.com/macros/s/TEST/exec';
 const js=fs.readFileSync('assets/request.js','utf8').replace('https://script.google.com/macros/s/__DEPLOY_ID__/exec',EP);
 let fails=0;const ok=(c,m)=>{if(!c){fails++;console.log('  FAIL',m)}else console.log('  ok  ',m)};
 (async()=>{const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'});
-async function open(url,vw=1360,mode='ok'){
-  const c=await b.newContext({viewport:{width:vw,height:900}});const p=await c.newPage();const posts=[];const errs=[];
-  p.on('pageerror',e=>errs.push(e.message));
-  await p.route('**/assets/request.js*',r=>r.fulfill({contentType:'application/javascript',body:js}));
-  await p.route(EP,async r=>{const body=r.request().postData();posts.push(Object.fromEntries(new URLSearchParams(body)));
-    if(mode==='fail')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:false,error:'server'})});
-    if(mode==='abort')return r.abort();
-    r.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({ok:true,ref:'TY-20261008-ABC'})})});
-  await p.route(/googletagmanager|google-analytics/,r=>r.abort());
-  await p.goto(BASE+url);await p.waitForTimeout(500);return {c,p,posts,errs};
-}
-async function fill(p,sel,vals){for(const [n,v] of Object.entries(vals)){const e=p.locator(`${sel} [name="${n}"]`).first();
-  const t=await e.evaluate(x=>x.tagName+':'+x.type);
-  if(t.startsWith('SELECT'))await e.selectOption(v);else if(t.endsWith('radio'))await p.locator(`${sel} [name="${n}"][value="${v}"]`).check({force:true});else await e.fill(v);}}
+async function open(url,vw=1360,mode='ok'){const c=await b.newContext({viewport:{width:vw,height:900}});const p=await c.newPage();const posts=[],errs=[];
+ p.on('pageerror',e=>errs.push(e.message));
+ await p.route('**/assets/request.js*',r=>r.fulfill({contentType:'application/javascript',body:js}));
+ await p.route(EP,r=>{posts.push(Object.fromEntries(new URLSearchParams(r.request().postData())));
+  if(mode==='fail')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:false,error:'server'})});
+  if(mode==='abort')return r.abort();
+  r.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({ok:true})})});
+ await p.route(/googletagmanager|google-analytics/,r=>r.abort());await p.goto(BASE+url);await p.waitForTimeout(400);return {c,p,posts,errs}}
+const sel='form.req-form';
 const J=[
- {name:'FR general',url:'/demande/?type=general',sel:'.req-sec:not([hidden]) form',vals:{name:'Jeanne Test',company:'Banque Test',email:'j@banque.fr',message:'Bonjour'},expect:{type:'general',lang:'fr'}},
- {name:'FR recruitment (CRO)',url:'/demande/?type=recruitment&offer=cro&from=/recrutement-chief-risk-officer/',sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Assur SA',email:'a@assur.fr',role:'Chief Risk Officer',location:'Paris',timing:'1-3',message:''},expect:{type:'recruitment',offer:'cro',page:'/recrutement-chief-risk-officer/',lang:'fr'}},
- {name:'FR consulting (ai-act)',url:'/demande/?type=consulting&offer=ai-act&from=/ai-act-gouvernance-ia-finance/',sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Assur SA',email:'a@assur.fr',topic:'Gouvernance IA',deadline:'T1 2027'},expect:{type:'consulting',offer:'ai-act',lang:'fr'}},
- {name:'FR academy programme',url:'/demande/?type=academy&offer=manager-recruiter&intent=programme&from=/formation-manager-recrutement/',sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Assur SA',email:'a@assur.fr',participants:'10-25',format:'remote',period:'Mars 2027'},expect:{type:'academy',offer:'manager-recruiter',intent:'programme',programme:'manager-recruiter',lang:'fr'}},
- {name:'EN academy session',url:'/en/request/?type=academy&offer=dora-awareness&intent=session&from=/en/dora-awareness/',sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Bank plc',email:'a@bank.co.uk',participants:'25-50',format:'discuss'},expect:{type:'academy',offer:'dora-awareness',intent:'session',programme:'dora-awareness',lang:'en'}},
- {name:'EN recruitment',url:'/en/request/?type=recruitment&offer=cco&from=/en/chief-compliance-officer-recruitment/',sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Bank plc',email:'a@bank.co.uk',role:'CCO',location:'London',timing:'urgent'},expect:{type:'recruitment',offer:'cco',lang:'en'}},
- {name:'FR home embedded general',url:'/',sel:'.contact-form form',vals:{name:'A B',company:'X',email:'a@x.fr',message:'Hello'},expect:{type:'general',lang:'fr',page:'/'}},
- {name:'EN home embedded general',url:'/en/',sel:'.contact-form form',vals:{name:'A B',company:'X',email:'a@x.fr',message:'Hello'},expect:{type:'general',lang:'en',page:'/en/'}},
+ ['FR general','/demande/','Échange confidentiel',{lang:'fr'}],
+ ['FR programme (button from Manager as Recruiter)','/demande/?type=academy&offer=manager-recruiter&intent=programme&from=/formation-manager-recrutement/','Demande de programme : Manager as Recruiter',{offer:'manager-recruiter',intent:'programme',page:'/formation-manager-recrutement/',lang:'fr'}],
+ ['FR session','/demande/?offer=dora-awareness&intent=session&from=/dora-awareness/','Organisation d\'une session : DORA Awareness',{intent:'session',lang:'fr'}],
+ ['FR recruitment (CRO)','/demande/?offer=cro&from=/recrutement-chief-risk-officer/','Recrutement : Chief Risk Officer',{offer:'cro',lang:'fr'}],
+ ['FR consulting (AI Act)','/demande/?offer=ai-act&from=/ai-act-gouvernance-ia-finance/','Conseil : AI Act & gouvernance de l\'IA',{offer:'ai-act'}],
+ ['FR membership','/demande/?offer=membership-professional&from=/','Membership Professional',{offer:'membership-professional'}],
+ ['EN programme','/en/request/?offer=ai-literacy&intent=programme&from=/en/ai-literacy-responsible-use-training/','Programme request : AI Literacy & Responsible Use',{lang:'en',offer:'ai-literacy',intent:'programme'}],
+ ['EN general mobile','/en/request/','Confidential discussion',{lang:'en'},390],
+ ['EN recruitment mobile','/en/request/?offer=cco&from=/en/chief-compliance-officer-recruitment/','Recruitment : Chief Compliance Officer',{lang:'en',offer:'cco'},390],
+ ['FR home embedded','/','Échange confidentiel',{lang:'fr',page:'/'},1360,'.contact-form form'],
+ ['EN home embedded mobile','/en/','Confidential discussion',{lang:'en',page:'/en/'},390,'.contact-form form'],
 ];
-J.push({name:'FR candidate (CV)',url:'/demande/?type=candidate&from=/',sel:'.req-sec:not([hidden]) form',vals:{name:'Paul C',email:'p@mail.fr',current:'Risk Manager',area:'risk',location:'Paris',message:''},file:true,consent:true,expect:{type:'candidate',lang:'fr'}});
-J.push({name:'EN candidate (CV), mobile',url:'/en/request/?type=candidate&from=/en/',vw:390,sel:'.req-sec:not([hidden]) form',vals:{name:'Paul C',email:'p@mail.co.uk',current:'Risk Manager',area:'risk',location:'London',message:''},file:true,consent:true,expect:{type:'candidate',lang:'en'}});
-J.push({name:'EN general, mobile',url:'/en/request/?type=general',vw:390,sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Bank',email:'a@bank.co.uk',message:'Hello'},expect:{type:'general',lang:'en'}});
-J.push({name:'EN recruitment, mobile',url:'/en/request/?type=recruitment&offer=cro',vw:390,sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Bank',email:'a@bank.co.uk',role:'CRO',location:'London',timing:'urgent'},expect:{type:'recruitment',offer:'cro',lang:'en'}});
-for(const t of J){
-  console.log('\n'+t.name);
-  const {c,p,posts,errs}=await open(t.url,t.vw||1360);
-  const form=p.locator(t.sel);
-  ok(await form.isVisible(),'form visible');
-  // honeypot hidden + t0 set
-  ok(await form.locator('[name="website"]').inputValue()==='', 'honeypot empty');
-  ok(+(await form.locator('[name="t0"]').inputValue())>0,'t0 set');
-  // empty submit -> errors
-  await form.locator('.req-send').click();await p.waitForTimeout(150);
-  const nerr=await form.locator('.fld.bad').count();ok(nerr>=3,'empty submit shows '+nerr+' field errors');
-  ok(posts.length===0,'nothing sent when invalid');
-  // invalid email
-  if(t.file){await form.locator('[name="cv"]').setInputFiles({name:'bad.exe',mimeType:'application/x-msdownload',buffer:Buffer.from('MZ')});await form.locator('.req-send').click();await p.waitForTimeout(100);ok(await form.locator('.fld.bad [name="cv"]').count()===1,'wrong file type flagged');}
-  await fill(p,t.sel,{...t.vals,email:'not-an-email'});await form.locator('.req-send').click();await p.waitForTimeout(100);
-  ok(await form.locator('.fld.bad [name="email"]').count()===1,'invalid email flagged');ok(posts.length===0,'invalid email not sent');
-  await fill(p,t.sel,t.vals);
-  if(t.file){await form.locator('[name="cv"]').setInputFiles({name:'cv.pdf',mimeType:'application/pdf',buffer:Buffer.from('%PDF-1.4 x')});await form.locator('.req-send').click();await p.waitForTimeout(150);ok(await form.locator('.fld-consent.bad').count()===1,'consent required before sending');ok(posts.length===0,'nothing sent without consent');await form.locator('[name="consent"]').check();}
-  await form.locator('.req-send').click();await p.waitForTimeout(700);
-  if(t.file){ok(!!posts[0]&&posts[0].cv_name==='cv.pdf'&&posts[0].cv_data&&Buffer.from(posts[0].cv_data,'base64').toString().startsWith('%PDF'),'CV sent as base64 with its name');ok(posts[0]&&posts[0].consent==='yes','consent sent');}
-  ok(await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=0,'no horizontal overflow');
-  ok(posts.length===1,'exactly one POST');
-  const d=posts[0]||{};
-  for(const [k,v] of Object.entries(t.expect))ok(d[k]===v,`payload ${k}=${v} (got ${d[k]})`);
-  ok(['A B','Jeanne Test','Paul C'].includes(d.name),'name sent');ok(!('website' in d)||d.website==='','honeypot not filled');
-  ok(await p.locator('.req-ok').isVisible(),'success panel visible');
-  ok((await p.locator('.req-ok .ok-ref strong').textContent())==='TY-20261008-ABC','reference shown');
-  const okp=await p.locator('.req-ok .ok-p').textContent();
-  ok(!/pi[èe]ce jointe|attached|attachment/i.test(okp),'confirmation never promises an attachment');
-  ok(errs.length===0,'no JS errors '+errs.join('|'));
-  await c.close();
-}
-// server error + network error
-for(const mode of ['fail','abort']){
-  console.log('\nerror path: '+mode);
-  const {c,p,posts}=await open('/demande/?type=general',1360,mode);
-  const f=p.locator('.req-sec:not([hidden]) form');await fill(p,'.req-sec:not([hidden]) form',{name:'A',company:'B',email:'a@b.fr',message:'m'});
-  await f.locator('.req-send').click();await p.waitForTimeout(600);
-  ok((await f.locator('.req-status').textContent()).includes('contact@tyros-group.com'),'error message shown with fallback address');
-  ok(!(await f.locator('.req-send').isDisabled()),'button re-enabled');ok(await f.isVisible(),'form kept so nothing is lost');
-  await c.close();
-}
-// unconfigured endpoint (production placeholder)
-{console.log('\nplaceholder endpoint');const c=await b.newContext();const p=await c.newPage();await p.route(/googletagmanager/,r=>r.abort());await p.goto(BASE+'/demande/?type=general');
- await fill(p,'.req-sec:not([hidden]) form',{name:'A',company:'B',email:'a@b.fr',message:'m'});await p.locator('.req-sec:not([hidden]) .req-send').click();await p.waitForTimeout(200);
- ok((await p.locator('.req-sec:not([hidden]) .req-status').textContent()).length>10,'unconfigured endpoint shows an explicit error, never a fake success');await c.close();}
+for(const [name,url,subj,exp,vw,fsel] of J){console.log('\n'+name);
+ const {c,p,posts,errs}=await open(url,vw||1360);const f=p.locator(fsel||sel).first();
+ ok(await f.isVisible(),'form visible');
+ ok(await f.locator('[name=subject]').inputValue()===subj,'subject prefilled: '+subj);
+ await f.locator('[name=subject]').fill('');await f.locator('.req-send').click();await p.waitForTimeout(150);
+ ok(await f.locator('.fld.bad').count()>=4,'empty fields flagged ('+await f.locator('.fld.bad').count()+')');ok(posts.length===0,'nothing sent when invalid');
+ await f.locator('[name=subject]').fill(subj);await f.locator('[name=name]').fill('Jeanne');await f.locator('[name=email]').fill('nope');await f.locator('[name=message]').fill('Bonjour');
+ await f.locator('.req-send').click();await p.waitForTimeout(120);ok(await f.locator('.fld.bad [name=email]').count()===1,'invalid email flagged');ok(posts.length===0,'invalid email not sent');
+ await f.locator('[name=email]').fill('j@banque.fr');
+ await f.locator('.req-send').click();await p.waitForTimeout(700);
+ ok(posts.length===1,'one POST');const d=posts[0]||{};
+ ok(d.subject===subj,'subject sent');ok(d.company==='','company optional');ok(d.email==='j@banque.fr'&&d.message==='Bonjour','email and message sent');
+ for(const [k,v] of Object.entries(exp))ok(d[k]===v,`payload ${k}=${v} (got ${d[k]})`);
+ ok(+d.t0>0,'timer sent');
+ ok(await p.locator('.req-ok').first().isVisible(),'confirmation shown after success');
+ ok(await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=0,'no horizontal overflow');ok(errs.length===0,'no JS errors');await c.close()}
+for(const mode of ['fail','abort']){console.log('\nno confirmation when sending fails: '+mode);
+ const {c,p}=await open('/demande/',1360,mode);const f=p.locator(sel);await f.locator('[name=name]').fill('A');await f.locator('[name=email]').fill('a@b.fr');await f.locator('[name=message]').fill('m');
+ await f.locator('.req-send').click();await p.waitForTimeout(600);
+ ok(!(await p.locator('.req-ok').isVisible()),'no confirmation');ok((await f.locator('.req-status').textContent()).includes('contact@tyros-group.com'),'error with fallback address');ok(!(await f.locator('.req-send').isDisabled()),'can retry');ok((await f.locator('[name=message]').inputValue())==='m','message kept');await c.close()}
+{console.log('\nplaceholder endpoint');const c=await b.newContext();const p=await c.newPage();await p.route(/googletagmanager/,r=>r.abort());await p.goto(BASE+'/demande/');
+ await p.locator(sel+' [name=name]').fill('A');await p.locator(sel+' [name=email]').fill('a@b.fr');await p.locator(sel+' [name=message]').fill('m');await p.locator(sel+' .req-send').click();await p.waitForTimeout(200);
+ ok(!(await p.locator('.req-ok').isVisible())&&(await p.locator('.req-status').textContent()).length>10,'unconfigured: explicit error, never a fake confirmation');await c.close()}
 console.log('\n'+(fails?fails+' FAILURES':'ALL PASSED'));await b.close();process.exit(fails?1:0)})()
