@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><title>Test d'envoi Tyros</title>
+<style>body{font:16px/1.5 system-ui;max-width:34rem;margin:2rem auto;padding:0 1rem}input,button{font:inherit;padding:.5rem;margin:.3rem 0}input{width:100%;box-sizing:border-box}pre{background:#eee;padding:.6rem;white-space:pre-wrap}</style>
+<h1>Test d'envoi réel</h1>
+<p>Saisissez une adresse e-mail à vous (autre que contact@tyros-group.com), pour vérifier « Répondre ». Le test envoie 2 demandes réelles à contact@tyros-group.com : une en français, une en anglais.</p>
+<input id="em" type="email" placeholder="votre.autre@adresse.com">
+<button id="go">Envoyer les 2 demandes de test</button>
+<pre id="out">En attente.</pre>
+<script>
+var URL_='https://script.google.com/macros/s/AKfycbxX83PNbXRDifumBvL51uNwCRGl0QBaAgT_an447QLt1gYkTw2cgIdUUOAVOE9u0IL0Ww/exec';
+function send(lang,subject,offer,intent,page,email){
+  var d=new URLSearchParams({name:'Test Stéphanie',email:email,company:'[TEST]',subject:subject,message:'Message de test ('+lang+').',lang:lang,page:page,offer:offer,intent:intent,t0:String(Date.now()-10000),source_url:'test-endpoint.html'});
+  return fetch(URL_,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:d.toString()}).then(function(r){return r.json()});
+}
+document.getElementById('go').onclick=function(){
+  var em=document.getElementById('em').value.trim(),o=document.getElementById('out');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){o.textContent='Adresse e-mail invalide.';return}
+  o.textContent='Envoi...';
+  send('fr','Demande de programme : Manager as Recruiter','manager-recruiter','programme','/formation-manager-recrutement/',em).then(function(a){
+    o.textContent='FR : '+JSON.stringify(a);
+    return send('en','Programme request : AI Literacy & Responsible Use','ai-literacy','programme','/en/ai-literacy-responsible-use-training/',em);
+  }).then(function(b){o.textContent+='\nEN : '+JSON.stringify(b)+'\nAttendu : {"ok":true} deux fois, puis 2 mails dans contact@tyros-group.com.'}).catch(function(e){o.textContent+='\nErreur : '+e});
+};
+</script>

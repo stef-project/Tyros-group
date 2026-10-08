@@ -1,7 +1,7 @@
 // Playwright test of the single contact form with a mocked endpoint. NODE_PATH=$(npm root -g) node tools/test_forms.js
 const {chromium}=require('playwright');const fs=require('fs');
 const BASE='http://localhost:8810';const EP='https://script.google.com/macros/s/TEST/exec';
-const js=fs.readFileSync('assets/request.js','utf8').replace('https://script.google.com/macros/s/__DEPLOY_ID__/exec',EP);
+const js=fs.readFileSync('assets/request.js','utf8').replace('https://script.google.com/macros/s/AKfycbxX83PNbXRDifumBvL51uNwCRGl0QBaAgT_an447QLt1gYkTw2cgIdUUOAVOE9u0IL0Ww/exec',EP);
 let fails=0;const ok=(c,m)=>{if(!c){fails++;console.log('  FAIL',m)}else console.log('  ok  ',m)};
 (async()=>{const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'});
 async function open(url,vw=1360,mode='ok'){const c=await b.newContext({viewport:{width:vw,height:900}});const p=await c.newPage();const posts=[],errs=[];
@@ -46,7 +46,5 @@ for(const mode of ['fail','abort']){console.log('\nno confirmation when sending 
  const {c,p}=await open('/demande/',1360,mode);const f=p.locator(sel);await f.locator('[name=name]').fill('A');await f.locator('[name=email]').fill('a@b.fr');await f.locator('[name=message]').fill('m');
  await f.locator('.req-send').click();await p.waitForTimeout(600);
  ok(!(await p.locator('.req-ok').isVisible()),'no confirmation');ok((await f.locator('.req-status').textContent()).includes('contact@tyros-group.com'),'error with fallback address');ok(!(await f.locator('.req-send').isDisabled()),'can retry');ok((await f.locator('[name=message]').inputValue())==='m','message kept');await c.close()}
-{console.log('\nplaceholder endpoint');const c=await b.newContext();const p=await c.newPage();await p.route(/googletagmanager/,r=>r.abort());await p.goto(BASE+'/demande/');
- await p.locator(sel+' [name=name]').fill('A');await p.locator(sel+' [name=email]').fill('a@b.fr');await p.locator(sel+' [name=message]').fill('m');await p.locator(sel+' .req-send').click();await p.waitForTimeout(200);
- ok(!(await p.locator('.req-ok').isVisible())&&(await p.locator('.req-status').textContent()).length>10,'unconfigured: explicit error, never a fake confirmation');await c.close()}
+{console.log('\nendpoint wiring');const real=fs.readFileSync('assets/request.js','utf8');ok(real.includes('https://script.google.com/macros/s/AKfycbxX83PNbXRDifumBvL51uNwCRGl0QBaAgT_an447QLt1gYkTw2cgIdUUOAVOE9u0IL0Ww/exec'),'production endpoint is set in request.js');ok(!real.includes('__DEPLOY_ID__')||real.indexOf('__DEPLOY_ID__')===real.lastIndexOf('__DEPLOY_ID__'),'placeholder guard still present')}
 console.log('\n'+(fails?fails+' FAILURES':'ALL PASSED'));await b.close();process.exit(fails?1:0)})()

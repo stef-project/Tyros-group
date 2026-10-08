@@ -4,7 +4,7 @@
    Replace the placeholder after deployment (see tools/apps-script/README.md). */
 (function(){
   'use strict';
-  var ENDPOINT='https://script.google.com/macros/s/__DEPLOY_ID__/exec';
+  var ENDPOINT='https://script.google.com/macros/s/AKfycbxX83PNbXRDifumBvL51uNwCRGl0QBaAgT_an447QLt1gYkTw2cgIdUUOAVOE9u0IL0Ww/exec';
   var EP=function(){return window.__ENDPOINT||ENDPOINT;};
   var d=document,cfgEl=d.getElementById('req-config');
   if(!cfgEl)return;
