@@ -66,20 +66,18 @@ function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).se
 /** Run once from the editor to grant the Mail permission. */
 function authorizeOnce() { console.log('OK, mail quota left: ' + MailApp.getRemainingDailyQuota()); }
 
-/** Real test from the editor, after deployment: sends 3 test requests through the live URL. */
+/** Real test from the editor: runs the contact handler directly and sends 2 real mails (FR then EN). */
 function selfTest() {
-  var url = ScriptApp.getService().getUrl();
-  if (!url) throw new Error('Deploy the web app first.');
-  var base = { name: 'Test Tyros', email: 'test@example.com', company: '[TEST]', lang: 'fr', page: '/selftest', t0: String(Date.now() - 10000) };
+  var base = { name: 'Test Tyros', email: 'test@example.com', company: '[TEST]', page: '/selftest', t0: String(Date.now() - 10000) };
   var cases = [
-    { subject: 'Test : échange confidentiel', message: 'Test 1' },
-    { subject: 'Test : Demande de programme : Manager as Recruiter', message: 'Test 2', offer: 'manager-recruiter', intent: 'programme', lang: 'en' },
-    { subject: 'x', message: 'x', website: 'spam' }
+    { lang: 'fr', subject: 'Test : échange confidentiel', message: 'Test 1' },
+    { lang: 'en', subject: 'Test : Programme request : Manager as Recruiter', message: 'Test 2', offer: 'manager-recruiter', intent: 'programme' },
+    { lang: 'fr', subject: 'x', message: 'x', website: 'spam' }
   ];
   var out = cases.map(function (c, i) {
     var pl = {}; Object.keys(base).forEach(function (k) { pl[k] = base[k]; }); Object.keys(c).forEach(function (k) { pl[k] = c[k]; });
-    var r = UrlFetchApp.fetch(url, { method: 'post', payload: pl, muteHttpExceptions: true });
-    return (i + 1) + '. ' + r.getContentText() + (i === 2 ? '  (honeypot: ok:true but NO mail)' : '');
+    var r = doPost({ parameter: pl }).getContent();
+    return (i + 1) + '. ' + r + (i === 2 ? '  (honeypot: ok:true but NO mail)' : '');
   });
   console.log(out.join('\n') + '\nExpected: 2 mails in ' + notifyTo_() + ' ([Site] Test ...).');
 }

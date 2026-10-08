@@ -7,7 +7,7 @@ One contact form for the whole site. The request is e-mailed to Tyros (default c
 2. Optional: Project settings > Script properties > `NOTIFY_TO` = the address that receives requests. Without it, requests go to contact@tyros-group.com.
 3. Choose `authorizeOnce` > Run > accept the Mail permission.
 4. Deploy > New deployment > Web app > Execute as: Me > Who has access: Anyone > Deploy. Copy the URL ending in `/exec`.
-5. Choose `selfTest` > Run: 2 test mails must arrive (subjects "[Site] Test ..."), the third request (honeypot) must send nothing.
+5. Choose `selfTest` > Run: 2 test mails must arrive (subjects "[Site] Test ..."), the third request (honeypot) sends nothing. It calls the handler directly, so it does not depend on the public URL.
 6. Put the `/exec` URL in `assets/request.js` (replace `__DEPLOY_ID__`), publish, then send one request from the real site in FR and one in EN.
 
 ## Checks done on the server
