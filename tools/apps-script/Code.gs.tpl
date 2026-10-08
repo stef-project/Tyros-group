@@ -9,6 +9,8 @@
  * Nothing sensitive is in the public JavaScript. Configuration lives in Script Properties:
  *   SHEET_ID              id of the Google Sheet that receives the leads            (required)
  *   NOTIFY_TO             internal recipient, default contact@tyros-group.com
+ *   CV_ENABLED            leave unset: candidate CVs are refused. Set to "true" ONLY after the privacy decisions are made.
+ *   CV_FOLDER_ID          id of a PRIVATE Drive folder that receives CVs (only used when CV_ENABLED is "true")
  */
 var PROGRAMMES = __PROGRAMMES__;
 var OFFERS = __OFFERS__;
@@ -257,6 +259,7 @@ function selfTest() {
   var me = Session.getActiveUser().getEmail() || notifyTo_();
   var t0 = String(Date.now() - 10000);
   var base = { name: 'Test Tyros', company: '[TEST]', email: me, lang: 'fr', page: '/selftest', source_url: 'selftest', t0: t0 };
+  var plus = function (i) { return me.indexOf('@') > 0 ? me.replace('@', '+tyros' + i + '@') : me; };   // avoids the 3-per-hour limit
   var cases = [
     { type: 'general', message: 'Test contact général' },
     { type: 'recruitment', offer: 'cro', role: 'Chief Risk Officer', location: 'Paris', timing: '1-3', message: 'Test recrutement' },
@@ -266,7 +269,7 @@ function selfTest() {
   ];
   var out = [];
   cases.forEach(function (c, i) {
-    var payload = {}; Object.keys(base).forEach(function (k) { payload[k] = base[k]; }); Object.keys(c).forEach(function (k) { payload[k] = c[k]; });
+    var payload = {}; Object.keys(base).forEach(function (k) { payload[k] = base[k]; }); Object.keys(c).forEach(function (k) { payload[k] = c[k]; }); payload.email = plus(i);
     var r = UrlFetchApp.fetch(url, { method: 'post', payload: payload, muteHttpExceptions: true, followRedirects: true });
     out.push((i + 1) + '. ' + c.type + (c.intent ? '/' + c.intent : '') + ' -> ' + r.getResponseCode() + ' ' + r.getContentText());
     Utilities.sleep(1500);

@@ -25,3 +25,6 @@ About 100 recipients/day on a free Google account, 1,500 on Workspace. Each requ
 
 ## CV upload
 Not provided: no journey in the site asks for a CV. If you want it, decide first where files are stored, who can open them, for how long, and what the privacy policy says (see `design-system/DECISIONS-CONFIDENTIALITE.md`).
+
+## Candidates (CV): disabled until you decide
+The candidate journey exists on the site, but the server refuses it unless two properties are set: `CV_ENABLED` = `true` and `CV_FOLDER_ID` = id of a private Drive folder. Do not set them before the decisions in `design-system/DECISIONS-CONFIDENTIALITE.md` are made. Stored files: private to the folder owner, named `<reference>_<file>`, PDF/DOC/DOCX only, 4 MB maximum, checked by file signature.
