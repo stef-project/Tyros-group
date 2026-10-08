@@ -1,0 +1,125 @@
+/* DIRECTION C, DISTINCTIVE: "THE DOSSIER"
+   Tyros as a house of files and decisions. The ring from the logo becomes the compositional device,
+   enlarged and cropped. A visible grid (2px ink rules), square cells, giant chapter numerals, a sticky
+   chapter rail. Headlines are staggered so the eye reads Leadership first, then lands on Shapes Markets.
+   Strictly: Fraunces + Plex, Tyros palette, no gradient, no glass, no radius. */
+
+:root{--rule:var(--ink);--rule-w:2px;}
+.wrap{max-width:86rem;}
+body{counter-reset:chap;}
+
+/* Chapter rail (desktop) ---------------------------------------------------- */
+.rail{position:fixed;left:1.4rem;top:50%;transform:translateY(-50%);z-index:60;display:none;flex-direction:column;gap:.15rem;}
+.rail a{display:flex;align-items:center;gap:.7rem;padding:.35rem .5rem;color:var(--grey);font-size:var(--fs-label);letter-spacing:.14em;text-transform:uppercase;}
+.rail a i{font-style:normal;font-family:'Fraunces',serif;font-weight:600;font-size:.95rem;letter-spacing:0;min-width:1.6rem;}
+.rail a span{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width var(--primitive-duration-slow) var(--ease),opacity var(--primitive-duration-normal) var(--ease);}
+.rail a:hover span,.rail a:focus-visible span,.rail a.on span{max-width:9rem;opacity:1;}
+.rail a.on{color:var(--gold-text);}
+.rail a.on i{color:var(--gold-text);}
+@media (min-width:1280px){.rail{display:flex;}}
+
+/* Hero: staggered headline, big ring, ledger strip -------------------------- */
+.hero{padding:0;overflow:hidden;position:relative;}
+.hero::after{content:"";position:absolute;right:-18vw;top:-8vw;width:62vw;height:62vw;max-width:62rem;max-height:62rem;border-radius:50%;border:clamp(10px,1.6vw,22px) solid var(--gold);opacity:.9;pointer-events:none;}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);column-gap:1.5rem;padding-top:clamp(2.5rem,5vh,4rem);}
+.hero .eyebrow{grid-column:1/-1;display:flex;align-items:center;gap:1.2rem;letter-spacing:.3em;}
+.hero .eyebrow::after{content:"";flex:1;height:var(--rule-w);background:var(--rule);}
+.hero h1{grid-column:1/-1;margin:clamp(2rem,6vh,4.5rem) 0 0;font-size:clamp(3.8rem,13.4vw,12.6rem);line-height:.86;letter-spacing:-.05em;max-width:none;}
+.hero h1 .l1,.hero h1 .l2{display:block;}
+.hero h1 .l1{color:var(--ink);}
+.hero h1 .l2{margin-left:clamp(0rem,17vw,16rem);color:var(--gold);}
+.hero-side{grid-column:1/8;display:grid;grid-template-columns:1fr;gap:1.6rem;margin:clamp(2rem,5vh,3.5rem) 0 clamp(2.5rem,6vh,4.5rem);padding-top:1.4rem;border-top:var(--rule-w) solid var(--rule);}
+.hero .sub{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.4;max-width:34ch;}
+.hero-actions{margin:0;}
+.hero-stats{position:relative;z-index:1;border-top:var(--rule-w) solid var(--rule);background:var(--bg);}
+.hero-stats .stats-grid{max-width:86rem;margin:0 auto;padding:0 7vw;grid-template-columns:repeat(4,1fr);gap:0;}
+.hero-stats .stat{border-top:0;padding:1.6rem 1.6rem 1.8rem 0;border-right:1px solid var(--rule);}
+.hero-stats .stat+.stat{padding-left:1.6rem;}
+.hero-stats .stat:last-child{border-right:0;}
+.hero-stats .stat .v{font-size:clamp(2.2rem,4vw,3.6rem);}
+.hero-stats .stat .l{font-size:.82rem;margin-top:.5rem;max-width:20ch;}
+@media (max-width:900px){
+  .hero::after{right:-40vw;top:-20vw;width:96vw;height:96vw;border-width:10px;}
+  .hero-inner{display:block;}
+  .hero h1{font-size:clamp(3.6rem,19vw,7rem);}
+  .hero h1 .l2{margin-left:12vw;}
+  .hero-side{margin-top:2rem;}
+  .hero-stats .stats-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats .stat{border-right:0;border-bottom:1px solid var(--rule);padding:1.1rem 1rem 1.1rem 0;}
+  .hero-stats .stat+.stat{padding-left:0;}
+  .hero-stats .stat:nth-child(even){padding-left:1rem;border-left:1px solid var(--rule);}
+}
+
+/* Trust row: ledger ----------------------------------------------------------- */
+.trusted{padding:2.4rem 0;border-top:0;border-bottom:var(--rule-w) solid var(--rule);}
+.trusted .lab{text-align:left;color:var(--ink);}
+.tr-item{background:none;border:0;border-left:1px solid var(--rule);text-align:left;padding:1rem 1.2rem;}
+.tr-item:first-child{border-left:0;padding-left:0;}
+.tr-item .tr-ic{display:none;}
+
+/* Sections: ink rule, giant numeral, enormous heads ---------------------------- */
+.sec{position:relative;padding:var(--section-padding-y) 0;border-top:var(--rule-w) solid var(--rule);counter-increment:chap;overflow:hidden;}
+.sec::after{content:counter(chap,decimal-leading-zero);position:absolute;right:5vw;top:clamp(.5rem,2vw,2rem);font-family:'Fraunces',serif;font-weight:600;font-size:clamp(7rem,19vw,17rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--gold);opacity:.55;pointer-events:none;}
+.sec>.wrap{position:relative;z-index:1;}
+.sec-2{background:var(--bg-2);}
+.sec-head{max-width:none;margin-bottom:var(--section-head-gap);}
+.sec-head h2{font-size:clamp(2.8rem,7vw,6.4rem);line-height:.95;letter-spacing:-.045em;max-width:15ch;margin-top:1.2rem;}
+.sec-head .eyebrow{display:flex;align-items:center;gap:1rem;}
+.sec-head .eyebrow::before{content:"";width:3rem;height:var(--rule-w);background:var(--gold);}
+.sec-head p{font-size:1.25rem;max-width:42ch;margin-top:1.8rem;}
+
+/* Industries: a ledger of square cells, visible grid ----------------------------- */
+.ind-grid{background:var(--rule);border:var(--rule-w) solid var(--rule);gap:var(--rule-w);}
+.ind{min-height:13rem;padding:1.8rem 1.6rem;background:var(--bg);transition:background var(--primitive-duration-normal) var(--ease),color var(--primitive-duration-normal) var(--ease);}
+.ind .in{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;letter-spacing:0;color:var(--gold-text);}
+.ind h3{font-size:clamp(1.5rem,2.3vw,2.2rem);line-height:1.05;letter-spacing:-.02em;margin-top:auto;}
+.ind:hover{background:var(--ink);color:var(--bg);}
+.ind:hover .in{color:var(--gold-soft);}
+
+/* Academy: two chapters, one inked ------------------------------------------------ */
+.paths-lab{color:var(--ink);font-size:.8rem;letter-spacing:.28em;}
+.paths-lab::after{height:var(--rule-w);background:var(--rule);}
+.acad-offers{background:var(--rule);border:var(--rule-w) solid var(--rule);gap:var(--rule-w);}
+.acad-offer{padding:2.2rem 2rem;background:var(--bg);}
+.acad-offer h3{font-size:clamp(1.4rem,2vw,1.8rem);line-height:1.12;letter-spacing:-.02em;}
+.ao-num{font-family:'Fraunces',serif;font-size:1.1rem;letter-spacing:0;}
+.acad-offer:hover{background:var(--bg-2);box-shadow:inset 0 var(--rule-w) 0 var(--gold);}
+/* chapter one inked: the regulatory pair reads as the dark block */
+.acad-offers:first-of-type .acad-offer{background:var(--ink);color:var(--bg);}
+.acad-offers:first-of-type .acad-offer .ao-name,.acad-offers:first-of-type .acad-offer h3{color:var(--bg);}
+.acad-offers:first-of-type .acad-offer .ao-desc{color:var(--grey-2);}
+.acad-offers:first-of-type .acad-offer .ao-num{color:var(--gold-soft);}
+.acad-offers:first-of-type .acad-offer:hover{background:var(--blue);}
+
+/* Boards: full-bleed navy statement ------------------------------------------------ */
+.boards{padding:var(--section-padding-y) 0;border-top:var(--rule-w) solid var(--rule);}
+.boards .boards-inner{max-width:86rem;}
+.boards h2{max-width:17ch;font-size:clamp(2.9rem,7.4vw,6.8rem);line-height:.94;letter-spacing:-.045em;}
+.boards p{font-size:1.3rem;max-width:40ch;}
+.boards .btn-primary{margin-top:2.8rem;}
+
+/* Insights: three columns split by rules ------------------------------------------- */
+.ins-grid{gap:0;border-top:var(--rule-w) solid var(--rule);border-bottom:var(--rule-w) solid var(--rule);}
+.ins{border:0;border-left:1px solid var(--rule);background:none;padding:0 1.6rem 0 1.6rem;}
+.ins:first-child{border-left:0;padding-left:0;}
+.ins .ins-top{background:none;aspect-ratio:auto;padding:1.4rem 0 0;}
+.ins .ins-top .ins-cat{position:static;display:block;color:var(--gold-text);}
+.ins .ins-b{padding:.9rem 0 2rem;}
+.ins h3{font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.08;letter-spacing:-.025em;}
+.ins:hover{background:none;}
+.ins:hover h3{color:var(--gold-text);}
+@media (max-width:900px){.ins{border-left:0;border-top:1px solid var(--rule);padding:0;}.ins:first-child{border-top:0;}}
+
+/* Final call to action: an inked block ---------------------------------------------- */
+.contact{background:var(--ink);color:var(--bg);padding:var(--section-padding-y) 0;border-top:0;}
+.contact .eyebrow{color:var(--gold-soft);}
+.contact h2{color:var(--bg);font-size:clamp(3rem,8.4vw,8rem);line-height:.9;letter-spacing:-.05em;max-width:12ch;}
+.contact .sub{color:var(--grey-2);font-size:1.3rem;max-width:34ch;margin:1.8rem 0 2.6rem;}
+.contact .btn-primary{background:var(--bg);color:var(--ink);}
+.contact .btn-primary:hover{background:var(--gold-soft);}
+.contact-inner{grid-template-columns:7fr 5fr;gap:clamp(2rem,6vw,6rem);}
+.cinfo{background:none;border:0;border-top:var(--rule-w) solid var(--gold);padding:0;}
+.cinfo .crow{border-bottom:1px solid #2a2d36;}
+.cinfo .crow .t{color:var(--grey-2);}
+.cinfo .crow span,.cinfo a{color:var(--bg);}
+@media (max-width:900px){.contact-inner{grid-template-columns:1fr;}}

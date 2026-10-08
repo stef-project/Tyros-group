@@ -1,0 +1,90 @@
+/* Design Tokens - Auto-generated */
+/* Do not edit directly - modify tokens.json instead */
+
+/* === PRIMITIVES === */
+:root {
+  --primitive-color-ink: #0B0C0E;
+  --primitive-color-ink-soft: #3A3C42;
+  --primitive-color-paper: #FCFBF9;
+  --primitive-color-stone: #F4F2EC;
+  --primitive-color-white: #FFFFFF;
+  --primitive-color-hairline: #E7E4DC;
+  --primitive-color-grey: #62646C;
+  --primitive-color-caption: #6C6E76;
+  --primitive-color-gold: #A6884F;
+  --primitive-color-gold-text: #7D622D;
+  --primitive-color-gold-soft: #C4A469;
+  --primitive-color-navy: #152A54;
+  --primitive-color-navy-hover: #1E3A70;
+  --primitive-color-navy-ink: #F6F8FC;
+  --primitive-color-night: #08090C;
+  --primitive-spacing-1: 0.25rem;
+  --primitive-spacing-2: 0.5rem;
+  --primitive-spacing-3: 0.75rem;
+  --primitive-spacing-4: 1rem;
+  --primitive-spacing-6: 1.5rem;
+  --primitive-spacing-8: 2rem;
+  --primitive-spacing-12: 3rem;
+  --primitive-spacing-16: 4rem;
+  --primitive-spacing-24: 6rem;
+  --primitive-spacing-32: 8rem;
+  --primitive-spacing-section-fluid: clamp(4.5rem, 9vw, 8rem);
+  --primitive-spacing-head-fluid: clamp(2.5rem, 5vw, 4rem);
+  --primitive-fontSize-label: 0.75rem;
+  --primitive-fontSize-sm: 0.875rem;
+  --primitive-fontSize-base: 1rem;
+  --primitive-fontSize-lg: 1.25rem;
+  --primitive-fontSize-xl: 1.5rem;
+  --primitive-fontSize-2xl: 2.5rem;
+  --primitive-fontSize-3xl: 4.5rem;
+  --primitive-fontSize-4xl: 9rem;
+  --primitive-radius-none: 0;
+  --primitive-shadow-none: none;
+  --primitive-duration-fast: 150ms;
+  --primitive-duration-normal: 250ms;
+  --primitive-duration-slow: 450ms;
+}
+
+/* === SEMANTIC === */
+:root {
+  --color-background: #FCFBF9;
+  --color-surface: #F4F2EC;
+  --color-foreground: #0B0C0E;
+  --color-muted-foreground: #62646C;
+  --color-rule: #0B0C0E;
+  --color-border: #E7E4DC;
+  --color-action: #152A54;
+  --color-action-hover: #1E3A70;
+  --color-action-foreground: #F6F8FC;
+  --color-accent: #A6884F;
+  --color-accent-text: #7D622D;
+  --color-ring: #7D622D;
+  --spacing-section: clamp(4.5rem, 9vw, 8rem);
+  --spacing-head: clamp(2.5rem, 5vw, 4rem);
+  --spacing-gutter: 2rem;
+}
+
+/* === COMPONENTS === */
+:root {
+  --button-bg: #152A54;
+  --button-fg: #F6F8FC;
+  --button-hover-bg: #1E3A70;
+  --button-radius: 0;
+  --button-min-height: 2.75rem;
+  --card-bg: #FFFFFF;
+  --card-border: #E7E4DC;
+  --card-radius: 0;
+  --card-shadow: none;
+  --row-rule: #E7E4DC;
+  --row-rule-strong: #0B0C0E;
+  --row-hover-fg: #7D622D;
+  --section-padding-y: clamp(4.5rem, 9vw, 8rem);
+  --section-head-gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* === DARK MODE === */
+.dark {
+  --color-background: #08090C;
+  --color-foreground: #F5F4F0;
+  --color-accent-text: #C4A469;
+}
