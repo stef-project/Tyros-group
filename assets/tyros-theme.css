@@ -1,0 +1,113 @@
+/* ==========================================================================
+   TYROS GROUP, single theme: deep night blue + ivory + discreet gold.
+   Sources (from the logo): background #050E1D (5,14,29), gold #CEA152 (206,161,82).
+   One theme for the whole site. No light/dark switch: legacy [data-theme] rules are inert.
+   Loaded after the page CSS, ds, and B+ layers: it redefines tokens, then refines components.
+   ========================================================================== */
+
+/* 1. TOKENS ---------------------------------------------------------------- */
+:root{
+  /* blues, from the logo background outward */
+  --night:#050E1D;          /* logo background: deepest surface */
+  --deep:#081A33;           /* alternate section */
+  --mid:#0C2447;            /* raised panel, statement band */
+  --lift:#133260;           /* hover surface, quiet accent blue */
+  --steel:#2A5189;          /* links on dark, focus-adjacent accents */
+  /* text */
+  --ivory:#F5F0E5;          /* primary text, warm ivory */
+  --ivory-soft:#CBD3E0;     /* secondary text (cool, 11:1 on night) */
+  --ivory-mute:#97A6BF;     /* captions (6.9:1 on night) */
+  /* gold, from the logo */
+  --gold:#CEA152;
+  --gold-soft:#E2C487;
+  --gold-deep:#A87F33;
+  --gold-text:#CEA152;      /* gold as TEXT on the blues: 8.3:1 on night, 6.3:1 on --mid */
+
+  /* legacy names used by every page stylesheet, remapped */
+  --bg:var(--night);
+  --bg-2:var(--deep);
+  --panel:var(--mid);
+  --ink:var(--ivory);
+  --ink-soft:var(--ivory-soft);
+  --grey:var(--ivory-mute);
+  --grey-2:var(--ivory-mute);
+  --line:rgba(245,240,229,.16);
+  --line-2:rgba(245,240,229,.09);
+  --blue:var(--mid);
+  --blue-2:var(--lift);
+  --blue-ink:var(--ivory);
+  --shadow:none;
+
+  /* B+ blocks: a raised blue plate instead of an inverted paper block */
+  --rule:rgba(245,240,229,.28);
+  --block:var(--mid);
+  --on-block:var(--ivory);
+  --muted-on-block:var(--ivory-soft);
+  --block-line:rgba(245,240,229,.2);
+
+  color-scheme:dark;
+}
+html{background:var(--night);}
+body{background:var(--night);color:var(--ivory-soft);}
+::selection{background:var(--gold);color:var(--night);}
+a{color:inherit;}
+
+/* 2. TYPE COLOUR ---------------------------------------------------------------- */
+h1,h2,h3,h4{color:var(--ivory);}
+p{color:var(--ivory-soft);}
+.eyebrow{color:var(--gold);}
+
+/* 3. HEADER, MENU, FOOTER -------------------------------------------------------- */
+header.site{background:rgba(5,14,29,.94);border-bottom:1px solid var(--line-2);}
+header.site .logo,header.site .logo-top{color:var(--ivory);}
+.logo-sub{color:var(--gold);}
+nav.main a,.mobile-nav a:not(.btn){color:var(--ivory-soft);}
+nav.main a:hover{color:var(--ivory);border-bottom-color:var(--gold);}
+.mobile-nav{background:var(--deep);border-top:1px solid var(--line);}
+.icon-btn{color:var(--ivory);border-color:var(--line);background:none;}
+.icon-btn:hover{border-color:var(--gold);color:var(--gold);}
+.lang a{font-size:.75rem;letter-spacing:.08em;color:var(--ivory-mute);padding:.35rem .3rem;border-bottom:1px solid transparent;}
+.lang a:hover{color:var(--ivory);}
+.lang a.on{color:var(--gold);font-weight:600;border-bottom-color:var(--gold);}
+.lang-m{margin:.4rem 0 .8rem;}
+footer.site{background:var(--night);border-top:1px solid var(--line);color:var(--ivory-mute);}
+footer.site h3{color:var(--ivory);}
+footer.site a{color:var(--ivory-mute);}
+footer.site a:hover{color:var(--gold);}
+footer.site .logo,footer.site .logo-top{color:var(--ivory);}
+.foot-bottom{border-top:1px solid var(--line-2);color:var(--ivory-mute);}
+
+/* 4. BUTTONS: finer, ivory primary, gold on hover --------------------------------------- */
+.btn{border-radius:0;font-size:.88rem;letter-spacing:.01em;padding:.8rem 1.35rem;min-height:2.75rem;line-height:1.2;
+  transition:background var(--dur-2) var(--ease),color var(--dur-2) var(--ease),border-color var(--dur-2) var(--ease),transform var(--dur-2) var(--ease);}
+.btn-primary{background:var(--ivory);color:var(--night);border:1px solid var(--ivory);}
+.btn-primary:hover{background:var(--gold);border-color:var(--gold);color:var(--night);}
+.btn-ghost{background:transparent;color:var(--ivory);border:1px solid rgba(245,240,229,.34);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:transparent;}
+.hd-cta.btn{padding:.6rem 1.05rem;font-size:.82rem;min-height:2.5rem;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+/* 5. SURFACES: section rhythm ---------------------------------------------------------------- */
+.sec{background:var(--night);border-top:1px solid var(--line);}
+.sec-2{background:var(--deep);}
+.hero{background:var(--night);}
+.hero-stats{background:var(--deep);border-color:var(--line);}
+.hero-stats .stat{border-color:var(--line);}
+.stat .v{color:var(--ivory);}
+.stat .v .u{color:var(--gold);}
+.stat .l{color:var(--ivory-mute);}
+.trusted{background:var(--night);border-color:var(--line);}
+.tr-item{border-color:var(--line);}
+.boards{background:var(--mid);border-top:1px solid var(--line);}
+.boards h2{color:var(--ivory);}
+.boards p{color:var(--ivory-soft);}
+.contact{background:var(--deep);border-top:1px solid var(--line);}
+.cinfo{border-color:var(--gold);}
+.mem,.ind,.divi,.ins{border-color:var(--line);}
+.mem.feat{border-top-color:var(--gold);}
+.tag,.acad-tags span,.ao-tags span,.divi .dlist li{border-color:var(--line);color:var(--ivory-soft);background:transparent;}
+hr{border-color:var(--line);}
+
+/* 6. MARQUEE: hard edge instead of a gradient fade; static, de-duplicated when motion is reduced */
+.marquee{-webkit-mask-image:none;mask-image:none;}
+@media(prefers-reduced-motion:reduce){.marquee-track .mi:nth-child(n+10){display:none;}}
