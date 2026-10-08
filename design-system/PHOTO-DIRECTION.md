@@ -74,15 +74,23 @@ Tyros's positioning is honesty (no invented logos, statistics or testimonials). 
 3. **Not recommended:** AI-generated images presented as photographs. They tend toward the generic look this brief rules out, and they undermine the "real, precise world" the brand claims. If used at all, only as an internal moodboard, never published.
 4. Real photographs of people need written consent. Never imply a client relationship through an image.
 
-## 7. Open graph (share) images, done
+## 7. Decisions recorded
 
-Typographic only, using site fonts and colours (no photo), 1200 x 630, under 70 KB each. Source: `design-system/og/og.html`. Files in `assets/og/`.
+- No AI-generated photograph presented as real. No photo placeholder is ever published.
+- Slot **A** (home band between Industries and Intelligence): first priority, once a strong real image exists.
+- Slot **B** (hero): refused. **The Tyros hero stays typographic.**
+- Slot **C** (Academy pages): to be tested later, only with a truly strong image.
+- No photo component is added to the published stylesheet until the first real photograph exists.
 
-| File | Used on | Content |
+## 8. Open graph (share) images, localised
+
+Typographic only, site fonts and colours, no photo, 1200 x 630, 40 to 66 KB each. Same graphic direction in both languages. Source: `design-system/og/og.html` (`?v=<variant>&l=<fr|en>`). Files in `assets/og/`.
+
+| Variant | FR | EN |
 |---|---|---|
-| `og-tyros-group.png` | Home, expertise pages (default) | TYROS GROUP, "Financial Services", "Consulting · Recruitment · Executive Education" |
-| `og-tyros-academy.png` | Academy pages (DORA, AI Literacy and the four Management programmes, FR and EN) | "Executive Education for Financial Services" on ink |
-| `og-executive-search.png` | Executive Search, CRO, CCO, Boards pages (FR and EN) | "Leadership Shapes Markets." |
-| `og-tyros-insights.png` | Insights hub and articles (FR and EN) | "Intelligence, leadership, regulation." on navy |
+| Tyros Group (home, expertise pages) | Services financiers / Conseil · Recrutement · Executive Education | Financial Services / Consulting · Recruitment · Executive Education |
+| Tyros Academy | Executive Education pour les services financiers | Executive Education for Financial Services |
+| Executive Search (Search, CRO, CCO, Boards) | Executive Search · Services financiers | Executive Search · Financial Services |
+| Tyros Insights (hub, articles) | Intelligence · Leadership · Réglementation | Intelligence · Leadership · Regulation |
 
-Each page now declares `og:image` (1200 x 630, with alt text) and `twitter:card = summary_large_image`. After publication, refresh the previews in LinkedIn's Post Inspector and Facebook's Sharing Debugger, since platforms cache the old card.
+Files: `og-tyros-group-fr|en.png`, `og-tyros-academy-fr|en.png`, `og-executive-search-fr|en.png`, `og-tyros-insights-fr|en.png`. Each page declares `og:image` (with width, height and localised alt) and `twitter:card = summary_large_image`, choosing the file that matches its `<html lang>`. After publication, refresh previews in LinkedIn's Post Inspector and Facebook's Sharing Debugger.

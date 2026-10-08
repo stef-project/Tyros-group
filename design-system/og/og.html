@@ -18,9 +18,12 @@ body[data-v=insights]{--bg:#152A54;--ink:#F6F8FC;--ink-soft:#C3CCDE;--label:#C4A
 .main{position:absolute;left:84px;right:150px;top:218px}
 .eyebrow{font-weight:600;font-size:20px;letter-spacing:.24em;text-transform:uppercase;color:var(--eyebrow);margin-bottom:26px}
 h1{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.025em;line-height:1.04;font-size:92px;color:var(--ink);max-width:980px}
-body[data-v=academy] h1,body[data-v=insights] h1{font-size:74px;max-width:900px}
-body[data-v=search] h1{font-size:74px;max-width:1000px}
-body[data-v=academy] .main,body[data-v=insights] .main{top:196px}
+body[data-v=academy] h1{font-size:74px;max-width:900px}
+body[data-v=search] h1,body[data-v=insights] h1{font-size:80px;max-width:1000px;line-height:1.06}
+body[data-v=search] .main{top:230px}
+body[data-v=insights] .main{top:176px}
+h1 .dot{color:var(--gold)}
+body[data-v=academy] .main{top:196px}
 body[data-v=academy] .label{font-size:17px;letter-spacing:.15em;white-space:nowrap}
 .rule{width:72px;height:2px;background:var(--gold);margin:40px 0 24px}
 .label{font-weight:500;font-size:21px;letter-spacing:.2em;text-transform:uppercase;color:var(--label)}
@@ -31,12 +34,21 @@ body[data-v=academy] .label{font-size:17px;letter-spacing:.15em;white-space:nowr
 <div class="main"><div class="eyebrow" id="eb"></div><h1 id="h"></h1><div class="rule"></div><div class="label" id="lb"></div></div>
 <div class="url">tyros-group.com</div>
 <script>
-const V={
- default:{eb:'',h:'Financial Services',lb:'Consulting · Recruitment · Executive Education'},
- academy:{eb:'Tyros Academy',h:'Executive Education for Financial Services',lb:'Regulatory & Digital Awareness · Management & Business Skills'},
- search:{eb:'Executive Search',h:'Leadership Shapes Markets.',lb:'Banking · Insurance · Risk · Compliance · Actuarial'},
- insights:{eb:'Tyros Insights',h:'Intelligence, leadership, regulation.',lb:'Leadership · Regulation · AI · Risk & Compliance'}};
-const v=new URLSearchParams(location.search).get('v')||'default';document.body.dataset.v=v;
-const d=V[v];document.getElementById('eb').textContent=d.eb;if(!d.eb)document.getElementById('eb').remove();
-document.getElementById('h').textContent=d.h;document.getElementById('lb').textContent=d.lb;
+const T={
+ en:{
+  default:{eb:'',h:'Financial Services',lb:'Consulting · Recruitment · Executive Education'},
+  academy:{eb:'Tyros Academy',h:'Executive Education for Financial Services',lb:'Regulatory & Digital Awareness · Management & Business Skills'},
+  search:{eb:'',lines:['Executive Search','Financial Services'],lb:''},
+  insights:{eb:'Tyros Insights',lines:['Intelligence','Leadership','Regulation'],lb:''}},
+ fr:{
+  default:{eb:'',h:'Services financiers',lb:'Conseil · Recrutement · Executive Education'},
+  academy:{eb:'Tyros Academy',h:'Executive Education pour les services financiers',lb:'Regulatory & Digital Awareness · Management & Business Skills'},
+  search:{eb:'',lines:['Executive Search','Services financiers'],lb:''},
+  insights:{eb:'Tyros Insights',lines:['Intelligence','Leadership','Réglementation'],lb:''}}};
+const q=new URLSearchParams(location.search);const v=q.get('v')||'default',l=q.get('l')||'en';
+document.body.dataset.v=v;document.documentElement.lang=l;
+const d=T[l][v];const h=document.getElementById('h');
+if(d.lines){h.innerHTML=d.lines.map((x,i)=>x+(i<d.lines.length-1?'<span class="dot"> ·</span>':'')).join('<br>')}else h.textContent=d.h;
+const eb=document.getElementById('eb');if(d.eb)eb.textContent=d.eb;else eb.remove();
+const lb=document.getElementById('lb');const rule=document.querySelector('.rule');if(d.lb)lb.textContent=d.lb;else{lb.remove();rule.remove()}
 </script></body></html>
