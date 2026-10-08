@@ -12,7 +12,9 @@
  */
 var PROGRAMMES = {"dora-awareness": "DORA Awareness", "ai-literacy": "AI Literacy & Responsible Use", "manager-recruiter": "Manager as Recruiter", "specialist-talent": "Hiring & Retaining Specialist Talent", "business-development": "Business Development in Financial Services", "client-relationships": "Strategic Client Relationships"};
 var OFFERS = {"cro": ["Recruter un Chief Risk Officer", "Recruiting a Chief Risk Officer"], "cco": ["Recruter un Chief Compliance Officer", "Recruiting a Chief Compliance Officer"], "banking-insurance": ["Executive search banque & assurance", "Executive search for banking & insurance"], "actuarial": ["Executive search actuariat", "Executive search for actuarial roles"], "executive-search": ["Tyros Executive Search", "Tyros Executive Search"], "ai-act": ["AI Act & gouvernance de l'IA", "AI Act & AI governance"], "advisory": ["Tyros Advisory", "Tyros Advisory"], "boards": ["Conseils & dirigeants", "Boards & Executives"], "compliance": ["Conformité et avantage compétitif", "Compliance as a competitive advantage"], "membership-essential": ["Membership Essential", "Membership Essential"], "membership-professional": ["Membership Professional", "Membership Professional"], "membership-enterprise": ["Membership Enterprise", "Membership Enterprise"], "briefing": ["Briefing d'intelligence confidentiel", "Confidential intelligence briefing"], "private": ["Tyros Private", "Tyros Private"], "dora-awareness": ["DORA Awareness", "DORA Awareness"], "ai-literacy": ["AI Literacy & Responsible Use", "AI Literacy & Responsible Use"], "manager-recruiter": ["Manager as Recruiter", "Manager as Recruiter"], "specialist-talent": ["Hiring & Retaining Specialist Talent", "Hiring & Retaining Specialist Talent"], "business-development": ["Business Development in Financial Services", "Business Development in Financial Services"], "client-relationships": ["Strategic Client Relationships", "Strategic Client Relationships"]};
-var TYPES = ['general', 'recruitment', 'consulting', 'academy'];
+var TYPES = ['general', 'recruitment', 'consulting', 'academy', 'candidate'];
+var AREAS = ['gm', 'risk', 'compliance', 'audit', 'actuarial', 'ai', 'hr', 'other'];
+var CV_MAX_BYTES = 4 * 1024 * 1024;
 var LANGS = ['fr', 'en'];
 var TIMING = ['urgent', '1-3', '3-6', 'open'];
 var PARTICIPANTS = ['<10', '10-25', '25-50', '50+', 'tbd'];
@@ -24,19 +26,21 @@ var MAX_PER_EMAIL_PER_HOUR = 3;
 var MAX_PER_HOUR = 120;
 var HEADERS = ['Reference', 'Received (UTC)', 'Type', 'Language', 'Offer / programme', 'Intent', 'Name', 'Company', 'Email',
   'Role / profile', 'Location', 'Timing', 'Topic / need', 'Deadline', 'Participants', 'Format', 'Period', 'Message',
-  'Source page', 'Source URL', 'Status', 'Acknowledgement', 'Programme sent (manual)'];
+  'Source page', 'Source URL', 'Status', 'Acknowledgement', 'Programme sent (manual)', 'Function area', 'Current role', 'CV file (Drive)'];
 
 var L = {
-  fr: { types: { general: 'Contact général', recruitment: 'Recrutement', consulting: 'Conseil', academy: 'Tyros Academy' },
+  fr: { types: { general: 'Contact général', recruitment: 'Recrutement (entreprise)', consulting: 'Conseil', academy: 'Tyros Academy', candidate: 'Candidature' },
     subject: 'Tyros Group : nous avons bien reçu votre demande',
     hello: 'Bonjour', body: 'Nous avons bien reçu votre demande et nous vous répondons sous 48 heures ouvrées.',
     ctx: 'Votre demande concerne', ref: 'Référence', sign: 'Cordialement,', team: 'Tyros Group',
-    conf: 'Votre demande est traitée en toute confidentialité.' },
-  en: { types: { general: 'General enquiry', recruitment: 'Recruitment', consulting: 'Consulting', academy: 'Tyros Academy' },
+    conf: 'Votre demande est traitée en toute confidentialité.',
+    bodyCand: 'Nous avons bien reçu votre candidature et votre CV. Nous les lisons avec attention et revenons vers vous si votre profil correspond à une recherche en cours.' },
+  en: { types: { general: 'General enquiry', recruitment: 'Recruitment (company)', consulting: 'Consulting', academy: 'Tyros Academy', candidate: 'Application' },
     subject: 'Tyros Group: we have received your request',
     hello: 'Hello', body: 'We have received your request and will reply within 48 working hours.',
     ctx: 'Your request concerns', ref: 'Reference', sign: 'Kind regards,', team: 'Tyros Group',
-    conf: 'Your request is handled in full confidence.' }
+    conf: 'Your request is handled in full confidence.',
+    bodyCand: 'We have received your application and CV. We read them carefully and will come back to you if your profile matches a current search.' }
 };
 
 function doGet() { return json_({ ok: true, service: 'tyros-requests' }); }
@@ -59,6 +63,7 @@ function doPost(e) {
     var ref = reference_();
     var received = new Date();
     var ack = { status: 'pending' };
+    v.cv_url = v.type === 'candidate' ? storeCv_(ref, v) : '';
     var row = appendLead_(ref, received, v, ack);        // writes the row, returns row index
     ack = acknowledge_(ref, v, ack);                     // sends the visitor a plain acknowledgement of receipt
     notify_(ref, received, v, ack);                      // internal notification
@@ -77,12 +82,15 @@ function validate_(p) {
     role: clean_(p.role, 200), location: clean_(p.location, 160), timing: clean_(p.timing, 12),
     topic: clean_(p.topic, 300), deadline: clean_(p.deadline, 120), programme: clean_(p.programme, 40),
     participants: clean_(p.participants, 12), format: clean_(p.format, 12), period: clean_(p.period, 120),
+    area: clean_(p.area, 12), current: clean_(p.current, 200), consent: clean_(p.consent, 4),
+    cv_name: clean_(p.cv_name, 200), cv_data: String(p.cv_data || ''),
     message: clean_(p.message, 5000, true), page: clean_(p.page, 160), source_url: clean_(p.source_url, 300)
   };
   if (TYPES.indexOf(v.type) < 0 || LANGS.indexOf(v.lang) < 0) return { ok: false, error: 'invalid' };
   if (INTENTS.indexOf(v.intent) < 0) v.intent = '';
   if (v.offer && !OFFERS[v.offer]) v.offer = '';
-  if (!v.name || !v.company || !v.email) return { ok: false, error: 'required' };
+  if (v.type !== 'candidate' && (!v.name || !v.company || !v.email)) return { ok: false, error: 'required' };
+  if (v.type === 'candidate' && (!v.name || !v.email)) return { ok: false, error: 'required' };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) return { ok: false, error: 'email' };
   if (v.type === 'recruitment' && (!v.role || !v.location || TIMING.indexOf(v.timing) < 0)) return { ok: false, error: 'required' };
   if (v.type === 'consulting' && !v.topic) return { ok: false, error: 'required' };
@@ -92,11 +100,47 @@ function validate_(p) {
     if (!okProg || PARTICIPANTS.indexOf(v.participants) < 0 || FORMATS.indexOf(v.format) < 0) return { ok: false, error: 'required' };
     if (!v.offer && PROGRAMMES[v.programme]) v.offer = v.programme;
   }
+  if (v.type === 'candidate') {
+    var props = PropertiesService.getScriptProperties();
+    if (props.getProperty('CV_ENABLED') !== 'true' || !props.getProperty('CV_FOLDER_ID')) return { ok: false, error: 'disabled' };
+    if (v.consent !== 'yes') return { ok: false, error: 'consent' };
+    if (!v.current || !v.location || AREAS.indexOf(v.area) < 0) return { ok: false, error: 'required' };
+    var cv = checkCv_(v.cv_name, v.cv_data);
+    if (!cv.ok) return { ok: false, error: cv.error };
+    v.cv_bytes = cv.bytes; v.company = '';
+  } else { v.cv_name = ''; v.cv_data = ''; }
   // keep only the fields that belong to the journey
-  if (v.type !== 'recruitment') { v.role = ''; v.location = ''; v.timing = ''; }
+  if (v.type !== 'recruitment' && v.type !== 'candidate') { v.role = ''; v.location = ''; v.timing = ''; }
+  if (v.type === 'candidate') { v.timing = ''; }
+  if (v.type !== 'candidate') { v.area = ''; v.current = ''; }
   if (v.type !== 'consulting') { v.topic = ''; v.deadline = ''; }
   if (v.type !== 'academy') { v.programme = ''; v.participants = ''; v.format = ''; v.period = ''; v.intent = ''; }
   return { ok: true, v: v };
+}
+
+/** CV: whitelist of extensions, size cap, and file signature (not just the name). */
+function checkCv_(name, b64) {
+  var m = /\.(pdf|docx?)$/i.exec(name || '');
+  if (!m || !b64) return { ok: false, error: 'cv' };
+  var bytes;
+  try { bytes = Utilities.base64Decode(b64); } catch (e) { return { ok: false, error: 'cv' }; }
+  if (!bytes.length || bytes.length > CV_MAX_BYTES) return { ok: false, error: 'cv_size' };
+  var b = bytes.slice(0, 4).map(function (x) { return (x + 256) % 256; });
+  var ext = m[1].toLowerCase();
+  var pdf = b[0] === 0x25 && b[1] === 0x50 && b[2] === 0x44 && b[3] === 0x46;      // %PDF
+  var zip = b[0] === 0x50 && b[1] === 0x4B;                                         // docx
+  var ole = b[0] === 0xD0 && b[1] === 0xCF && b[2] === 0x11 && b[3] === 0xE0;       // doc
+  if ((ext === 'pdf' && !pdf) || (ext === 'docx' && !zip) || (ext === 'doc' && !ole)) return { ok: false, error: 'cv' };
+  return { ok: true, bytes: bytes };
+}
+
+function storeCv_(ref, v) {
+  var folder = DriveApp.getFolderById(PropertiesService.getScriptProperties().getProperty('CV_FOLDER_ID'));
+  var safe = v.cv_name.replace(/[^\w.\-]+/g, '_').slice(0, 80);
+  var blob = Utilities.newBlob(v.cv_bytes, undefined, ref + '_' + safe);
+  var file = folder.createFile(blob);
+  file.setSharing(DriveApp.Access.PRIVATE, DriveApp.Permission.NONE);   // stays inside the folder owner's account
+  return file.getUrl();
 }
 
 function clean_(s, max, keepNewlines) {
@@ -145,7 +189,7 @@ function appendLead_(ref, received, v, ack) {
     var offerLabel = v.offer ? (OFFERS[v.offer][v.lang === 'en' ? 1 : 0]) : (v.programme === 'multiple' ? 'Multiple programmes' : '');
     var row = [ref, Utilities.formatDate(received, 'UTC', "yyyy-MM-dd'T'HH:mm:ss'Z'"), v.type, v.lang, offerLabel, v.intent,
       v.name, v.company, v.email, v.role, v.location, v.timing, v.topic, v.deadline, v.participants, v.format, v.period, v.message,
-      v.page, v.source_url, 'New', ack.status, ''].map(cell_);
+      v.page, v.source_url, 'New', ack.status, '', v.area, v.current, v.cv_url].map(cell_);
     sh.appendRow(row);
     return sh.getLastRow();
   } finally { lock.releaseLock(); }
@@ -158,12 +202,12 @@ function updateAck_(row, ack) {
 function acknowledge_(ref, v, ack) {
   var t = L[v.lang];
   var offerLabel = v.offer ? OFFERS[v.offer][v.lang === 'en' ? 1 : 0] : '';
-  var lines = [t.hello + ' ' + v.name + ',', '', t.body];
+  var lines = [t.hello + ' ' + v.name + ',', '', v.type === 'candidate' ? t.bodyCand : t.body];
   if (offerLabel) lines.push('', t.ctx + ' : ' + offerLabel);
   lines.push('', t.ref + ' : ' + ref, '', t.conf, '', t.sign, t.team);
   var text = lines.join('\n');
   var html = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.55;color:#050E1D">' +
-    '<p>' + esc_(t.hello) + ' ' + esc_(v.name) + ',</p><p>' + esc_(t.body) + '</p>' +
+    '<p>' + esc_(t.hello) + ' ' + esc_(v.name) + ',</p><p>' + esc_(v.type === 'candidate' ? t.bodyCand : t.body) + '</p>' +
     (offerLabel ? '<p>' + esc_(t.ctx) + ' : <strong>' + esc_(offerLabel) + '</strong></p>' : '') +
     '<p style="color:#5b6779">' + esc_(t.ref) + ' : ' + esc_(ref) + '<br>' + esc_(t.conf) + '</p>' +
     '<p>' + esc_(t.sign) + '<br><strong>' + esc_(t.team) + '</strong></p></div>';
@@ -182,12 +226,13 @@ function notify_(ref, received, v, ack) {
     ['Offre / programme', offerLabel], ['Intention', v.intent], ['Nom', v.name], ['Entreprise', v.company], ['Email', v.email],
     ['Poste / profil', v.role], ['Localisation', v.location], ['Calendrier', v.timing], ['Sujet / besoin', v.topic], ['Échéance', v.deadline],
     ['Participants', v.participants], ['Format', v.format], ['Période', v.period], ['Page d\'origine', v.page], ['URL', v.source_url],
-    ['Accusé de réception', ack.status]].filter(function (r) { return r[1]; });
+    ['Domaine', v.area], ['Poste actuel', v.current], ['CV (Drive, privé)', v.cv_url], ['Accusé de réception', ack.status]].filter(function (r) { return r[1]; });
   var text = rows.map(function (r) { return r[0] + ' : ' + r[1]; }).join('\n') + '\n\nMessage :\n' + (v.message || '(aucun)');
   var todo = (v.type === 'academy' && v.intent === 'programme') ? '\n\n>>> DEMANDE DE PROGRAMME : identifier la personne, puis envoyer le programme manuellement (aucun document n\'a été envoyé automatiquement). Noter l\'envoi dans la colonne "Programme sent (manual)" de la Sheet.' : '';
+  if (v.type === 'candidate') todo = '\n\n>>> CANDIDATURE : le CV est dans le dossier Drive privé (lien ci-dessus). Ne pas le transférer à une entreprise sans l\'accord de la personne.';
   var warn = todo + (ack.status === 'FAILED' ? '\n\n/!\\ L\'accusé de réception n\'a pas pu être envoyé.' : '');
   MailApp.sendEmail({ to: notifyTo_(), replyTo: v.email, name: 'Tyros Group (site)',
-    subject: '[Tyros] ' + tl + (offerLabel ? ' · ' + offerLabel : '') + ' · ' + v.company + ' (' + v.lang.toUpperCase() + ') ' + ref,
+    subject: '[Tyros] ' + tl + (offerLabel ? ' · ' + offerLabel : '') + ' · ' + (v.company || v.name) + ' (' + v.lang.toUpperCase() + ') ' + ref,
     body: text + warn });
 }
 

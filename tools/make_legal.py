@@ -30,6 +30,9 @@ FR_P='''<h2>Données collectées : formulaires de demande</h2>
 <p><strong>Finalité :</strong> répondre à votre demande et, pour une demande de programme, vous transmettre le programme une fois votre demande examinée.</p>
 <p><strong>Destinataires :</strong> Tyros Group. Les demandes sont enregistrées et transmises par des outils Google Workspace (messagerie et tableur) utilisés par Tyros Group. Aucune donnée n'est vendue ni cédée à des tiers.</p>
 <!-- DÉCISION REQUISE (voir design-system/DECISIONS-CONFIDENTIALITE.md) : durée de conservation des demandes envoyées par formulaire. Aucune durée n'a été arrêtée. -->
+<h2>Données collectées : candidatures</h2>
+<p>Si vous nous transmettez votre profil, nous collectons : nom, adresse e-mail, poste actuel, domaine de fonction, localisation, votre CV et, le cas échéant, votre message. Le CV est enregistré dans un espace de stockage privé de Tyros Group. Il n'est pas transmis à une entreprise sans votre accord.</p>
+<!-- DÉCISION REQUISE : durée de conservation des candidatures, base légale, accès (voir design-system/DECISIONS-CONFIDENTIALITE.md). Aucune durée n'a été arrêtée. -->
 <h2>Données collectées : sessions Tyros Academy</h2>
 <p>Dans le cadre d'une session de sensibilisation commanditée par votre employeur, nous collectons via un questionnaire en ligne : nom, prénom, adresse email professionnelle, entreprise, et les réponses au questionnaire associé.</p>
 <p><strong>Finalité :</strong> établir une attestation nominative de participation et un relevé documentaire transmis à l'entreprise commanditaire, à des fins de suivi de sa démarche de sensibilisation.</p>
@@ -42,6 +45,9 @@ EN_P='''<h2>Data collected: request forms</h2>
 <p><strong>Purpose:</strong> to answer your request and, for a programme request, to send you the programme once your request has been reviewed.</p>
 <p><strong>Recipients:</strong> Tyros Group. Requests are recorded and forwarded using Google Workspace tools (email and spreadsheet) operated by Tyros Group. No data is sold or passed on to third parties.</p>
 <!-- DECISION REQUIRED (see design-system/DECISIONS-CONFIDENTIALITE.md): retention period for requests sent through the forms. No period has been decided. -->
+<h2>Data collected: applications</h2>
+<p>If you send us your profile, we collect: name, email address, current role, function area, location, your CV and, where applicable, your message. The CV is stored in a private storage space of Tyros Group. It is not passed to any company without your agreement.</p>
+<!-- DECISION REQUIRED: retention period for applications, legal basis, access (see design-system/DECISIONS-CONFIDENTIALITE.md). No period has been decided. -->
 <h2>Data collected: Tyros Academy sessions</h2>
 <p>For an awareness session commissioned by your employer, we collect through an online questionnaire: first name, last name, work email address, company, and the answers to the related questionnaire.</p>
 <p><strong>Purpose:</strong> to issue a named certificate of attendance and a documentary record sent to the commissioning company, in support of its awareness programme.</p>

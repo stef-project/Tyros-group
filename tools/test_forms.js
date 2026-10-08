@@ -28,9 +28,13 @@ const J=[
  {name:'FR home embedded general',url:'/',sel:'.contact-form form',vals:{name:'A B',company:'X',email:'a@x.fr',message:'Hello'},expect:{type:'general',lang:'fr',page:'/'}},
  {name:'EN home embedded general',url:'/en/',sel:'.contact-form form',vals:{name:'A B',company:'X',email:'a@x.fr',message:'Hello'},expect:{type:'general',lang:'en',page:'/en/'}},
 ];
+J.push({name:'FR candidate (CV)',url:'/demande/?type=candidate&from=/',sel:'.req-sec:not([hidden]) form',vals:{name:'Paul C',email:'p@mail.fr',current:'Risk Manager',area:'risk',location:'Paris',message:''},file:true,consent:true,expect:{type:'candidate',lang:'fr'}});
+J.push({name:'EN candidate (CV), mobile',url:'/en/request/?type=candidate&from=/en/',vw:390,sel:'.req-sec:not([hidden]) form',vals:{name:'Paul C',email:'p@mail.co.uk',current:'Risk Manager',area:'risk',location:'London',message:''},file:true,consent:true,expect:{type:'candidate',lang:'en'}});
+J.push({name:'EN general, mobile',url:'/en/request/?type=general',vw:390,sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Bank',email:'a@bank.co.uk',message:'Hello'},expect:{type:'general',lang:'en'}});
+J.push({name:'EN recruitment, mobile',url:'/en/request/?type=recruitment&offer=cro',vw:390,sel:'.req-sec:not([hidden]) form',vals:{name:'A B',company:'Bank',email:'a@bank.co.uk',role:'CRO',location:'London',timing:'urgent'},expect:{type:'recruitment',offer:'cro',lang:'en'}});
 for(const t of J){
   console.log('\n'+t.name);
-  const {c,p,posts,errs}=await open(t.url);
+  const {c,p,posts,errs}=await open(t.url,t.vw||1360);
   const form=p.locator(t.sel);
   ok(await form.isVisible(),'form visible');
   // honeypot hidden + t0 set
@@ -41,14 +45,18 @@ for(const t of J){
   const nerr=await form.locator('.fld.bad').count();ok(nerr>=3,'empty submit shows '+nerr+' field errors');
   ok(posts.length===0,'nothing sent when invalid');
   // invalid email
+  if(t.file){await form.locator('[name="cv"]').setInputFiles({name:'bad.exe',mimeType:'application/x-msdownload',buffer:Buffer.from('MZ')});await form.locator('.req-send').click();await p.waitForTimeout(100);ok(await form.locator('.fld.bad [name="cv"]').count()===1,'wrong file type flagged');}
   await fill(p,t.sel,{...t.vals,email:'not-an-email'});await form.locator('.req-send').click();await p.waitForTimeout(100);
   ok(await form.locator('.fld.bad [name="email"]').count()===1,'invalid email flagged');ok(posts.length===0,'invalid email not sent');
   await fill(p,t.sel,t.vals);
-  await form.locator('.req-send').click();await p.waitForTimeout(600);
+  if(t.file){await form.locator('[name="cv"]').setInputFiles({name:'cv.pdf',mimeType:'application/pdf',buffer:Buffer.from('%PDF-1.4 x')});await form.locator('.req-send').click();await p.waitForTimeout(150);ok(await form.locator('.fld-consent.bad').count()===1,'consent required before sending');ok(posts.length===0,'nothing sent without consent');await form.locator('[name="consent"]').check();}
+  await form.locator('.req-send').click();await p.waitForTimeout(700);
+  if(t.file){ok(!!posts[0]&&posts[0].cv_name==='cv.pdf'&&posts[0].cv_data&&Buffer.from(posts[0].cv_data,'base64').toString().startsWith('%PDF'),'CV sent as base64 with its name');ok(posts[0]&&posts[0].consent==='yes','consent sent');}
+  ok(await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=0,'no horizontal overflow');
   ok(posts.length===1,'exactly one POST');
   const d=posts[0]||{};
   for(const [k,v] of Object.entries(t.expect))ok(d[k]===v,`payload ${k}=${v} (got ${d[k]})`);
-  ok(d.name==='A B'||d.name==='Jeanne Test','name sent');ok(!('website' in d)||d.website==='','honeypot not filled');
+  ok(['A B','Jeanne Test','Paul C'].includes(d.name),'name sent');ok(!('website' in d)||d.website==='','honeypot not filled');
   ok(await p.locator('.req-ok').isVisible(),'success panel visible');
   ok((await p.locator('.req-ok .ok-ref strong').textContent())==='TY-20261008-ABC','reference shown');
   const okp=await p.locator('.req-ok .ok-p').textContent();

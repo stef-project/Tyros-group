@@ -8,7 +8,7 @@ def page(lang):
     t=forms.T[lang]
     tabs=''.join('<a href="%s?type=%s" data-tab="%s">%s</a>'%('/demande/' if lang=='fr' else '/en/request/',k,k,l) for k,l in t['tabs'])
     secs=''
-    for k in ('general','recruitment','consulting','academy'):
+    for k in ('general','recruitment','consulting','academy','candidate'):
         secs+=f'<section class="req-sec" data-type="{k}" hidden>{forms.form(lang,k,k)}</section>\n'
     return f'''<div class="page-hero req-hero">
   <div class="page-hero-inner">
