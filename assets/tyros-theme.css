@@ -97,7 +97,6 @@ footer.site .logo,footer.site .logo-top{color:var(--ivory);}
 .stat .v .u{color:var(--gold);}
 .stat .l{color:var(--ivory-mute);}
 .trusted{background:var(--night);border-color:var(--line);}
-.tr-item{border-color:var(--line);}
 .boards{background:var(--mid);border-top:1px solid var(--line);}
 .boards h2{color:var(--ivory);}
 .boards p{color:var(--ivory-soft);}
