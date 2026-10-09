@@ -7,12 +7,13 @@
  * Optional Script Property:
  *   NOTIFY_TO   address that receives the requests (default: contact@tyros-group.com)
  */
+var SCRIPT_VERSION = '2026-10-09-v3';   // shown by the /exec URL, to confirm which version is deployed
 var MIN_FILL_MS = 4000;                 // faster than this: not a human
 var MAX_FILL_MS = 24 * 3600 * 1000;     // older than a day: stale form
 var MAX_PER_EMAIL_PER_HOUR = 3;
 var MAX_PER_HOUR = 120;
 
-function doGet() { return json_({ ok: true, service: 'tyros-contact' }); }
+function doGet() { return json_({ ok: true, service: 'tyros-contact', version: SCRIPT_VERSION }); }
 
 function doPost(e) {
   try {
