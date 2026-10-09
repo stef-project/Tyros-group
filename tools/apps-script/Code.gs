@@ -29,6 +29,7 @@ function doPost(e) {
     if (!v.name || !v.email || !v.subject || !v.message) return json_({ ok: false, error: 'required' });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) return json_({ ok: false, error: 'email' });
     if (!rateOk_(v.email)) return json_({ ok: false, error: 'rate' });
+    if (isDuplicate_(v)) return json_({ ok: true });                              // same message re-sent within 10 minutes: confirm, send nothing
     MailApp.sendEmail({
       to: notifyTo_(),
       replyTo: v.email,                                    // "Reply" answers the visitor directly
@@ -60,6 +61,13 @@ function rateOk_(email) {
   if (n1 >= MAX_PER_EMAIL_PER_HOUR || n2 >= MAX_PER_HOUR) return false;
   cache.put(k1, String(n1 + 1), 3700); cache.put(k2, String(n2 + 1), 3700);
   return true;
+}
+function isDuplicate_(v) {
+  var cache = CacheService.getScriptCache();
+  var k = 'd:' + Utilities.base64EncodeWebSafe(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, v.email + '|' + v.subject + '|' + v.message)).slice(0, 30);
+  if (cache.get(k)) return true;
+  cache.put(k, '1', 600);
+  return false;
 }
 function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
 

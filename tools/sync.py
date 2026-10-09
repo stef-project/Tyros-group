@@ -35,14 +35,14 @@ L={
    tag='Partenaire stratégique en leadership et intelligence pour les institutions financières. London.',
    f_div='Divisions',f_firm='Cabinet',f_legal='Légal',f_about='À propos',f_boards='Conseils &amp; dirigeants',f_contact='Contact',
    f_notice='Mentions légales',f_privacy='Confidentialité',f_reg='Société enregistrée en Angleterre &amp; Pays de Galles',
-   notice='/mentions-legales/',privacy='/confidentialite/',request='/demande/'),
+   cookies='Gérer les cookies',notice='/mentions-legales/',privacy='/confidentialite/',request='/demande/'),
  'en':dict(skip='Skip to content',lang_label='Language',theme='Switch theme',menu='Menu',home='/en/',pre='/en',
    nav=[('About','#about'),('Services','#services'),('Industries','#industries'),('Boards','/for-boards-executives/'),('Insights','#insights'),('Membership','#membership'),('Academy','#academy')],
    cta='Book a Discussion',cta_m='Book a Confidential Discussion',
    tag='A strategic leadership &amp; intelligence partner for financial institutions. London.',
    f_div='Divisions',f_firm='Firm',f_legal='Legal',f_about='About',f_boards='Boards &amp; Executives',f_contact='Contact',
    f_notice='Legal notice',f_privacy='Privacy policy',f_reg='Company registered in England &amp; Wales',
-   notice='/en/legal-notice/',privacy='/en/privacy-policy/',request='/en/request/'),
+   cookies='Cookie settings',notice='/en/legal-notice/',privacy='/en/privacy-policy/',request='/en/request/'),
 }
 
 def href(lang,h):
@@ -104,7 +104,7 @@ def footer(lang,url):
     </div>
     <div class="foot-col"><h3>{c['f_div']}</h3><a href="{h}#executive-search">Executive Search</a><a href="{h}#intelligence">Tyros Intelligence</a><a href="{h}#advisory">Advisory</a><a href="{h}#private-access">Tyros Private</a></div>
     <div class="foot-col"><h3>{c['f_firm']}</h3><a href="{h}#about">{c['f_about']}</a><a href="{c['pre']}/for-boards-executives/">{c['f_boards']}</a><a href="{h}#membership">Membership</a><a href="{h}#insights">Insights</a><a href="{req(lang,'general',src=url)}">{c['f_contact']}</a></div>
-    <div class="foot-col"><h3>{c['f_legal']}</h3><a href="{c['notice']}">{c['f_notice']}</a><a href="{c['privacy']}">{c['f_privacy']}</a><a href="https://www.linkedin.com/company/119114061/" rel="noopener">LinkedIn</a></div>
+    <div class="foot-col"><h3>{c['f_legal']}</h3><a href="{c['notice']}">{c['f_notice']}</a><a href="{c['privacy']}">{c['f_privacy']}</a><a href="https://www.linkedin.com/company/119114061/" rel="noopener">LinkedIn</a><button type="button" class="linklike" id="cookie-settings">{c['cookies']}</button></div>
   </div>
   <div class="foot-bottom">
     <span>© 2026 Tyros Group Ltd, London</span>

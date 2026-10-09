@@ -16,6 +16,7 @@ console.log('EN');{const e=env();run(e,{...base,lang:'en'});ok(/\(EN\)/.test(e.m
 console.log('honeypot');{const e=env();const r=run(e,{...base,website:'http://x'});ok(r.ok&&e.mails.length===0,'silent success, no mail');}
 console.log('timing');{const e=env();ok(run(e,{...base,t0:String(Date.now()-500)}).error==='timing','too fast');ok(run(e,{...base,t0:''}).error==='timing','missing');ok(run(e,{...base,t0:String(Date.now()-90000000)}).error==='timing','stale');ok(e.mails.length===0,'no mail');}
 console.log('validation');{const e=env();ok(run(e,{...base,name:''}).error==='required','name');ok(run(e,{...base,message:''}).error==='required','message');ok(run(e,{...base,subject:''}).error==='required','subject');ok(run(e,{...base,email:'bad'}).error==='email','email');ok(e.mails.length===0,'no mail');}
-console.log('rate limit');{const e=env();const rs=[1,2,3,4].map(()=>run(e,base));ok(rs[2].ok&&rs[3].error==='rate','4th in an hour refused');}
+console.log('double send');{const e=env();const r1=run(e,base),r2=run(e,base);ok(r1.ok&&r2.ok,'both confirmed');ok(e.mails.length===1,'only one mail for the same message');ok(run(e,{...base,message:'Autre message'}).ok&&e.mails.length===2,'a different message is sent');}
+console.log('rate limit');{const e=env();const rs=[1,2,3,4].map(i=>run(e,{...base,message:'m'+i}));ok(rs[2].ok&&rs[3].error==='rate','4th in an hour refused');}
 console.log('header injection / length');{const e=env();run(e,{...base,subject:'Hi\r\nBcc: x@y.z',message:'a'.repeat(9000)});ok(!/[\r\n]/.test(e.mails[0].subject),'no line break in the subject');ok(e.mails[0].body.length<5600,'message capped');}
 console.log('\n'+(fails?fails+' FAILURES':'ALL PASSED'));process.exit(fails?1:0);

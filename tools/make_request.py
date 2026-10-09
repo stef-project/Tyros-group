@@ -19,7 +19,7 @@ def page(lang):
 </div>
 <script type="application/json" id="req-config">{forms.config(lang)}</script>'''
 ty=json.load(open('tools/types.json'))
-for lang,url,title,desc in (('fr','/demande/','Contact | Tyros Group','Écrire à Tyros Group : un seul formulaire, une réponse personnelle.'),('en','/en/request/','Contact | Tyros Group','Write to Tyros Group: one form, a personal reply.')):
+for lang,url,title,desc in (('fr','/demande/','Contact | Tyros Group','Écrire à Tyros Group : un seul formulaire de contact, et une réponse personnelle de l’équipe.'),('en','/en/request/','Contact | Tyros Group','Write to Tyros Group: one contact form, and a personal reply from the team.')):
     write(url,shell(lang,url,title,desc,page(lang),robots='noindex,follow',jsonld=False));ty[url]='page'
 json.dump(ty,open('tools/types.json','w'),indent=1)
 print('contact pages written')

@@ -3,8 +3,8 @@ import re,os
 ROOT=os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
 _t=open(os.path.join(ROOT,'formation-manager-recrutement/index.html'),encoding='utf-8').read()
 ICON=re.search(r'<link rel="icon"[^>]*>',_t).group(0)
-GTM=re.search(r'<!-- Google Tag Manager -->.*?<!-- End Google Tag Manager -->',_t,re.S).group(0)
-GTM_NS=re.search(r'<!-- Google Tag Manager \(noscript\) -->.*?<!-- End Google Tag Manager \(noscript\) -->',_t,re.S).group(0)
+GTM=''
+GTM_NS=''
 CSP=re.search(r'<meta http-equiv="Content-Security-Policy"[^>]*>',_t).group(0)
 SITE='https://tyros-group.com'
 def shell(lang,url,title,desc,main,og='og-tyros-group',robots=None,body_class='page-main',jsonld=True):
