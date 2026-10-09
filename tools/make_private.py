@@ -10,8 +10,8 @@ def ul(items): return '<ul>\n'+'\n'.join('<li>%s</li>'%i for i in items)+'\n</ul
 
 P={
 'fr':dict(url='/tyros-private/',home='/',req='/demande/',homefile='index.html',
- title='Tyros Private : accès exécutif et rencontres stratégiques | Tyros Group',
- desc="Sur mandat, Tyros conçoit des rencontres privées avec des décideurs qualifiés : introductions, déjeuners, tables rondes et programme d'accès marché. Tous secteurs, France, Royaume-Uni, Europe.",
+ title='Tyros Private : accès exécutif et rencontres | Tyros Group',
+ desc="Sur mandat, Tyros conçoit des rencontres privées avec des décideurs qualifiés : introductions, déjeuners, tables rondes, accès marché. Tous secteurs.",
  eyebrow='Tyros Private · Strategic Market Access',
  h1="L'accès ne se résume pas à un carnet d'adresses.",
  lede="Il consiste à savoir qui doit être autour de la table, et pourquoi. Dans le cadre de Strategic Market Access, une organisation peut mandater Tyros pour concevoir une rencontre privée sur mesure, ouvrir un dialogue stratégique et introduire une innovation, une technologie ou un nouveau service auprès de décideurs qualifiés.",
@@ -60,8 +60,8 @@ P={
   note="Une organisation peut nous mandater pour une mission ponctuelle. Le mandataire et la finalité de chaque rencontre sont annoncés aux invités, et la présence d'un dirigeant n'est jamais garantie.",
   b1='Échanger sur un mandat privé',b2='Découvrir Tyros Private')),
 'en':dict(url='/en/tyros-private/',home='/en/',req='/en/request/',homefile='en/index.html',
- title='Tyros Private: executive access & strategic encounters | Tyros Group',
- desc='On mandate, Tyros designs private meetings with qualified decision-makers: executive introductions, private lunches, strategic roundtables and a market entry programme. All sectors, France, the UK and Europe.',
+ title='Tyros Private: executive access & encounters | Tyros Group',
+ desc='On mandate, Tyros designs private meetings with qualified decision-makers: introductions, lunches, roundtables and market entry. All sectors.',
  eyebrow='Tyros Private · Strategic Market Access',
  h1='Access is not a contact list.',
  lede='It is knowing who should be in the room, and why. Through Strategic Market Access, an organisation can mandate Tyros to design a bespoke private meeting, open a strategic dialogue and introduce an innovation, a technology or a new service to qualified decision-makers.',

@@ -1,16 +1,18 @@
-# Tyros Group — Site vitrine
+# Tyros Group, site tyros-group.com
 
-Site statique une page (FR/EN) : Executive Search, Private Executive Access, Tyros Academy, AI & Regulatory Advisory.
+Site statique FR/EN hébergé sur GitHub Pages (branche `gh-pages`, domaine via `CNAME`). Une URL par langue : le français à la racine, l'anglais sous `/en/`. Le sélecteur FR/EN est un lien vers la page jumelle.
 
-## Contenu
-- `index.html` — page complète, autonome (polices embarquées, aucune dépendance externe)
-- `robots.txt`, `sitemap.xml` — SEO
-- `.htaccess` — redirection HTTPS + en-têtes de sécurité (hébergement Apache/Hostinger)
+## Branches
+- `claude/tyros-group-offline-k1jbyl` : développement (source).
+- `gh-pages` : publication. Elle ne contient ni `tools/` ni `design-system/` ni ce fichier.
 
-## Déploiement
-Uploader les 4 fichiers à la racine de l'hébergement (hPanel Hostinger → Gestionnaire de fichiers → public_html), ou connecter ce dépôt au déploiement Git de l'hébergeur.
+## Générer et vérifier
+- `python3 tools/sync.py` : remplit l'en-tête, le pied de page, les hreflang et les feuilles de style de chaque page depuis un gabarit par langue.
+- `python3 tools/make_private.py`, `make_legal.py`, `make_request.py` : pages Tyros Private, légales et formulaire. `python3 tools/make_sitemap.py` : sitemap.
+- `python3 tools/audit_static.py` : liens, ancres, canonical, hreflang. `node tools/audit_render.js` : rendu mobile et bureau. `node tools/test_forms.js`, `node tools/test_consent.js` : formulaires et consentement (formulaire simulé).
 
-## Notes
-- Le formulaire de contact ouvre le client email du visiteur (mailto vers contact@tyros-group.com). Pour un envoi serveur, brancher un service de formulaire (Formspree, etc.).
-- Bascule FR/EN intégrée (préférence mémorisée dans le navigateur).
-- Mentions légales et politique de confidentialité incluses (TYROS GROUP LTD, n° 16513376).
+## Formulaire et consentement
+Un seul formulaire (`/demande/`, `/en/request/`) envoie un e-mail à contact@tyros-group.com via Google Apps Script (`tools/apps-script/`). Google Tag Manager ne se charge qu'après consentement (bandeau FR/EN, lien « Gérer les cookies »).
+
+## Publication
+Uniquement sur demande explicite : copie de la source (sans `tools/`, `design-system/`, `README.md`) sur `gh-pages`, en conservant `CNAME`.
