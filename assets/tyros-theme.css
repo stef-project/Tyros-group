@@ -111,3 +111,16 @@ hr{border-color:var(--line);}
 /* 6. MARQUEE: hard edge instead of a gradient fade; static, de-duplicated when motion is reduced */
 .marquee{-webkit-mask-image:none;mask-image:none;}
 @media(prefers-reduced-motion:reduce){.marquee-track .mi:nth-child(n+10){display:none;}}
+
+/* cookie consent: both choices share one style, same size and weight */
+#consent{position:fixed;left:0;right:0;bottom:0;z-index:300;background:var(--deep);border-top:1px solid var(--gold);padding:1rem max(16px,4vw);}
+#consent .consent-in{max-width:84rem;margin:0 auto;display:flex;gap:1rem 2rem;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+#consent strong{color:var(--ivory);font-size:.95rem;}
+#consent p{margin:.2rem 0 0;font-size:.88rem;max-width:68ch;color:var(--ivory-soft);}
+#consent p a{color:var(--gold);border-bottom:1px solid rgba(206,161,82,.5);}
+#consent .consent-btns{display:flex;gap:.6rem;}
+.linklike{background:none;border:0;padding:0;font:inherit;color:var(--ivory-mute);cursor:pointer;text-align:left;}
+.linklike:hover{color:var(--gold);}
+#consent .consent-btns .btn{min-width:7.5rem;justify-content:center;}
+#consent:focus{outline:none;}
+#consent,#consent *{border-radius:0;}
