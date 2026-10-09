@@ -54,15 +54,13 @@ p,li{text-wrap:pretty;}                               /* no more one-word last l
 
 /* Labels: 12px floor, AA gold on light */
 .eyebrow,.lang,.lang button,.trusted .lab,.tr-item .s,.mandates .mlab,.divi .dnum,.divi .dtag,.ind .in,
-.intel-viz .vlabel,.ihub-card .ihub-cat,.ihub-card .ihub-cad,.ao-num,.mem .tier,.ins .ins-cat,.ins .ins-d,
+.intel-viz .vlabel,.ihub-card .ihub-cat,.ihub-card .ihub-cad,.ao-num,.ins .ins-cat,.ins .ins-d,
 .crow .t,.foot-col h3,.foot-bottom,.a-meta,.a-card .d,.hub-card .top .cat,.hub-card .d,.role .rk,.bring .bn{
   font-size:var(--fs-label);
 }
-.eyebrow,.divi .dnum,.ind .in,.intel-list li .m,.ihub-card .ihub-cat,.ao-num,.mem .tier,.ins .rd,.legal .back,
+.eyebrow,.divi .dnum,.ind .in,.intel-list li .m,.ihub-card .ihub-cat,.ao-num,.ins .rd,.legal .back,
 .see-also a,.a-meta .cat,.a-byline .alt,.hub-card .rd,.role .rk,.bring .bn,.lang button.on{color:var(--gold-text);}
 .see-also a,.a-byline .alt{border-bottom-color:var(--gold);}
-.mem.feat::before{background:var(--gold-deep);font-size:var(--fs-label);}
-[data-theme="dark"] .mem.feat::before{color:#08090C;}
 
 /* 4. RHYTHM ---------------------------------------------------------------- */
 .sec{padding:var(--space-section) 0;}
@@ -123,5 +121,5 @@ article.page-body a:not(.btn):hover{text-decoration-thickness:2px;}
 /* 6. MOTION SAFETY --------------------------------------------------------- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;scroll-behavior:auto!important;}
-  .btn:hover,.mem:hover,.acad-offer:hover{transform:none!important;}
+  .btn:hover,.acad-offer:hover{transform:none!important;}
 }

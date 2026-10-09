@@ -19,7 +19,6 @@ const J=[
  ['FR session','/demande/?offer=dora-awareness&intent=session&from=/dora-awareness/','Organisation d\'une session : DORA Awareness',{intent:'session',lang:'fr'}],
  ['FR recruitment (CRO)','/demande/?offer=cro&from=/recrutement-chief-risk-officer/','Recrutement : Chief Risk Officer',{offer:'cro',lang:'fr'}],
  ['FR consulting (AI Act)','/demande/?offer=ai-act&from=/ai-act-gouvernance-ia-finance/','Conseil : AI Act & gouvernance de l\'IA',{offer:'ai-act'}],
- ['FR membership','/demande/?offer=membership-professional&from=/','Membership Professional',{offer:'membership-professional'}],
  ['EN programme','/en/request/?offer=ai-literacy&intent=programme&from=/en/ai-literacy-responsible-use-training/','Programme request : AI Literacy & Responsible Use',{lang:'en',offer:'ai-literacy',intent:'programme'}],
  ['EN general mobile','/en/request/','Confidential discussion',{lang:'en'},390],
  ['EN recruitment mobile','/en/request/?offer=cco&from=/en/chief-compliance-officer-recruitment/','Recruitment : Chief Compliance Officer',{lang:'en',offer:'cco'},390],

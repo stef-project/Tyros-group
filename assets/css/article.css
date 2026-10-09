@@ -207,20 +207,6 @@ nav.main a:hover{color:var(--ink);border-color:var(--gold);}
 .sensib-card p.sensib-note{font-size:.86rem;color:var(--grey-2);margin-top:.8rem;}
 .sensib-card .btn{margin-top:1.6rem;}
 
-/* membership */
-.mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1rem;}
-.mem{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:2.4rem 2rem;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s,border-color .25s;}
-.mem:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--gold);}
-.mem.feat{border-color:var(--gold);position:relative;}
-.mem.feat::before{content:"Le plus choisi";position:absolute;top:-.75rem;left:2rem;background:var(--gold);color:#fff;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:100px;}
-.mem .tier{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
-.mem h3{font-size:1.6rem;margin:.7rem 0 .5rem;}
-.mem .desc{font-size:.9rem;color:var(--grey);min-height:2.6rem;}
-.mem ul{list-style:none;padding:0;margin:1.4rem 0;display:grid;gap:.7rem;}
-.mem li{font-size:.88rem;color:var(--ink-soft);display:grid;grid-template-columns:1.1rem 1fr;gap:.6rem;align-items:start;}
-.mem li .ck{color:var(--gold);}
-.mem .btn{margin-top:auto;justify-content:center;}
-@media(max-width:900px){.mem-grid{grid-template-columns:1fr;}}
 
 /* insights */
 .ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}

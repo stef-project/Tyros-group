@@ -30,14 +30,14 @@ V=ver()
 
 L={
  'fr':dict(skip='Aller au contenu',lang_label='Langue',theme='Changer le thème',menu='Menu',home='/',pre='',
-   nav=[('À propos','#about'),('Divisions','#services'),('Industries','#industries'),('Dirigeants','/for-boards-executives/'),('Insights','#insights'),('Membership','#membership'),('Academy','#academy')],
+   nav=[('À propos','#about'),('Divisions','#services'),('Industries','#industries'),('Dirigeants','/for-boards-executives/'),('Insights','#insights'),('Academy','#academy')],
    cta='Échange confidentiel',cta_m='Réserver un échange confidentiel',
    tag='Partenaire stratégique en leadership et intelligence pour les institutions financières. London.',
    f_div='Divisions',f_firm='Cabinet',f_legal='Légal',f_about='À propos',f_boards='Conseils &amp; dirigeants',f_contact='Contact',
    f_notice='Mentions légales',f_privacy='Confidentialité',f_reg='Société enregistrée en Angleterre &amp; Pays de Galles',
    cookies='Gérer les cookies',advisory='/ai-act-gouvernance-ia-finance/',notice='/mentions-legales/',privacy='/confidentialite/',request='/demande/'),
  'en':dict(skip='Skip to content',lang_label='Language',theme='Switch theme',menu='Menu',home='/en/',pre='/en',
-   nav=[('About','#about'),('Services','#services'),('Industries','#industries'),('Boards','/for-boards-executives/'),('Insights','#insights'),('Membership','#membership'),('Academy','#academy')],
+   nav=[('About','#about'),('Services','#services'),('Industries','#industries'),('Boards','/for-boards-executives/'),('Insights','#insights'),('Academy','#academy')],
    cta='Book a Discussion',cta_m='Book a Confidential Discussion',
    tag='A strategic leadership &amp; intelligence partner for financial institutions. London.',
    f_div='Divisions',f_firm='Firm',f_legal='Legal',f_about='About',f_boards='Boards &amp; Executives',f_contact='Contact',
@@ -103,7 +103,7 @@ def footer(lang,url):
       <p class="bl">{c['tag']}</p>
     </div>
     <div class="foot-col"><h3>{c['f_div']}</h3><a href="{h}#executive-search">Executive Search</a><a href="{h}#intelligence">Tyros Intelligence</a><a href="{c['advisory']}">Advisory</a><a href="{c['pre']}/tyros-private/">Tyros Private</a></div>
-    <div class="foot-col"><h3>{c['f_firm']}</h3><a href="{h}#about">{c['f_about']}</a><a href="{c['pre']}/for-boards-executives/">{c['f_boards']}</a><a href="{h}#membership">Membership</a><a href="{h}#insights">Insights</a><a href="{req(lang,'general',src=url)}">{c['f_contact']}</a></div>
+    <div class="foot-col"><h3>{c['f_firm']}</h3><a href="{h}#about">{c['f_about']}</a><a href="{c['pre']}/for-boards-executives/">{c['f_boards']}</a><a href="{h}#insights">Insights</a><a href="{req(lang,'general',src=url)}">{c['f_contact']}</a></div>
     <div class="foot-col"><h3>{c['f_legal']}</h3><a href="{c['notice']}">{c['f_notice']}</a><a href="{c['privacy']}">{c['f_privacy']}</a><a href="https://www.linkedin.com/company/119114061/" rel="noopener">LinkedIn</a><button type="button" class="linklike" id="cookie-settings">{c['cookies']}</button></div>
   </div>
   <div class="foot-bottom">

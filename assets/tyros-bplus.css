@@ -98,8 +98,8 @@ header.site{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--b
 .boards::before{display:none;}
 .ins .ins-top{background:var(--blue);}
 .ins .ins-top canvas{display:none;}
-.tr-item,.ins,.cinfo,.mem,.sensib-card,.ind-grid,.divs,.acad-offers,.btn,.ins-top,.mem.feat::before{border-radius:0;}
-.ins:hover,.mem:hover,.tr-item:hover{box-shadow:none;transform:none;}
+.tr-item,.ins,.cinfo,.sensib-card,.ind-grid,.divs,.acad-offers,.btn,.ins-top{border-radius:0;}
+.ins:hover,.tr-item:hover{box-shadow:none;transform:none;}
 .hero .eyebrow,.hero h1,.hero .sub,.hero-actions{opacity:1!important;animation:none!important;}
 .hero{border-bottom:0;}
 .hero-stats .stats-grid{padding:0;}
@@ -235,19 +235,6 @@ body{counter-reset:chap;}
 .ihub-bar{background:var(--blue);margin-top:2.4rem;padding:1.8rem 2rem;}
 @media (max-width:900px){.intel{display:block;}.ihub-grid{grid-template-columns:1fr;}}
 
-/* 7. MEMBERSHIP: three ruled columns, no cards ---------------------------- */
-.mem-grid{gap:0;margin-top:0;}
-.mem{border:0;border-left:1px solid var(--line);background:none;padding:1.8rem 2rem 2.2rem;transition:none;}
-.mem:first-child{border-left:0;padding-left:0;}
-.mem:hover{transform:none;box-shadow:none;border-color:var(--line);}
-.mem{position:relative;border-top:2px solid transparent;}
-.mem.feat{border-left:1px solid var(--line);border-top:2px solid var(--gold);}
-.mem.feat::before{position:absolute;left:2rem;top:-1.5rem;display:block;background:none;color:var(--gold-text);padding:0;font-size:var(--fs-label);letter-spacing:.18em;}
-.mem h3{font-size:clamp(1.6rem,2.4vw,2.1rem);line-height:1.1;letter-spacing:-.02em;}
-.mem .btn{border-radius:0;}
-@media (max-width:900px){.mem-grid{grid-template-columns:1fr;}.mem,.mem.feat{border-left:0;border-top:1px solid var(--line);padding:2rem 0;}.mem.feat{border-top:2px solid var(--gold);margin-top:1.8rem;}
-.mem.feat::before{left:0;}}
-
 /* 8. INSIGHTS: dated rows ---------------------------------------------------- */
 .ins-grid{grid-template-columns:1fr;gap:0;}
 .ins{display:grid;grid-template-columns:13rem 1fr auto;column-gap:2rem;align-items:baseline;border:0;border-top:1px solid var(--line);background:none;padding:1.6rem 0;}
@@ -265,7 +252,7 @@ body{counter-reset:chap;}
 /* 9. ACADEMY: chapters and rows; family one on ink, one giant outlined numeral */
 #academy{overflow:hidden;}
 #academy .sec-head .eyebrow::before{display:none;}
-#academy::after{content:"08";position:absolute;right:2.5vw;top:clamp(.5rem,1.5vw,1.5rem);font-family:'Fraunces',serif;font-weight:600;font-size:clamp(6rem,13vw,12rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--gold);opacity:.6;pointer-events:none;}
+#academy::after{content:"07";position:absolute;right:2.5vw;top:clamp(.5rem,1.5vw,1.5rem);font-family:'Fraunces',serif;font-weight:600;font-size:clamp(6rem,13vw,12rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--gold);opacity:.6;pointer-events:none;}
 #academy>.wrap{position:relative;z-index:1;}
 .paths-lab{color:var(--ink);font-size:.8rem;letter-spacing:.26em;padding-top:1rem;border-top:1px solid var(--rule);margin-bottom:0;}
 .paths-lab::after{display:none;}
@@ -298,7 +285,7 @@ body{counter-reset:chap;}
 
 /* 11. FINAL CTA: ink plate with the second outlined numeral ----------------- */
 .contact{position:relative;overflow:hidden;background:var(--block);color:var(--on-block);padding:var(--section-padding-y) 0;border-top:0;}
-.contact::after{content:"09";position:absolute;right:5vw;bottom:-.12em;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(4.5rem,10vw,9rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--gold-soft);opacity:.5;pointer-events:none;}
+.contact::after{content:"08";position:absolute;right:5vw;bottom:-.12em;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(4.5rem,10vw,9rem);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--gold-soft);opacity:.5;pointer-events:none;}
 .contact-inner{position:relative;z-index:1;grid-template-columns:7fr 5fr;gap:clamp(2rem,6vw,6rem);}
 .contact .eyebrow{color:var(--gold-soft);}
 .contact h2{color:var(--on-block);font-size:clamp(2rem,3.9vw,3.3rem);line-height:1;letter-spacing:-.04em;max-width:16ch;}
@@ -315,7 +302,6 @@ body{counter-reset:chap;}
 footer.site{border-top:1px solid var(--rule);}
 
 /* dark theme: the site's pill label colour equals the page background once the pill is removed */
-:root[data-theme="dark"] .mem.feat::before{color:var(--gold);background:none;}
 
 /* small screens: keep the two outlined numerals clear of text */
 @media (max-width:1000px){.contact{padding-bottom:calc(var(--section-padding-y) + 4.5rem);}}
