@@ -1,101 +1,154 @@
 #!/usr/bin/env python3
-"""Generates /tyros-private/ and /en/tyros-private/."""
-import os,sys
+"""Tyros Private: generates /tyros-private/ and /en/tyros-private/, and rewrites the Tyros Private block of both homes
+(divisions card 04 + section #private). Idempotent. Run tools/sync.py afterwards."""
+import os,sys,re
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from pagegen import shell,write
+ROOT=os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
+E=lambda x:x.replace('&','&amp;')
 def ul(items): return '<ul>\n'+'\n'.join('<li>%s</li>'%i for i in items)+'\n</ul>'
+
 P={
-'fr':dict(url='/tyros-private/',home='/',req='/demande/',
- title='Tyros Private : rencontres exécutives sur mandat | Tyros Group',
- desc="Tyros conçoit et organise, sur mandat, des rencontres exécutives confidentielles : introductions, déjeuners et dîners privés, tables rondes, accès à de nouveaux marchés.",
- eyebrow='Tyros Private',h1='Les bonnes conversations. Les bons décideurs. Le bon cadre.',
- lede="Tyros conçoit et organise des rencontres exécutives confidentielles pour les organisations souhaitant présenter une innovation, explorer un marché ou développer des relations stratégiques de haut niveau.",
+'fr':dict(url='/tyros-private/',home='/',req='/demande/',homefile='index.html',
+ title='Tyros Private : accès exécutif et rencontres stratégiques | Tyros Group',
+ desc="Sur mandat, Tyros conçoit des rencontres privées avec des décideurs qualifiés : introductions, déjeuners, tables rondes et programme d'accès marché. Tous secteurs, France, Royaume-Uni, Europe.",
+ eyebrow='Tyros Private · Accès exécutif et rencontres stratégiques',
+ h1="L'accès ne se résume pas à un carnet d'adresses.",
+ lede="Il consiste à savoir qui doit être autour de la table, et pourquoi. Une organisation peut mandater Tyros pour concevoir une rencontre privée sur mesure et présenter une innovation, une technologie ou un nouveau service à des interlocuteurs stratégiques qualifiés.",
  secs=[
- ('','Pour les organisations qui veulent rencontrer les bons décideurs',
-  ["Une entreprise technologique, une FinTech, un investisseur, un prestataire de services ou un cabinet peut mandater Tyros pour concevoir et organiser des rencontres avec des décideurs ciblés : présenter une innovation, explorer une opportunité commerciale, développer un réseau.",
-   "Nous ne vendons ni des repas ni un accès à des personnes. Nous apportons une expertise qui crée les conditions d'un dialogue stratégique avec des interlocuteurs pertinents. Vous n'avez pas besoin d'être membre pour nous mandater."],None),
- ('introductions','Private Executive Introductions',
-  ["Identification, qualification et mise en relation confidentielle de dirigeants, d'investisseurs et de décideurs C-level."],
-  ['Rencontres bilatérales','Introductions ciblées','Rendez-vous stratégiques']),
- ('events','Executive Private Events',
-  ["Sur mandat, nous concevons et organisons des rencontres pour présenter une innovation, explorer une opportunité commerciale, développer un réseau ou échanger avec des décideurs sélectionnés."],
-  ['Executive Private Lunches','Private Executive Dinners','Strategic Roundtables','Rencontres sectorielles sur invitation']),
- ('example',"Un exemple d'illustration",
-  ["À titre d'illustration, et non comme référence : une entreprise technologique américaine souhaite développer son activité auprès des banques françaises. Elle mandate Tyros pour organiser un déjeuner privé réunissant un petit nombre de décideurs qualifiés autour d'une thématique sectorielle pertinente. L'objectif est de créer les conditions d'un dialogue stratégique et de lui permettre de présenter son expertise, sa technologie ou ses services dans un cadre privilégié."],None),
- ('market-access','Strategic Market Access',
-  ["Pour les entreprises qui souhaitent accéder à de nouveaux marchés, notamment en France et au Royaume-Uni, ainsi qu'à l'international. Le périmètre géographique est défini avec vous pour chaque mandat."],
-  ['Identification des interlocuteurs stratégiques','Qualification des opportunités','Introductions','Organisation de rencontres professionnelles']),
- ('method','Notre valeur ajoutée',
-  ["Un mandat Tyros Private repose sur six étapes."],
-  ['<strong>Cadrage stratégique</strong> : objectif, thématique et résultat attendu.','<strong>Qualification des interlocuteurs</strong> : définition du public cible.','<strong>Conception du format</strong> : déjeuner, dîner, table ronde ou rencontres individuelles.','<strong>Invitations</strong> : recherche des participants et invitations.','<strong>Organisation</strong> : lieu, déroulé et accueil.','<strong>Suivi</strong> : prolongement des échanges utiles.']),
+ ('mandat',"Un mandat, pas un événement",
+  ["Tyros n'est ni une agence événementielle ni un annuaire de dirigeants. Vous nous confiez un objectif commercial ou stratégique ; nous réunissons les éléments qui permettent d'y répondre : connaissance du marché, définition de l'audience, accès aux décideurs, curation, animation et suivi.",
+   "Le mandat est ponctuel. Vous n'avez pas besoin d'être membre pour nous le confier."],None),
+ ('introduction','Private Executive Introduction',
+  ["<strong>Une rencontre ciblée, avec l'interlocuteur pertinent.</strong> Lorsque l'objectif est clair et que le décideur est identifiable, Tyros le qualifie, présente votre organisation et prépare l'échange, en tête-à-tête ou en très petit comité. L'introduction est confidentielle et professionnelle : le décideur sait qui vous êtes et pourquoi vous souhaitez le rencontrer."],
+  ["Découvrir un secteur ou une organisation","Éprouver une proposition de valeur auprès d'un utilisateur ou d'un acheteur potentiel","Établir une première connexion avec un écosystème","Rencontrer un futur partenaire ou investisseur"],'private-intro',"Échanger sur une introduction"),
+ ('lunch','Executive Private Lunch',
+  ["<strong>Six à dix décideurs, autour d'un sujet qui compte pour eux.</strong> Un déjeuner à huis clos, centré sur une thématique sectorielle pertinente pour les invités. Le mandataire est clairement identifié et peut présenter son expertise ; la conversation reste celle des participants. C'est le format du dialogue et de la relation, dans un cadre sobre."],
+  None,'private-lunch',"Échanger sur ce format"),
+ ('roundtable','Strategic Executive Roundtable',
+  ["<strong>Huit à douze dirigeants, une discussion de fond.</strong> Une table ronde animée par Tyros sur un enjeu stratégique : intelligence artificielle et gouvernance de l'IA, DORA et résilience opérationnelle, cybersécurité, transformation bancaire ou assurantielle, paiements, conformité, nouveaux modèles de distribution, expansion internationale.",
+   "La qualité de la discussion prime. Ce n'est ni un argumentaire commercial déguisé ni une conférence : la valeur du mandataire tient à la pertinence de la question posée et à la crédibilité de son point de vue."],
+  None,'private-roundtable',"Échanger sur ce format"),
+ ('market-entry','Market Entry Executive Programme',
+  ["<strong>Un accompagnement sur plusieurs semaines pour avancer sur un marché.</strong> L'accès au marché ne se limite pas à l'implantation dans un pays. Une organisation peut nous mandater pour introduire une nouvelle technologie, lancer un service, rencontrer des clients potentiels, nouer des partenariats stratégiques ou accélérer là où elle est déjà présente.",
+   "Le programme combine cartographie du marché et des parties prenantes, qualification, introductions ciblées, un déjeuner ou une table ronde lorsque c'est pertinent, accompagnement et suivi. Marchés couverts : France, Royaume-Uni, Benelux, Suisse et Europe. Durée et périmètre sont définis pour chaque mandat."],
+  ["Introduire une nouvelle technologie","Lancer un service","Rencontrer des clients potentiels","Développer des partenariats stratégiques","Accélérer sur un marché existant","S'implanter dans un nouveau pays"],'private-mandate',"Échanger sur un mandat privé"),
+ ('methode','Une méthode, quatre formats',
+  ["Les quatre prestations sont complémentaires et reposent sur le même fil en sept étapes. Leur ampleur varie : une introduction en mobilise le cœur, le Market Entry Programme les déroule toutes."],
+  ["<strong>Comprendre l'objectif</strong> : ce que vous voulez faire avancer, et auprès de qui.","<strong>Cartographier</strong> les décideurs et les organisations pertinentes.","<strong>Identifier et approcher</strong> les profils, en précisant qui nous mandate.","<strong>Qualifier l'intérêt</strong> autour d'un sujet crédible pour eux.","<strong>Concevoir le format</strong> : introduction, déjeuner, table ronde ou programme.","<strong>Organiser et animer</strong> la rencontre.","<strong>Accompagner</strong> les mises en relation et le suivi."]),
+ ('secteurs','Tous secteurs',
+  ["Les services financiers sont notre terrain d'expérience le plus naturel : banques, assurances, gestion d'actifs, paiements. Le mandat s'adresse aussi à toute organisation B2B : technologie, intelligence artificielle, cybersécurité, santé, industrie, investissement, conseil.",
+   "Nous acceptons un mandat lorsque nous pouvons réunir une audience pertinente et crédible. Sinon, nous vous le disons."],None),
+ ('exemples',"Des situations types",
+  ["À titre d'illustration, et non comme références :"],
+  ["une FinTech américaine qui souhaite aborder le marché bancaire français ;","un éditeur de cybersécurité qui présente une nouvelle solution à des directions des risques et de l'informatique ;","un éditeur RegTech qui lance une offre de conformité ;","un investisseur qui explore un écosystème sectoriel ;","un prestataire technologique qui cherche le dialogue avec des assureurs ;","une entreprise qui prépare son arrivée sur un nouveau marché européen."]),
  ('transparence','Transparence et cadre',
   [],
-  ["L'identité du mandataire et la finalité de la rencontre sont communiquées aux invités.","Aucune participation individuelle n'est garantie ni vendue : chaque invité est libre de venir.","Chaque mandat est cadré sur mesure, dans la confidentialité."]),
+  ["L'identité du mandataire et la finalité de la rencontre sont communiquées à chaque invité : aucun faux prétexte.","Aucune présence d'un dirigeant, aucun nombre de contacts et aucun contrat ne sont garantis ni vendus. Chaque invité est libre de venir.","Les formats tiennent compte des politiques d'hospitalité et de conformité des organisations invitées.","Les données professionnelles des invités sont traitées comme indiqué dans la <a href=\"/confidentialite/\">politique de confidentialité</a>.","Les tarifs sont communiqués sur demande, après cadrage du mandat."]),
  ('membership','Tyros Private et Membership',
   ["Tyros Private est une prestation sur mandat, distincte du Membership, qui est un abonnement continu. Les membres Enterprise peuvent être invités de façon sélective aux rencontres Tyros Private, sous réserve de pertinence, de disponibilité et de l'accord des organisateurs. Aucune invitation n'est automatique."],None)],
- b1='Organiser une rencontre privée',b2="Discuter d'un mandat stratégique",see='Voir aussi',
- seel=[('/for-boards-executives/','Conseils & dirigeants'),('/executive-search-banque-assurance/','Executive search banque & assurance'),('/insights/','Insights')],crumb='Tyros Private'),
-'en':dict(url='/en/tyros-private/',home='/en/',req='/en/request/',
- title='Tyros Private: confidential executive encounters | Tyros Group',
- desc='Tyros designs and facilitates, on mandate, confidential executive encounters: introductions, private lunches and dinners, roundtables, access to new markets.',
- eyebrow='Tyros Private',h1='The right conversations. The right people. The right setting.',
- lede='We design and facilitate confidential executive encounters for organisations seeking to engage senior decision-makers, introduce innovative solutions, explore new markets and build strategic relationships.',
+ cta='Échanger sur un mandat privé',cta2='Voir Tyros Intelligence',cta2u='/#intelligence',see='Voir aussi',
+ seel=[('/for-boards-executives/','Conseils & dirigeants'),('/executive-search-banque-assurance/','Executive search banque & assurance'),('/insights/','Insights')],
+ hp=dict(
+  card=('Des rencontres privées, sur mandat.',"Présentez une innovation, une technologie ou un service à des interlocuteurs stratégiques qualifiés, dans un cadre conçu sur mesure par Tyros."),
+  eyebrow='Tyros Private',h2='Les bonnes conversations. Les bons décideurs. Le bon cadre.',
+  p="Une organisation peut mandater Tyros pour concevoir une rencontre privée sur mesure et présenter une innovation, une technologie ou un nouveau service à des interlocuteurs stratégiques qualifiés. Tous secteurs, des services financiers à la technologie, l'IA, la cybersécurité, la santé ou l'industrie.",
+  rows=[('Private Executive Introduction','Une introduction ciblée et confidentielle.',"Une rencontre avec l'interlocuteur pertinent, qualifiée et préparée par Tyros.",'introduction'),
+        ('Executive Private Lunch','Six à dix décideurs, autour d\'un sujet.','Un déjeuner à huis clos sur une thématique sectorielle, mandataire clairement identifié.','lunch'),
+        ('Strategic Executive Roundtable','Une discussion de fond entre dirigeants.',"Huit à douze dirigeants autour d'un enjeu stratégique : IA, DORA, cybersécurité, transformation, expansion.",'roundtable'),
+        ('Market Entry Executive Programme','Avancer sur un marché, de la cartographie au suivi.','Introduire une technologie, lancer un service, rencontrer des clients, nouer des partenariats : un accompagnement sur plusieurs semaines.','market-entry')],
+  note="Une organisation peut nous mandater sans être membre. Le mandataire et la finalité de chaque rencontre sont annoncés aux invités, et la présence d'un dirigeant n'est jamais garantie.",
+  b1='Échanger sur un mandat privé',b2='Découvrir Tyros Private')),
+'en':dict(url='/en/tyros-private/',home='/en/',req='/en/request/',homefile='en/index.html',
+ title='Tyros Private: executive access & strategic encounters | Tyros Group',
+ desc='On mandate, Tyros designs private meetings with qualified decision-makers: executive introductions, private lunches, strategic roundtables and a market entry programme. All sectors, France, the UK and Europe.',
+ eyebrow='Tyros Private · Executive access & strategic encounters',
+ h1='Access is not a contact list.',
+ lede='It is knowing who should be in the room, and why. An organisation can mandate Tyros to design a bespoke private meeting and introduce an innovation, a technology or a new service to qualified, strategic counterparts.',
  secs=[
- ('','For organisations that want to meet the right decision-makers',
-  ["A technology company, a FinTech, an investor, a service provider or a firm can mandate Tyros to design and run meetings with targeted decision-makers: to present an innovation, explore a commercial opportunity or build a network.",
-   "We do not sell meals or access to people. We bring the expertise that creates the conditions for a strategic dialogue with relevant counterparts. You do not need to be a member to mandate us."],None),
- ('introductions','Private Executive Introductions',
-  ['Identification, qualification and confidential introduction of executives, investors and C-level decision-makers.'],
-  ['Bilateral meetings','Targeted introductions','Strategic appointments']),
- ('events','Executive Private Events',
-  ['On mandate, we design and run meetings to present an innovation, explore a commercial opportunity, build a network or exchange with selected decision-makers.'],
-  ['Executive Private Lunches','Private Executive Dinners','Strategic Roundtables','Invitation-only sector meetings']),
- ('example','An illustrative example',
-  ['By way of illustration, not as a reference: a US technology company wants to grow its business with French banks. It mandates Tyros to organise a private lunch bringing together a small number of qualified decision-makers around a relevant sector theme. The aim is to create the conditions for a strategic dialogue and let the company present its expertise, technology or services in a privileged setting.'],None),
- ('market-access','Strategic Market Access',
-  ['For companies seeking access to new markets, including France and the United Kingdom, and internationally. The geographic scope is defined with you for each mandate.'],
-  ['Identifying strategic counterparts','Qualifying opportunities','Introductions','Organising professional meetings']),
- ('method','Our added value',
-  ['A Tyros Private mandate rests on six steps.'],
-  ['<strong>Strategic framing</strong>: objective, theme and expected outcome.','<strong>Qualifying counterparts</strong>: defining the target audience.','<strong>Designing the format</strong>: lunch, dinner, roundtable or one-to-one meetings.','<strong>Invitations</strong>: participant search and invitations.','<strong>Organisation</strong>: venue, running order and welcome.','<strong>Follow-up</strong>: carrying useful exchanges forward.']),
+ ('mandate','A mandate, not an event',
+  ['Tyros is neither an events agency nor a directory of executives. You give us a commercial or strategic objective; we bring together what it takes to meet it: market knowledge, audience design, access to decision-makers, curation, facilitation and follow-up.',
+   'The mandate is one-off. You do not need to be a member to give it to us.'],None),
+ ('introduction','Private Executive Introduction',
+  ['<strong>A targeted meeting with the right counterpart.</strong> When the objective is clear and the decision-maker can be identified, Tyros qualifies them, presents your organisation and prepares the conversation, one-to-one or in a very small group. The introduction is confidential and professional: the decision-maker knows who you are and why you wish to meet.'],
+  ['Discover a sector or an organisation','Test a value proposition with a potential user or buyer','Make a first connection with an ecosystem','Meet a future partner or investor'],'private-intro','Discuss an introduction'),
+ ('lunch','Executive Private Lunch',
+  ['<strong>Six to ten decision-makers around a subject that matters to them.</strong> A closed-door lunch built around a sector theme relevant to the guests. The mandating party is clearly identified and may present its expertise; the conversation remains the participants\'. It is the format for dialogue and relationship, in a sober setting.'],
+  None,'private-lunch','Discuss this format'),
+ ('roundtable','Strategic Executive Roundtable',
+  ['<strong>Eight to twelve senior leaders, a discussion of substance.</strong> A roundtable chaired by Tyros on a strategic issue: artificial intelligence and AI governance, DORA and operational resilience, cybersecurity, banking or insurance transformation, payments, compliance, new distribution models, international expansion.',
+   'The quality of the discussion comes first. It is neither a disguised sales pitch nor a conference: the mandating party\'s value lies in the relevance of the question it raises and the credibility of its point of view.'],
+  None,'private-roundtable','Discuss this format'),
+ ('market-entry','Market Entry Executive Programme',
+  ['<strong>A multi-week engagement to make progress in a market.</strong> Market access is not only about setting up in a country. An organisation can mandate us to introduce a new technology, launch a service, meet potential clients, build strategic partnerships or accelerate where it is already present.',
+   'The programme combines market and stakeholder mapping, qualification, targeted introductions, a lunch or roundtable where relevant, accompaniment and follow-up. Markets covered: France, the United Kingdom, Benelux, Switzerland and Europe. Duration and scope are defined for each mandate.'],
+  ['Introduce a new technology','Launch a service','Meet potential clients','Build strategic partnerships','Accelerate in an existing market','Enter a new country'],'private-mandate','Discuss a private mandate'),
+ ('method','One method, four formats',
+  ['The four services are complementary and rest on the same seven-step thread. Their scale varies: an introduction uses the core of it, the Market Entry Programme runs through every step.'],
+  ['<strong>Understand the objective</strong>: what you want to move forward, and with whom.','<strong>Map</strong> the relevant decision-makers and organisations.','<strong>Identify and approach</strong> the profiles, stating who has mandated us.','<strong>Qualify interest</strong> around a topic that is credible for them.','<strong>Design the format</strong>: introduction, lunch, roundtable or programme.','<strong>Organise and facilitate</strong> the meeting.','<strong>Accompany</strong> the introductions and the follow-up.']),
+ ('sectors','All sectors',
+  ['Financial services are our most natural field of experience: banks, insurers, asset managers, payments. The mandate is also open to any B2B organisation: technology, artificial intelligence, cybersecurity, healthcare, industry, investment, advisory.',
+   'We accept a mandate when we can bring together a relevant, credible audience. If we cannot, we will tell you.'],None),
+ ('examples','Typical situations',
+  ['By way of illustration, not as references:'],
+  ['a US FinTech wishing to approach the French banking market;','a cybersecurity vendor presenting a new solution to risk and technology leaders;','a RegTech launching a compliance offer;','an investor exploring a sector ecosystem;','a technology provider seeking dialogue with insurers;','a company preparing its arrival in a new European market.']),
  ('transparency','Transparency and framework',
   [],
-  ["The identity of the mandating party and the purpose of the meeting are disclosed to invited guests.","No individual attendance is guaranteed or sold: every guest is free to come.","Each mandate is scoped individually, in confidence."]),
+  ['The identity of the mandating party and the purpose of the meeting are disclosed to every guest: no false pretext.','No executive\'s attendance, number of contacts or contract is guaranteed or sold. Every guest is free to come.','Formats take into account the hospitality and compliance policies of the invited organisations.','Guests\' professional data is handled as set out in the <a href="/en/privacy-policy/">privacy policy</a>.','Fees are provided on request, once the mandate has been scoped.']),
  ('membership','Tyros Private and Membership',
   ['Tyros Private is a mandated service, separate from Membership, which is an ongoing subscription. Enterprise members may be invited selectively to Tyros Private meetings, subject to relevance, availability and the organisers\' agreement. No invitation is automatic.'],None)],
- b1='Commission a Private Executive Event',b2='Discuss a Strategic Mandate',see='See also',
- seel=[('/en/for-boards-executives/','Boards & Executives'),('/en/executive-search-banking-insurance/','Executive search for banking & insurance'),('/en/insights/','Insights')],crumb='Tyros Private'),
+ cta='Discuss a private mandate',cta2='See Tyros Intelligence',cta2u='/en/#intelligence',see='See also',
+ seel=[('/en/for-boards-executives/','Boards & Executives'),('/en/executive-search-banking-insurance/','Executive search for banking & insurance'),('/en/insights/','Insights')],
+ hp=dict(
+  card=('Private meetings, on mandate.','Introduce an innovation, a technology or a service to qualified, strategic counterparts, in a setting Tyros designs around you.'),
+  eyebrow='Tyros Private',h2='The right conversations. The right people. The right setting.',
+  p='An organisation can mandate Tyros to design a bespoke private meeting and introduce an innovation, a technology or a new service to qualified, strategic counterparts. All sectors, from financial services to technology, AI, cybersecurity, healthcare and industry.',
+  rows=[('Private Executive Introduction','A targeted, confidential introduction.','A meeting with the right counterpart, qualified and prepared by Tyros.','introduction'),
+        ('Executive Private Lunch','Six to ten decision-makers, one subject.','A closed-door lunch on a sector theme, with the mandating party clearly identified.','lunch'),
+        ('Strategic Executive Roundtable','A discussion of substance among senior leaders.','Eight to twelve leaders around a strategic issue: AI, DORA, cybersecurity, transformation, expansion.','roundtable'),
+        ('Market Entry Executive Programme','Move forward in a market, from mapping to follow-up.','Introduce a technology, launch a service, meet clients, build partnerships: a multi-week engagement.','market-entry')],
+  note="An organisation can mandate us without being a member. The mandating party and the purpose of every meeting are stated to guests, and no executive's attendance is ever guaranteed.",
+  b1='Discuss a private mandate',b2='Discover Tyros Private')),
 }
-import json
 for lang,c in P.items():
     body=[]
-    for anc,h,paras,items in c['secs']:
-        idattr=' id="%s"'%anc if anc else ''
-        body.append('<h2%s>%s</h2>'%(idattr,h))
+    for sec in c['secs']:
+        anc,h,paras,items=sec[:4]
+        body.append('<h2 id="%s">%s</h2>'%(anc,h))
         for p in paras: body.append('<p>%s</p>'%p)
         if items: body.append(ul(items))
+        if len(sec)>4:
+            body.append('<p><a href="%s?offer=%s&amp;from=%s">%s</a></p>'%(c['req'],sec[4],c['url'],sec[5]))
     q=lambda o:'%s?offer=%s&amp;from=%s'%(c['req'],o,c['url'])
     main=f'''<div class="page-hero">
   <div class="page-hero-inner">
-    <div class="eyebrow">{c['eyebrow']}</div>
-    <h1>{c['h1']}</h1>
-    <p class="lede">{c['lede']}</p>
+    <div class="eyebrow">{E(c['eyebrow'])}</div>
+    <h1>{E(c['h1'])}</h1>
+    <p class="lede">{E(c['lede'])}</p>
   </div>
 </div>
 <article class="page-body">
 {chr(10).join(body)}
 <div class="page-cta">
-  <a href="{q('private-event')}" class="btn btn-primary">{c['b1']}</a>
-  <a href="{q('private-mandate')}" class="btn btn-ghost">{c['b2']}</a>
+  <a href="{q('private-mandate')}" class="btn btn-primary">{E(c['cta'])}</a>
+  <a href="{c['cta2u']}" class="btn btn-ghost">{E(c['cta2'])}</a>
 </div>
 </article>
 <div class="see-also">
   <div class="see-also-inner">
     <h2>{c['see']}</h2>
-    {chr(10).join('<a href="%s">%s</a>'%(u,t.replace('&','&amp;')) for u,t in c['seel'])}
+    {chr(10).join('<a href="%s">%s</a>'%(u,E(t)) for u,t in c['seel'])}
   </div>
 </div>'''
-    h=shell(lang,c['url'],c['title'].replace('&','&amp;'),c['desc'],main)
-    h=h.replace('"inLanguage": "%s"'%lang,'"inLanguage": "%s"'%lang)
-    write(c['url'],h)
-print('private pages written')
+    write(c['url'],shell(lang,c['url'],E(c['title']),E(c['desc']),main))
+    # ---- home
+    hm=c['hp'];f=os.path.join(ROOT,c['homefile']);s=open(f,encoding='utf-8').read()
+    qh=lambda o:'%s?offer=%s&amp;from=%s'%(c['req'],o,c['home'])
+    a=s.index('id="private-access"');a=s.rfind('<a class="divi"',0,a);b=s.index('</a>',a)+4
+    s=s[:a]+('<a class="divi" href="%s" id="private-access">\n        <div class="dnum">04</div>\n        <div><div class="dtag">Tyros Private</div><h3>%s</h3><p>%s</p></div>\n        <div class="darr">→</div>\n      </a>'%(c['url'],E(hm['card'][0]),E(hm['card'][1])))+s[b:]
+    rows=''.join('      <a class="divi" href="%s#%s">\n        <div class="dnum">%02d</div>\n        <div><div class="dtag">%s</div><h3>%s</h3><p>%s</p></div>\n        <div class="darr">→</div>\n      </a>\n'%(c['url'],anc,i+1,E(t),E(h),E(d)) for i,(t,h,d,anc) in enumerate(hm['rows']))
+    sec=('<!-- TYROS PRIVATE -->\n<section class="sec" id="private">\n  <div class="wrap">\n    <div class="sec-head">\n      <div class="eyebrow">%s</div>\n      <h2>%s</h2>\n      <p>%s</p>\n    </div>\n    <div class="divs">\n%s    </div>\n    <p class="private-note">%s</p>\n    <div class="private-cta">\n      <a href="%s" class="btn btn-primary">%s</a>\n      <a href="%s" class="btn btn-ghost">%s</a>\n    </div>\n  </div>\n</section>\n\n'%(hm['eyebrow'],E(hm['h2']),E(hm['p']),rows,E(hm['note']),qh('private-mandate'),E(hm['b1']),c['url'],E(hm['b2'])))
+    a=s.index('<!-- TYROS PRIVATE -->');b=s.index('<!-- MEMBERSHIP -->')
+    s=s[:a]+sec+s[b:]
+    open(f,'w',encoding='utf-8').write(s)
+print('private pages + home blocks written')
