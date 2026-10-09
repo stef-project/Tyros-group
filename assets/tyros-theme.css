@@ -58,7 +58,7 @@ p{color:var(--ivory-soft);}
 .eyebrow{color:var(--gold);}
 
 /* 3. HEADER, MENU, FOOTER -------------------------------------------------------- */
-header.site{background:rgba(5,14,29,.94);border-bottom:1px solid var(--line-2);}
+header.site{background:var(--night);border-bottom:1px solid var(--line-2);}
 header.site .logo,header.site .logo-top{color:var(--ivory);}
 .logo-sub{color:var(--gold);}
 nav.main a,.mobile-nav a:not(.btn){color:var(--ivory-soft);}
@@ -103,8 +103,7 @@ footer.site .logo,footer.site .logo-top{color:var(--ivory);}
 .boards p{color:var(--ivory-soft);}
 .contact{background:var(--deep);border-top:1px solid var(--line);}
 .cinfo{border-color:var(--gold);}
-.mem,.ind,.divi,.ins{border-color:var(--line);}
-.mem.feat{border-top-color:var(--gold);}
+.ind,.divi,.ins{border-color:var(--line);}
 .tag,.acad-tags span,.ao-tags span,.divi .dlist li{border-color:var(--line);color:var(--ivory-soft);background:transparent;}
 hr{border-color:var(--line);}
 
@@ -124,3 +123,13 @@ hr{border-color:var(--line);}
 #consent .consent-btns .btn{min-width:7.5rem;justify-content:center;}
 #consent:focus{outline:none;}
 #consent,#consent *{border-radius:0;}
+
+/* anchors and sections land below the sticky header */
+[id]{scroll-margin-top:5.5rem;}
+
+/* home: Intelligence cards with description, Tyros Private block, invitation note */
+.ihub-p{margin:.1rem 0 0;font-size:.92rem;line-height:1.55;color:var(--ivory-soft);max-width:48ch;}
+.private-note,.invite-note{margin:1.6rem 0 0;font-size:.92rem;line-height:1.6;color:var(--ivory-mute);max-width:70ch;border-left:2px solid var(--gold);padding-left:1rem;}
+.invite-note{margin-top:1.6rem;}
+.private-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem;}
+.foot-col .linklike{display:block;font-size:.86rem;padding-block:.2rem;margin-bottom:.4rem;}

@@ -12,7 +12,7 @@
   }
 
   /* REVEAL (one observer, transform/opacity only; instant when motion is reduced) */
-  var els=d.querySelectorAll('.reveal, .sec, .divi, .ind, .mem, .ins');
+  var els=d.querySelectorAll('.reveal, .sec, .divi, .ind, .ins');
   els.forEach(function(e){e.classList.add('reveal');});
   if(!reduce&&'IntersectionObserver'in window){
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
