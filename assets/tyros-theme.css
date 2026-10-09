@@ -127,3 +127,10 @@ hr{border-color:var(--line);}
 
 /* anchors and sections land below the sticky header */
 [id]{scroll-margin-top:5.5rem;}
+
+/* home: Intelligence cards with description, Tyros Private block, membership note */
+.ihub-p{margin:.1rem 0 0;font-size:.92rem;line-height:1.55;color:var(--ivory-soft);max-width:48ch;}
+.private-note,.mem-note{margin:1.6rem 0 0;font-size:.92rem;line-height:1.6;color:var(--ivory-mute);max-width:70ch;border-left:2px solid var(--gold);padding-left:1rem;}
+.mem-note{margin-top:2.2rem;}
+.private-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem;}
+.foot-col .linklike{display:block;font-size:.86rem;padding-block:.2rem;margin-bottom:.4rem;}

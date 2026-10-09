@@ -23,6 +23,11 @@ const J=[
  ['EN programme','/en/request/?offer=ai-literacy&intent=programme&from=/en/ai-literacy-responsible-use-training/','Programme request : AI Literacy & Responsible Use',{lang:'en',offer:'ai-literacy',intent:'programme'}],
  ['EN general mobile','/en/request/','Confidential discussion',{lang:'en'},390],
  ['EN recruitment mobile','/en/request/?offer=cco&from=/en/chief-compliance-officer-recruitment/','Recruitment : Chief Compliance Officer',{lang:'en',offer:'cco'},390],
+ ['FR private event CTA','/demande/?offer=private-event&from=/tyros-private/','Organiser une rencontre privée',{offer:'private-event',page:'/tyros-private/',lang:'fr'}],
+ ['FR private mandate CTA','/demande/?offer=private-mandate&from=/','Discuter d\'un mandat stratégique',{offer:'private-mandate',lang:'fr'}],
+ ['EN private event CTA mobile','/en/request/?offer=private-event&from=/en/tyros-private/','Commission a Private Executive Event',{offer:'private-event',lang:'en'},390],
+ ['EN private mandate CTA','/en/request/?offer=private-mandate&from=/en/','Discuss a Strategic Mandate',{offer:'private-mandate',lang:'en'}],
+ ['FR intelligence offer','/demande/?offer=intel-comp&from=/','Benchmarks de rémunération',{offer:'intel-comp'}],
  ['FR home embedded','/','Échange confidentiel',{lang:'fr',page:'/'},1360,'.contact-form form'],
  ['EN home embedded mobile','/en/','Confidential discussion',{lang:'en',page:'/en/'},390,'.contact-form form'],
 ];

@@ -41,5 +41,7 @@
  "/en/privacy-policy/": "page",
  "/demande/": "page",
  "/en/request/": "page",
- "/404.html": "page"
+ "/404.html": "page",
+ "/tyros-private/": "page",
+ "/en/tyros-private/": "page"
 }
