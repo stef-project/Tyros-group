@@ -146,7 +146,7 @@ body{counter-reset:chap;}
 }
 .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);column-gap:2rem;padding-top:clamp(2rem,4vh,3rem);}
 .hero .eyebrow{grid-column:1/-1;grid-row:1;padding-bottom:1rem;border-bottom:1px solid var(--rule);letter-spacing:.3em;}
-.hero h1{grid-column:1/9;grid-row:2;font-size:clamp(3rem,7.4vw,6.6rem);line-height:.9;letter-spacing:-.045em;max-width:none;margin:clamp(2.5rem,7vh,5rem) 0 clamp(2.5rem,7vh,5rem);}
+.hero h1{grid-column:1/9;grid-row:2;font-size:clamp(2.4rem,5vw,4.5rem);line-height:.95;letter-spacing:-.045em;max-width:none;margin:clamp(2.5rem,7vh,5rem) 0 clamp(2.5rem,7vh,5rem);}
 .hero h1 .l1,.hero h1 .l2{display:block;}
 .hero h1 .l2{margin-left:clamp(0rem,6.5vw,6.5rem);}
 .hero h1 .dot{color:var(--gold);}
@@ -164,7 +164,7 @@ body{counter-reset:chap;}
   .hero::after{width:150vw;right:-143vw;top:calc(5rem - 45vw);border-width:6px;}
   .hero-inner{display:block;}
   .hero .eyebrow{margin-bottom:0;}
-  .hero h1{font-size:clamp(2.7rem,12.5vw,6.4rem);margin:2.2rem 0 1.6rem;}
+  .hero h1{font-size:clamp(2.2rem,9.5vw,4rem);margin:2.2rem 0 1.6rem;}
   .hero h1 .l2{margin-left:clamp(0rem,9vw,5rem);}
   .hero-side{border-left:0;border-top:1px solid var(--rule);padding:1.4rem 0 2.6rem;margin:0;}
   .hero-stats .stats-grid{grid-template-columns:1fr 1fr;}
