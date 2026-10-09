@@ -58,7 +58,7 @@ p{color:var(--ivory-soft);}
 .eyebrow{color:var(--gold);}
 
 /* 3. HEADER, MENU, FOOTER -------------------------------------------------------- */
-header.site{background:rgba(5,14,29,.94);border-bottom:1px solid var(--line-2);}
+header.site{background:var(--night);border-bottom:1px solid var(--line-2);}
 header.site .logo,header.site .logo-top{color:var(--ivory);}
 .logo-sub{color:var(--gold);}
 nav.main a,.mobile-nav a:not(.btn){color:var(--ivory-soft);}
@@ -124,3 +124,6 @@ hr{border-color:var(--line);}
 #consent .consent-btns .btn{min-width:7.5rem;justify-content:center;}
 #consent:focus{outline:none;}
 #consent,#consent *{border-radius:0;}
+
+/* anchors and sections land below the sticky header */
+[id]{scroll-margin-top:5.5rem;}
