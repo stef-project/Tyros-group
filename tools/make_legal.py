@@ -15,12 +15,16 @@ def page(eyebrow,h1,lede,body):
 </article>'''
 FR_N='''<h2>Éditeur</h2>
 <p>Site édité par TYROS GROUP LTD, société enregistrée en Angleterre et au Pays de Galles sous le numéro 16513376, siège social 61 Kensington Church Street, London W8 4BA, Royaume-Uni.</p>
+<h2>Contact</h2>
+<p>Courriel : <a href="mailto:contact@tyros-group.com">contact@tyros-group.com</a>.</p>
 <h2>Hébergement</h2>
 <p>Hébergé via GitHub Pages (GitHub Inc.).</p>
 <h2>Propriété intellectuelle</h2>
 <p>L'ensemble des contenus est la propriété exclusive de TYROS GROUP LTD. Toute reproduction est interdite sans autorisation écrite préalable.</p>'''
 EN_N='''<h2>Publisher</h2>
 <p>This site is published by TYROS GROUP LTD, a company registered in England and Wales under number 16513376, registered office 61 Kensington Church Street, London W8 4BA, United Kingdom.</p>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:contact@tyros-group.com">contact@tyros-group.com</a>.</p>
 <h2>Hosting</h2>
 <p>Hosted via GitHub Pages (GitHub Inc.).</p>
 <h2>Intellectual property</h2>

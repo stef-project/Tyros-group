@@ -38,7 +38,7 @@ for u,s in content.items():
     s_nolang=re.sub(r'<a [^>]*hreflang="[^"]*"[^>]*>','',s)
     for h in re.findall(r'href="([^"#?][^"]*|#[^"]*|[^"]*#[^"]*)"',s_nolang):
         if h.startswith(('http','mailto:','tel:','data:')): 
-            if h.startswith('mailto:') and u not in('/','/en/','/confidentialite/','/en/privacy-policy/'): problems.append((u,'mailto',h[:60]))
+            if h.startswith('mailto:') and u not in('/','/en/','/confidentialite/','/en/privacy-policy/','/mentions-legales/','/en/legal-notice/'): problems.append((u,'mailto',h[:60]))
             continue
         h=h.replace('&amp;','&');pth,_,frag=h.partition('#');pth=urllib.parse.urlsplit(pth).path
         if not pth: pth=u
