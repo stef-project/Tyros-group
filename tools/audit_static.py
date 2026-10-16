@@ -42,7 +42,7 @@ for u,s in content.items():
             continue
         h=h.replace('&amp;','&');pth,_,frag=h.partition('#');pth=urllib.parse.urlsplit(pth).path
         if not pth: pth=u
-        if exp=='en' and pth.startswith('/') and not pth.startswith(('/en/','/assets','/fonts')) and pth!='/404.html': problems.append((u,'EN page links to FR page',h))
+        if exp=='en' and pth.startswith('/') and not pth.startswith(('/en/','/assets','/fonts')) and pth not in('/404.html','/apple-touch-icon.png'): problems.append((u,'EN page links to FR page',h))
         if pth.startswith('/') and not exists(pth): problems.append((u,'broken link',h)); continue
         if frag and pth in ids and frag not in ids[pth]: problems.append((u,'broken anchor',h))
     # assets

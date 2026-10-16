@@ -119,7 +119,15 @@ def css(typ,url):
     links=['/assets/css/%s.css'%typ,'/assets/tyros-ds.css','/assets/tyros-bplus.css','/assets/tyros-theme.css']
     if typ!='home': links.append('/assets/tyros-inner.css')
     links.append('/assets/tyros-forms.css')
-    return '\n'.join('<link rel="stylesheet" href="%s?v=%s">'%(l,V) for l in links)
+    head='<meta name="theme-color" content="#050E1D">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n'
+    return head+'\n'.join('<link rel="stylesheet" href="%s?v=%s">'%(l,V) for l in links)
+
+# Content Security Policy (meta tag). Synced pages run no inline script, so script-src needs no 'unsafe-inline';
+# GTM is injected by /assets/site.js after consent. Redirect stubs (not synced) keep their own policy.
+CSP=("default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; "
+     "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self' data:; "
+     "connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; "
+     "frame-src https://www.googletagmanager.com; form-action 'self'; base-uri 'self'; object-src 'none';")
 
 def hreflang(url,lang):
     fr=url if lang=='fr' else rev.get(url);en=twins.get(url) if lang=='fr' else url
@@ -152,7 +160,7 @@ def run():
             typ=types.get(u,'page')
             s=region(s,'css',css(typ,u))
             s=s.replace('%2308090C','%23050E1D').replace('%23C4A469','%23CEA152')
-            s=s.replace("connect-src 'self' https://www.googletagmanager.com","connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.googletagmanager.com") if 'script.google.com' not in s else s
+            s=re.sub(r'<meta http-equiv="Content-Security-Policy" content="[^"]*">',lambda m:'<meta http-equiv="Content-Security-Policy" content="%s">'%CSP,s,count=1)
             hl=hreflang(u,lang)
             # hreflang: drop previous static ones, then place after canonical
             s=re.sub(r'<link rel="alternate" hreflang="[^"]*" href="[^"]*">\n?','',s)

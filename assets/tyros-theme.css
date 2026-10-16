@@ -135,3 +135,9 @@ hr{border-color:var(--line);}
 
 /* text-only "O" of the logo, for tools that read text; the ring is the visible O */
 .vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;}
+
+/* touch screens: larger tap areas for small links, drawn with an invisible extension so spacing and look do not change */
+@media (pointer:coarse){
+  header.site a.logo,.lang a,.foot-col a,.foot-col .linklike,.cinfo a{position:relative;}
+  header.site a.logo::after,.lang a::after,.foot-col a::after,.foot-col .linklike::after,.cinfo a::after{content:"";position:absolute;left:-.6rem;right:-.6rem;top:50%;height:44px;transform:translateY(-50%);}
+}
