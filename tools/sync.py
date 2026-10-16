@@ -34,14 +34,14 @@ L={
    cta='Échange confidentiel',cta_m='Réserver un échange confidentiel',
    tag='Leadership, intelligence et relations stratégiques, avec une spécialisation en services financiers. London.',
    f_div='Divisions',f_firm='Cabinet',f_legal='Légal',f_about='À propos',f_boards='Conseils &amp; dirigeants',f_contact='Contact',
-   f_notice='Mentions légales',f_privacy='Confidentialité',f_reg='Société enregistrée en Angleterre &amp; Pays de Galles',
+   f_notice='Mentions légales',f_privacy='Confidentialité',f_reg='Société enregistrée en Angleterre et au Pays de Galles, n° 16513376 · Siège social : 61 Kensington Church Street, London W8 4BA, Royaume-Uni',
    cookies='Gérer les cookies',advisory='/ai-act-gouvernance-ia-finance/',notice='/mentions-legales/',privacy='/confidentialite/',request='/demande/'),
  'en':dict(skip='Skip to content',lang_label='Language',theme='Switch theme',menu='Menu',home='/en/',pre='/en',
    nav=[('About','#about'),('Services','#services'),('Industries','#industries'),('Boards','/for-boards-executives/'),('Insights','#insights'),('Academy','#academy')],
    cta='Book a Discussion',cta_m='Book a Confidential Discussion',
    tag='Strategic leadership, intelligence and executive access, specialised in financial services. London.',
    f_div='Divisions',f_firm='Firm',f_legal='Legal',f_about='About',f_boards='Boards &amp; Executives',f_contact='Contact',
-   f_notice='Legal notice',f_privacy='Privacy policy',f_reg='Company registered in England &amp; Wales',
+   f_notice='Legal notice',f_privacy='Privacy policy',f_reg='Company registered in England and Wales, No. 16513376 · Registered office: 61 Kensington Church Street, London W8 4BA, United Kingdom',
    cookies='Cookie settings',advisory='/en/ai-act-ai-governance-financial-services/',notice='/en/legal-notice/',privacy='/en/privacy-policy/',request='/en/request/'),
 }
 

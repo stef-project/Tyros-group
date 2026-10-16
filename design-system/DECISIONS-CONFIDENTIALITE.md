@@ -16,3 +16,12 @@ Texte concerné : section « Données professionnelles de décideurs (Tyros Priv
 - **Information sur l'origine des données** (art. 14) : formulation « sur demande, dans les limites prévues par la loi, notamment secret des affaires » : à valider, y compris le moment et le moyen de l'information.
 - **Transmission au mandataire** : « avec accord préalable » ; restitution de résultats anonymisés ou agrégés sans accord : à valider (caractère réellement anonyme).
 - **Hospitalité / conformité** : mention générale que les formats tiennent compte des politiques des organisations invitées ; aucune règle chiffrée n'est affichée.
+
+## Mise à jour du 16 octobre 2026 : identité de l'entreprise et politique de confidentialité
+Ajouts à faire valider par un professionnel du droit (RGPD / UK GDPR, Companies Act) :
+- **Identité visible sur chaque page** (pied de page) : Tyros Group Ltd, société enregistrée en Angleterre et au Pays de Galles, n° 16513376, siège social 61 Kensington Church Street, London W8 4BA. Les mêmes informations figurent dans les mentions légales et la politique de confidentialité. Source : communiquées par la fondatrice. À rapprocher du registre Companies House.
+- **Responsable du traitement** nommé dans la politique de confidentialité.
+- **Bases légales** indiquées pour le formulaire (mesures précontractuelles et intérêt légitime), Academy (contrat avec l'entreprise commanditaire et intérêt légitime), cookies (consentement). À valider.
+- **Transferts hors Royaume-Uni et UE** (Google, GitHub, notamment États-Unis) : formulation générique (décision d'adéquation ou clauses contractuelles types). À confirmer selon les contrats réels des prestataires.
+- **Droits** : délai d'un mois, retrait du consentement, absence de décision automatisée, réclamation auprès de l'ICO (Royaume-Uni) ou de la CNIL (France).
+- **À vérifier hors site** : paiement de la redevance de protection des données auprès de l'ICO (Royaume-Uni) lorsqu'elle s'applique.
