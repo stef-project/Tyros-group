@@ -43,5 +43,7 @@
  "/en/request/": "page",
  "/404.html": "page",
  "/tyros-private/": "page",
- "/en/tyros-private/": "page"
+ "/en/tyros-private/": "page",
+ "/insights/vendre-aux-institutions-financieres/": "article",
+ "/en/insights/selling-to-financial-institutions/": "article"
 }
