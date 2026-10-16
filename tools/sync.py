@@ -99,7 +99,7 @@ def footer(lang,url):
     return f'''<footer class="site">
   <div class="wrap foot-grid">
     <div>
-      <span class="logo" aria-label="Tyros Group"><span class="logo-top">TYR{parts['logo']}S</span><span class="logo-sub">GROUP</span></span>
+      <span class="logo" role="img" aria-label="Tyros Group"><span class="logo-top">TYR{parts['logo']}S</span><span class="logo-sub">GROUP</span></span>
       <p class="bl">{c['tag']}</p>
     </div>
     <div class="foot-col"><h3>{c['f_div']}</h3><a href="{h}#executive-search">Executive Search</a><a href="{h}#intelligence">Tyros Intelligence</a><a href="{c['advisory']}">Advisory</a><a href="{c['pre']}/tyros-private/">Tyros Private</a></div>

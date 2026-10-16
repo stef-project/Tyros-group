@@ -132,3 +132,6 @@ hr{border-color:var(--line);}
 .invite-note{margin-top:1.6rem;}
 .private-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem;}
 .foot-col .linklike{display:block;font-size:.86rem;padding-block:.2rem;margin-bottom:.4rem;}
+
+/* text-only "O" of the logo, for tools that read text; the ring is the visible O */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;}
