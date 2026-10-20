@@ -20,6 +20,11 @@ for u,s in content.items():
     exp='en' if u.startswith('/en/') else 'fr'
     if lang!=exp and u!='/404.html': problems.append((u,'html lang',lang))
     if 'data-en' in s: problems.append((u,'data-en left'))
+    # the Content Security Policy forbids inline scripts on synced pages: none may be added (JSON data blocks are not scripts)
+    if "script-src 'self' 'unsafe-inline'" not in s:
+        for m in re.finditer(r'<script(?![^>]*\bsrc=)([^>]*)>(.*?)</script>',s,re.S):
+            if 'application/ld+json' in m.group(1) or 'application/json' in m.group(1): continue
+            problems.append((u,'inline script blocked by CSP',m.group(2).strip()[:40]))
     if 'theme-btn' in s or 'data-theme' in s.replace('data-theme-',''): problems.append((u,'theme switch left'))
     if 'Read in English' in s or 'Lire en français' in s: problems.append((u,'language shortcut left'))
     if 'tyros_lang' in s: problems.append((u,'lang storage left'))

@@ -55,7 +55,8 @@
       ok.hidden=false;ok.focus();
       ok.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
     }
-    try{(window.dataLayer=window.dataLayer||[]).push({event:'contact_submitted',contact_offer:offer||undefined,contact_lang:lang});}catch(e){}
+    // the conversion event is recorded only once analytics consent has been given (nothing is queued before the visitor chooses)
+    try{if(localStorage.getItem('tyros_consent')==='granted')(window.dataLayer=window.dataLayer||[]).push({event:'contact_submitted',contact_offer:offer||undefined,contact_lang:lang});}catch(e){}
   }
   forms.forEach(function(f){
     f.addEventListener('input',function(e){if(e.target.name)clearErr(e.target);});

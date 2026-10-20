@@ -13,6 +13,8 @@ def norm(html):
     return re.sub(r'\s+',' ',((t.group(1) if t else '')+'|'+(d.group(1) if d else '')+'|'+(m.group(1) if m else html)))
 def git(*a):
     r=subprocess.run(['git']+list(a),capture_output=True,text=True);return r.stdout if r.returncode==0 else None
+if (git('rev-parse','--is-shallow-repository') or '').strip()=='true':
+    raise SystemExit('shallow clone: git history is incomplete, so lastmod dates would be wrong. Fetch full history first (git fetch --unshallow). sitemap.xml left unchanged.')
 cache={}
 def lastmod(u):
     p=path_of(u)
